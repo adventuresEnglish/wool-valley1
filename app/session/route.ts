@@ -25,5 +25,3 @@ export async function POST(request: Request) {
   });
   return Response.json({ sessionId: checkoutSession.id });
 }
-// successUrl="http://localhost:3000/stripe/success"
-// cancelUrl="http://localhost:3000/stripe/error"
