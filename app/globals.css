@@ -24,6 +24,7 @@
     --input: 220 13% 91%;
     --ring: 262.1 83.3% 57.8%;
     --radius: 0.5rem;
+    --gold-accent: 37, 94%, 33%;
   }
 
   .dark {
@@ -56,4 +57,81 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.custom-stroke {
+  stroke: hsl(var(--gold-accent));
+}
+
+details[open] ~ .main-image {
+  filter: blur(5px);
+}
+
+@keyframes topSliderUpAn {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-200%);
+  }
+}
+
+.top-slider-up {
+  animation: topSliderUpAn 400ms ease-in forwards;
+}
+
+@keyframes topSliderDownAn {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(0);
+  }
+  21% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+.top-slider-down {
+  animation: topSliderDownAn 800ms ease-out forwards;
+}
+
+@keyframes bottomSliderUpAn {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(0);
+  }
+  21% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(-200%);
+  }
+}
+
+.bottom-slider-up {
+  animation: bottomSliderUpAn 800ms ease-out forwards;
+}
+
+@keyframes bottomSliderDownAn {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+.bottom-slider-down {
+  animation: bottomSliderDownAn 400ms ease-in forwards;
 }

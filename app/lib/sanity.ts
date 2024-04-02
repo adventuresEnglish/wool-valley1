@@ -3,7 +3,7 @@ import imageUrlBuilder from "@sanity/image-url";
 
 export const client = createClient({
   projectId: "c8kajeh8",
-  dataset: "production",
+  dataset: "slippers",
   apiVersion: "2022-03-25",
   useCdn: true,
 });

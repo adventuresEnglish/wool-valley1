@@ -1,0 +1,132 @@
+[
+  {
+    "_id": "baby_kid_001",
+    "price": 4599,
+    "name": "Fuscia",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Fuscia",
+    "slug": "fuscia",
+    "description": "These little booties will keep their feet toasty even on a chilly morning. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/957cab226c93c165d0ba0565bbc11e6c8872a65a-1000x1000.jpg"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Doodle Mini",
+    "slug": "doodle-mini",
+    "description": "Doodling can be fun and unlock creative potential. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/6bc445376830f7d78bcfda4d15c6c1277d6783bf-1000x1000.jpg",
+    "_id": "baby_kid_002",
+    "price": 4599,
+    "name": "Doodle Mini"
+  },
+  {
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/f574b43d9e2639f01629095bcb50a369adc0c6b7-1000x1000.jpg",
+    "_id": "baby_kid_003",
+    "price": 4599,
+    "name": "Tiger",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Tiger",
+    "slug": "tiger",
+    "description": "For little tiger roaming the halls. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms."
+  },
+  {
+    "name": "Gulls",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Gulls",
+    "slug": "gulls",
+    "description": "For the little gulls squawking about the living room. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/160f4fdab2cdfe3cf3bb2ae458a816d1ecf923bf-1000x1000.jpg",
+    "_id": "baby_kid_004",
+    "price": 4599
+  },
+  {
+    "price": 4599,
+    "name": "Circle",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Circle",
+    "slug": "circle",
+    "description": "Do you remember spinning around in circles as a child? All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/6123333cab1012961c5633b784a02949e86be852-837x837.jpg",
+    "_id": "baby_kid_005"
+  },
+  {
+    "_id": "baby_kid_006",
+    "price": 4599,
+    "name": "Red Laser",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Red Laser",
+    "slug": "red-laser",
+    "description": "These little booties will keep their feet toasty even on a cold morning. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/4887e18feb92bc0eb524ad9ae03a8ad2d4aae71c-1000x1000.jpg"
+  },
+  {
+    "_id": "baby_kid_007",
+    "price": 4599,
+    "name": "Ice Follies",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Ice Follies",
+    "slug": "ice-follies",
+    "description": "These little booties will keep their feet toasty even on a cold morning. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/ff012a3194b0225d133d8daf8ae05e7bf9c7c849-1000x1000.jpg"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/9b60ffa23387716fdaa29f1663163551aca92c09-875x875.jpg",
+    "_id": "baby_kid_008",
+    "price": 4599,
+    "name": "Christmas Vine",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Christmas Vine",
+    "slug": "christmas-vine",
+    "description": "These are sure to light up a chilly night. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid"
+  },
+  {
+    "name": "Mouse Patrol",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Mouse Patrol",
+    "slug": "mouse-patrol",
+    "description": "KEEP AWAY FROM CATS. Safe for chidren. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/1682f005fda91dd176f497b8fed7157eb1c9c652-1000x1000.jpg",
+    "_id": "baby_kid_009",
+    "price": 4599
+  },
+  {
+    "name": "Monster Patrol",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Monster Patrol",
+    "slug": "monster-patrol",
+    "description": "For the little monsters you love all the same. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/d7911648f47b5638ed96980f9967a6db4449d6ad-1000x1000.jpg",
+    "_id": "baby_kid_010",
+    "price": 4599
+  },
+  {
+    "slug": "wanderer",
+    "description": "For those who love to wander in style and warmth. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/1c915b87b87767990110be2a21c4de58b1f38b60-1000x1000.jpg",
+    "_id": "baby_kid_011",
+    "price": 4599,
+    "name": "Forager",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Wanderer"
+  },
+  {
+    "slug": "aqua-mice",
+    "description": "For little critters who love water. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/c7a60bab44c2cdb8332930567386f2e149819668-1000x1000.jpg",
+    "_id": "baby_kid_012",
+    "price": 4599,
+    "name": "Aqua Mice",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Aqua Mice"
+  },
+  {
+    "slug": "etiquette",
+    "description": "A proper slipper for a proper child. Nothing less, nothing more. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature durable leather bottoms.",
+    "categoryName": "baby_kid",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/5669cd8d03fe543e96ed0c61eb36b5210dc71467-875x875.jpg",
+    "_id": "baby_kid_013",
+    "price": 4599,
+    "name": "Etiquette",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Etiquette"
+  }
+]

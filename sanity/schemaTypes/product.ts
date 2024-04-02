@@ -4,20 +4,50 @@ export default {
   title: 'Product',
   fields: [
     {
+      name: 'price_id',
+      title: 'Price ID',
+      type: 'array',
+      of: [{type: 'string'}],
+    },
+    {
       name: 'name',
       type: 'string',
-      title: 'Name of Product',
+      title: 'Name',
     },
     {
       name: 'images',
       type: 'array',
       title: 'Product Images',
-      of: [{type: 'image'}],
+      of: [{type: 'image', options: {hotspot: true}}],
+    },
+    {
+      name: 'bestOf',
+      title: 'Best Of?',
+      type: 'boolean',
+    },
+    {
+      name: 'includeBestOfImage',
+      title: 'Include Best Of Image?',
+      type: 'boolean',
+      hidden: ({parent}: any) => !parent.bestOf,
+    },
+    {
+      name: 'bestOfImage',
+      type: 'image',
+      title: 'Best Of Image',
+      hidden: ({parent}: any) => !parent.includeBestOfImage || !parent.bestOf,
+      options: {hotspot: true},
     },
     {
       name: 'description',
       type: 'text',
-      title: 'Description of Product',
+      title: 'Product Description',
+    },
+    {
+      name: 'alt',
+      type: 'string',
+      title: 'Alt Text',
+      initialValue: 'Hand-felted Wool Valley Slippers made in Peru. Model:',
     },
     {
       name: 'slug',
@@ -34,20 +64,22 @@ export default {
       type: 'number',
     },
     {
-      name: 'price_id',
-      title: 'Stripe Price ID',
-      type: 'string',
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{type: 'category'}],
+    },
+    {
+      name: 'style',
+      title: 'Style',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'style'}]}],
     },
     {
       name: 'currency',
       title: 'Currency',
       type: 'string',
-    },
-    {
-      name: 'category',
-      title: 'Category',
-      type: 'reference',
-      to: [{type: 'category'}],
+      default: 'USD',
     },
   ],
 }

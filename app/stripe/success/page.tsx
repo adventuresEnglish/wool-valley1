@@ -4,13 +4,29 @@ import { Button } from "@/components/ui/button";
 import { CheckCheck } from "lucide-react";
 import Link from "next/link";
 import { useShoppingCart } from "use-shopping-cart";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function SuccessStripe() {
-  const { clearCart, cartCount } = useShoppingCart();
+  const { clearCart } = useShoppingCart();
+  const intervalRef = useRef<NodeJS.Timeout | undefined>();
 
   useEffect(() => {
-    clearCart();
+    intervalRef.current = setInterval(() => {
+      if (typeof clearCart === "function") {
+        clearCart();
+        clearInterval(intervalRef.current!);
+      }
+    }, 100);
+
+    const timeoutId = setTimeout(() => {
+      clearInterval(intervalRef.current!);
+    }, 5000);
+
+    return () => {
+      clearInterval(intervalRef.current!);
+      clearTimeout(timeoutId);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -29,7 +45,6 @@ export default function SuccessStripe() {
             <Link href="/">Go Back</Link>
           </Button>
         </div>
-        {/* <button onClick={clearCart}>clear</button> */}
       </div>
     </div>
   );

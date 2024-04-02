@@ -15,6 +15,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../components/ui/tooltip.tsx",
+    "ndjson/createAdults.js",
+    "json/priceIdStore.mjs"
+  ],
   "exclude": ["node_modules"]
 }

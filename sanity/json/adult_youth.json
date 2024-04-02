@@ -1,0 +1,773 @@
+[
+  {
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/e1b7dbf13426aec0e384fa3b2b34bd27a2ed9677-1000x1000.jpg",
+    "_id": "adult_youth_001",
+    "price": 5999,
+    "name": "Swirl",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Swirl",
+    "slug": "swirl",
+    "description": "These one-of-a-kind slippers are laid back with just a subtle astetic touch. Embrace the swirl and bring a little attention, but not too much attention to your feet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "size": 32
+  },
+  {
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/6be6fe7ffca75d3eecb6dda7acffef96bdeec717-1000x1000.jpg",
+    "_id": "adult_youth_002",
+    "price": 5999,
+    "name": "Rumi",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Rumi",
+    "slug": "rumi",
+    "description": "Rumi, the Quechua word for rock, is the essence of these feet huggers. Stay soft, tread rugged. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom."
+  },
+  {
+    "description": "When the sun goes down, the slippers slide on. Step into the night in style in these dark blue beauties. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/6012f154b2813b7a9f159f07a74d624790846530-1000x1000.jpg",
+    "_id": "adult_youth_003",
+    "price": 5999,
+    "name": "Night",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Night",
+    "slug": "night"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Whirlpool",
+    "slug": "whirlpool",
+    "description": "Do you love the water but like to stay dry? Go ahead, dip you feet in. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/8c3416ed5e9a085f676ee6ae5c2f9233a5348095-1000x1000.jpg",
+    "_id": "adult_youth_004",
+    "price": 5999,
+    "name": "Whirlpool"
+  },
+  {
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/988d1bd1ef830715b6ce133f28ed7284e1658eed-1000x1000.jpg",
+    "_id": "adult_youth_005",
+    "price": 5999,
+    "name": "Chiri Unu",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Chiri Unu",
+    "slug": "chiri-unu",
+    "description": "Chiri Uno means cold water in the Andes region of Peru. These slippers are ice cold, but will keep your feet toasty anyway. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom."
+  },
+  {
+    "name": "Pink Lazer",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Pink Lazer",
+    "slug": "pink-lazer",
+    "description": "These slippers are not afraid of contrast. Stand out from the crowd. Embrace the spirit of pink laser. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/727450c2b7f6f37e72866bdf914e6e3b26f55518-1000x1000.jpg",
+    "_id": "adult_youth_006",
+    "price": 5999
+  },
+  {
+    "name": "Forest",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Forest",
+    "slug": "forest",
+    "description": "The quiet of deep forest. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/16d38ad57c06d9605f5f64ed5a6d8ebe8c0b3729-1000x1000.jpg",
+    "_id": "adult_youth_007",
+    "price": 5999
+  },
+  {
+    "price": 5999,
+    "name": "Equilibrium",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Equilibrium",
+    "slug": "equilibrium",
+    "description": "Find your center in between these slippers. Life is all about balance. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/abc1d84c03d32a48beebf7852c78ce8cf945ca10-1000x1000.jpg",
+    "_id": "adult_youth_008"
+  },
+  {
+    "price": 5999,
+    "name": "Snow Leopard",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Snow Leopard",
+    "slug": "snow-leopard",
+    "description": "Be fierce. Trot like a snow leopard. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/a6a66eac7c8092bf2fb89a9372ea73d84088f796-1000x1000.jpg",
+    "_id": "adult_youth_009"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/b04f1cbb77628798de555df1ad9a372513906eff-1000x1000.jpg",
+    "_id": "adult_youth_010",
+    "price": 5999,
+    "name": "Storm",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Storm",
+    "slug": "storm",
+    "description": "Storms come and go. Ride out the tumults of winter in these tough coasters. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "description": "These slippers are ice cold, but will keep your feet toasty anyway. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/15c151b75772ffa6efc5a70cb93d35d76792fb18-1000x1000.jpg",
+    "_id": "adult_youth_011",
+    "price": 5999,
+    "name": "Ice Born",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Ice Born",
+    "slug": "ice-born"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/57ce31e4c84f48dbf0b8d078b4c05215500090df-1000x1000.jpg",
+    "_id": "adult_youth_012",
+    "price": 5999,
+    "name": "Hunter",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Hunter",
+    "slug": "hunter",
+    "description": "Keep a low profile while you gather what is needed for the pack. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/b356907fea33c4dccb8d22e59e21842c51a213b3-1000x1000.jpg",
+    "_id": "adult_youth_013",
+    "price": 5999,
+    "name": "Granite",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Granite",
+    "slug": "granite",
+    "description": "For those who are hard as rock but soft on the inside. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Superb",
+    "slug": "superb",
+    "description": "Add an element of sophistication to your morning routine. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/91cd07d5d1d6a638f7a7791f49b72651be47bf22-1000x1000.jpg",
+    "_id": "adult_youth_014",
+    "price": 5999,
+    "name": "Superb"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Anaconda Dreams",
+    "slug": "anaconda-dreams",
+    "description": "Move with power. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/fbf7f050c6b53e1e0d2b8c7e7c9e8e21f55136db-1000x1000.jpg",
+    "_id": "adult_youth_015",
+    "price": 5999,
+    "name": "Anaconda Dreams"
+  },
+  {
+    "name": "Nazca",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Nazca",
+    "slug": "nazca",
+    "description": "Inspired by ancient lines of the Nazca lines. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/41811174301162165fe158d7c1d349cfdc58a903-1000x1000.jpg",
+    "_id": "adult_youth_016",
+    "price": 5999
+  },
+  {
+    "name": "Camel",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Camel",
+    "slug": "camel",
+    "description": "It gets chilly in the desert, too. Wrap your hooves up. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/3e140b339d09d11e3c05e08b64773be3439977c0-1000x1000.jpg",
+    "_id": "adult_youth_017",
+    "price": 5999
+  },
+  {
+    "price": 5999,
+    "name": "Argile",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Argile",
+    "slug": "argile",
+    "description": "Bring the business to the breakfast table. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/3315d5a4b9eb1a1a020d5f498df4c17e8a7a903d-1000x1000.jpg",
+    "_id": "adult_youth_018"
+  },
+  {
+    "name": "Cloud Break",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Cloud Break",
+    "slug": "cloud-break",
+    "description": "Let the sun rip through those groggy clouds. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/0458afa4362ab0e4b20ed6f31cdb84ce71790bf1-1000x1000.jpg",
+    "_id": "adult_youth_019",
+    "price": 5999
+  },
+  {
+    "name": "Stash",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Stash",
+    "slug": "stash",
+    "description": "Every body loves a healthy stash. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/e150cb8606300a223180ac9ffd8926eabea82ab5-1000x1000.jpg",
+    "_id": "adult_youth_020",
+    "price": 5999
+  },
+  {
+    "slug": "fuego",
+    "description": "Lose yourself in the flames. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/2b9b1149155d2381c9e019899c2605c5c4168fa5-1000x1000.jpg",
+    "_id": "adult_youth_021",
+    "price": 5999,
+    "name": "Fuego",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Fuego"
+  },
+  {
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/a5da70cdaaf125dc2756a408f8b1698f6dbaaa88-1000x1000.jpg",
+    "_id": "adult_youth_022",
+    "price": 5999,
+    "name": "Thicket",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Thicket",
+    "slug": "thicket",
+    "description": "Inspired by the wilds, but suitable for your home. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom."
+  },
+  {
+    "slug": "zig",
+    "description": "Life takes us in many directions. Lead the way in comfort. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/a886dff0faa47f8a9a8ab30e2a92a95836cfcae1-1000x1000.jpg",
+    "_id": "adult_youth_023",
+    "price": 5999,
+    "name": "Zig",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Zig"
+  },
+  {
+    "_id": "adult_youth_024",
+    "price": 5999,
+    "name": "Starflower",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Starflower",
+    "slug": "starflower",
+    "description": "Show your love for flowers no matter what season it is. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/a2199ef851411f9e7fc7d78de9759bae335bd4a0-1000x1000.jpg"
+  },
+  {
+    "name": "Albatross",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Albatross",
+    "slug": "albatross",
+    "description": "Fly like an albatross. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/33f888cb2835db1b8701ad5b1d25a2a456a031e1-1000x1000.jpg",
+    "_id": "adult_youth_025",
+    "price": 5999
+  },
+  {
+    "slug": "amaranth",
+    "description": "These cuddlebugs are inspired by the wild amaranth that grows in Peruvian Andes. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/5a7c781c9b24ccd502e1db5adc96f6118238f0db-1000x1000.jpg",
+    "_id": "adult_youth_026",
+    "price": 5999,
+    "name": "Amaranth",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Amaranth"
+  },
+  {
+    "name": "Sidewinder",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Sidewinder",
+    "slug": "sidewinder",
+    "description": "Blaze a new trail. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/767737af9653c567af71dcff3670ec24c0cfc665-1000x1000.jpg",
+    "_id": "adult_youth_027",
+    "price": 5999
+  },
+  {
+    "_id": "adult_youth_028",
+    "price": 5999,
+    "name": "Flower Power",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Flower Power",
+    "slug": "flower-power",
+    "description": "Be free. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/2b91e1a551b1e82168b4be19d02bfab8bfcc9034-1000x1000.jpg"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Sol Y Luna",
+    "slug": "sol-y-luna",
+    "description": "End the day with some peace. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/0203fb29620860a42ac67c4675377142a2ab7541-1000x1000.jpg",
+    "_id": "adult_youth_029",
+    "price": 5999,
+    "name": "Sol Y Luna"
+  },
+  {
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/192ae2507e8ba0ebee6d3a5a130d6fcb74920642-583x583.jpg",
+    "_id": "adult_youth_030",
+    "price": 5999,
+    "name": "Daisy",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Daisy",
+    "slug": "daisy",
+    "description": "Strong, firm but also soft. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom."
+  },
+  {
+    "name": "Estrella",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Estrella",
+    "slug": "estrella",
+    "description": "Lay a blanket out on the grass. Star gaze on a cool fall evening. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/943850fef799c34f5f776ef762752bbdfcafce43-1000x1000.jpg",
+    "_id": "adult_youth_031",
+    "price": 5999
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Rooibos",
+    "slug": "rooibos",
+    "description": "A hot tea, a bit of spice, but for your feet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/f0726ab09b6f487d87ca0c87a852beaee8da88f4-1000x1000.jpg",
+    "_id": "adult_youth_032",
+    "price": 5999,
+    "name": "Rooibos"
+  },
+  {
+    "slug": "peacock",
+    "description": "Both vibrant and in harmony with the surroundings. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/c8fa58810243e273ee641c3378e8448611d73a54-1000x1000.jpg",
+    "_id": "adult_youth_033",
+    "price": 5999,
+    "name": "Peacock",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Peacock"
+  },
+  {
+    "slug": "coca",
+    "description": "The Coca leaf is a national treasure of Peru. Let the medicine envelop your feet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/54fad967bd0f838948bdffb9ca04d9679fd9210a-1000x1000.jpg",
+    "_id": "adult_youth_034",
+    "price": 5999,
+    "name": "Coca",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Coca"
+  },
+  {
+    "_id": "adult_youth_035",
+    "price": 5999,
+    "name": "Lily",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Lily",
+    "slug": "lily",
+    "description": "Bob on the waters of life with grace—and warm feet! All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/6d5512cc882053c8fcd2939c58ed43cfaf22f74c-1000x1000.jpg"
+  },
+  {
+    "slug": "red-eye",
+    "description": "The weary traveler deserves a respite. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/938328be8366accceb43eddd9836896c4002f00b-1000x1000.jpg",
+    "_id": "adult_youth_036",
+    "price": 5999,
+    "name": "Red Eye",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Red Eye"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/80632ef028f8692acb5f476458f0a23e810bc5ae-1000x1000.jpg",
+    "_id": "adult_youth_037",
+    "price": 5999,
+    "name": "Colibri",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Colibri",
+    "slug": "colibri",
+    "description": "Colibri, the hummingbird, is the symbol strength and endurance. They heal the sick and are your best ally in battle. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Carnation",
+    "slug": "carnation",
+    "description": "Spread the joy on your feet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/2032bf2890cce440d49be4cdc0111bb53c355c8a-1000x1000.jpg",
+    "_id": "adult_youth_038",
+    "price": 5999,
+    "name": "Carnation"
+  },
+  {
+    "price": 5999,
+    "name": "Cardinal",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Cardinal",
+    "slug": "cardinal",
+    "description": "The perfect blend of pizzaz and refinement. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/f3d91a02d11fef16b2afa5c02161c42008435d90-1000x1000.jpg",
+    "_id": "adult_youth_039"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/a204654b6cc2d2c85f93e14c86bef013af069406-1000x1000.jpg",
+    "_id": "adult_youth_040",
+    "price": 5999,
+    "name": "Doodle",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Doodle",
+    "slug": "doodle",
+    "description": "Research suggests that a good doodle can unlock creative possibilities. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Serenity",
+    "slug": "serenity",
+    "description": "Invite serenity into your life. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/ea69a9834481c6b7ce5836be199dcc08d201a4fb-1000x1000.jpg",
+    "_id": "adult_youth_041",
+    "price": 5999,
+    "name": "Serenity"
+  },
+  {
+    "price": 5999,
+    "name": "Daisy Chain",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Daisy Chain",
+    "slug": "daisy-chain",
+    "description": "Wrap your feet up in these floral designs. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/692649cd17b7bfeb0f131a8204269b0b909d9fb4-1000x1000.jpg",
+    "_id": "adult_youth_042"
+  },
+  {
+    "name": "Amaranth II",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Amaranth II",
+    "slug": "amaranth-ii",
+    "description": "These cuddlebugs are inspired by the wild amaranth that grows in Peruvian Andes. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/f0a5ebdb11cbbcfe607e7b0437eed0d674091301-1000x1000.jpg",
+    "_id": "adult_youth_043",
+    "price": 5999
+  },
+  {
+    "slug": "cotton-candy",
+    "description": "Embrace the fluff. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/98132518c0c166ae2ce60af52adeaa3ca0355812-1000x1000.jpg",
+    "_id": "adult_youth_044",
+    "price": 5999,
+    "name": "Cotton Candy",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Cotton Candy"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/8265052f4afb33d2db401ce9762a9aed50f5f9e4-1000x1000.jpg",
+    "_id": "adult_youth_045",
+    "price": 5999,
+    "name": "Mar",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Mar",
+    "slug": "mar",
+    "description": "For those who long for the sea. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "slug": "cantuta",
+    "description": "The Cantuta was a sacremntal flower of the Incas and is still used to today in Andean festivities and funerals. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/26b4dbe2f12fad3260142ab7d7b11139b94d62f3-1000x1000.jpg",
+    "_id": "adult_youth_046",
+    "price": 5999,
+    "name": "Cantuta",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Cantuta"
+  },
+  {
+    "description": "Show your love for the sea on your feet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/517732c5d151d9d46a5810d76cdaebf761857533-1000x1000.jpg",
+    "_id": "adult_youth_047",
+    "price": 5999,
+    "name": "Star Power",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Star Power",
+    "slug": "star-power"
+  },
+  {
+    "slug": "heart",
+    "description": "Display your bubbly feelings on your feet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/aa059797ef82ad5027c7784c28b62c0f9d15eef6-1000x1000.jpg",
+    "_id": "adult_youth_048",
+    "price": 5999,
+    "name": "Heart",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Heart"
+  },
+  {
+    "name": "Pocadot",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Pocadot",
+    "slug": "pocadot",
+    "description": "It's ok. Be zany. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/b2b21afddb4ad74cc8441696e4d0b4c4ec233068-1000x1000.jpg",
+    "_id": "adult_youth_049",
+    "price": 5999
+  },
+  {
+    "slug": "flower",
+    "description": "Poise and grace. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/0be95bbc225bbec2a97e31e049f08419a422cc95-1000x1000.jpg",
+    "_id": "adult_youth_050",
+    "price": 5999,
+    "name": "Flower",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Flower"
+  },
+  {
+    "_id": "adult_youth_051",
+    "price": 5999,
+    "name": "Devine",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Devine",
+    "slug": "devine",
+    "description": "Shower your feet with floral feelings. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/da9c5637e5362ea365c6caef128ba79305863948-1000x1000.jpg"
+  },
+  {
+    "slug": "kuychi",
+    "description": "Kuychi, Quechua for rainbow, is a symbol of hopeand adorns the official flag of Cusco, Peru. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/b849f8c65821c375b5341ef13b09894bb1354339-1000x1000.jpg",
+    "_id": "adult_youth_052",
+    "price": 5999,
+    "name": "Kuychi",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Kuychi"
+  },
+  {
+    "_id": "adult_youth_053",
+    "price": 5999,
+    "name": "Lattice",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Lattice",
+    "slug": "lattice",
+    "description": "Let the lattice of your life sprawl with reckless abandon. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/dbb851941bce371520d198a3a8d6656fb9cc07f0-1000x1000.jpg"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/741b5cd517e3731e18fc398f8fe432b7b9233790-1000x1000.jpg",
+    "_id": "adult_youth_054",
+    "price": 5999,
+    "name": "Star Child",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Star Child",
+    "slug": "star-child",
+    "description": "Are you a child of the stars? All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "slug": "two-of-hearts",
+    "description": "It's better to love and lose than to never love at all. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/3c41b29631f08008a5162e80213be219a657bdc2-1000x1000.jpg",
+    "_id": "adult_youth_055",
+    "price": 5999,
+    "name": "Two Of Hearts",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Two Of Hearts"
+  },
+  {
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/361c3e63f8c0d8f35e352532be232b2a8ab8430d-1000x1000.jpg",
+    "_id": "adult_youth_056",
+    "price": 5999,
+    "name": "Heart Vine",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Heart Vine",
+    "slug": "heart-vine",
+    "description": "The vine of love is always present. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom."
+  },
+  {
+    "description": "Slip your feet in and hide away. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/a1bba125a77fb1ff7de460a92fa8607a8da34329-1000x1000.jpg",
+    "_id": "adult_youth_057",
+    "price": 5999,
+    "name": "Incognito",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Incognito",
+    "slug": "incognito"
+  },
+  {
+    "description": "Can't wait for Spring? Wear it on your feet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/e257a0380b0f41a27691628837d876d17526334b-1000x1000.jpg",
+    "_id": "adult_youth_058",
+    "price": 5999,
+    "name": "May Day",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: May Day",
+    "slug": "may-day"
+  },
+  {
+    "slug": "cantuta-ii",
+    "description": "The Cantuta was a sacremntal flower of the Incas and is still used to today in Andean festivities and funerals. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/b9f887edc21df333aea3d24c4559290c58d20129-1000x1000.jpg",
+    "_id": "adult_youth_059",
+    "price": 5999,
+    "name": "Cantuta II",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Cantuta II"
+  },
+  {
+    "slug": "sparkles",
+    "description": "Add a bit of sparkle to dreary day. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/d81d63e5a0034924e2c68891cabbf8a3ddfa81f3-1000x1000.jpg",
+    "_id": "adult_youth_060",
+    "price": 5999,
+    "name": "Sparkles",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Sparkles"
+  },
+  {
+    "_id": "adult_youth_061",
+    "price": 5999,
+    "name": "Fire Vine",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Fire Vine",
+    "slug": "fire-vine",
+    "description": "Embrace the heat. Warm your feet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/047dfb5d7ae579692fbb95a0629c5ed18bf6f366-1000x1000.jpg"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/41a5c2bf40b611dbd4e9f669a9c3ebcf8c44a6af-1000x1000.jpg",
+    "_id": "adult_youth_062",
+    "price": 5999,
+    "name": "Cantuta III",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Cantuta III",
+    "slug": "cantuta-iii",
+    "description": "The Cantuta was a sacremntal flower of the Incas and is still used to today in Andean festivities and funerals. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "name": "Peacock II",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Peacock II",
+    "slug": "peacock-ii",
+    "description": "Both vibrant and in harmony with the surroundings. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/687da8e4fc3d0fe2649bdb9410ee5004fc3fd5be-1000x1000.jpg",
+    "_id": "adult_youth_063",
+    "price": 5999
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/b1933d884021c5083c58886c584d6b536f95a8da-1000x1000.jpg",
+    "_id": "adult_youth_064",
+    "price": 5999,
+    "name": "Hearts Away",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Hearts Away",
+    "slug": "hearts-away",
+    "description": "It's better to love and lose than to never love at all. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  },
+  {
+    "name": "Arcoiris",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Arcoiris",
+    "slug": "arcoiris",
+    "description": "Arcoiris, Spanish for rainbow, is a symbol of hope and adorns the official flag of Cusco, Peru. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/671de123783236f75ac8e161f1f7c2644c82444a-1000x1000.jpg",
+    "_id": "adult_youth_065",
+    "price": 5999
+  },
+  {
+    "_id": "adult_youth_066",
+    "price": 5999,
+    "name": "Purple Rose",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Purple Rose",
+    "slug": "purple-rose",
+    "description": "Roses come in many colors. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/6adc4bb3aedc0985ca1d31d035f00c04809baa93-1000x1000.jpg"
+  },
+  {
+    "description": "Calendula grows freely in the Andes. Wrap your feet in their essence. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/1b734220858e1f914367beec2e0bdcb82c87ef7f-1000x1000.jpg",
+    "_id": "adult_youth_067",
+    "price": 5999,
+    "name": "Calendula",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Calendula",
+    "slug": "calendula"
+  },
+  {
+    "slug": "peace",
+    "description": "We can always allow a little more peace into our lives. Comfortable feet help. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/d6a44c321093d57c656a70c709bcceb257cd20c7-1000x1000.jpg",
+    "_id": "adult_youth_068",
+    "price": 5999,
+    "name": "Peace",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Peace"
+  },
+  {
+    "name": "Lokum",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Lokum",
+    "slug": "lokum",
+    "description": "Swaddle your feet with something sweet. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/eeb4facac58a821253c057921fd51dfd169078b4-1000x1000.jpg",
+    "_id": "adult_youth_069",
+    "price": 5999
+  },
+  {
+    "slug": "may-flower",
+    "description": "Spring is right around the corner, but you don't have to wait to celebrate. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/b106c54589afb01dda7856e76db411173303dd54-1000x1000.jpg",
+    "_id": "adult_youth_070",
+    "price": 5999,
+    "name": "May Flower",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: May Flower"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Ice Petals",
+    "slug": "ice-petals",
+    "description": "Certain Andean flowers can become covered without skipping a beat. A warm pair of slippers doesn't hurt though. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/09f8d3f6b3a4b6a2cdc789ec4e5d67062ac46f7e-1000x1000.jpg",
+    "_id": "adult_youth_071",
+    "price": 5999,
+    "name": "Ice Petals"
+  },
+  {
+    "name": "Colibri II",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Colibri II",
+    "slug": "colibri-ii",
+    "description": "Colibri, the hummingbird, is the symbol strength and endurance. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/c7c94ed1fb94c1872c16c22ca9dce5a7edf413a2-1000x1000.jpg",
+    "_id": "adult_youth_072",
+    "price": 5999
+  },
+  {
+    "slug": "sun-and-moon",
+    "description": "Give your feet a soft landing after a long day. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/cfd755089d7bbb68be2a0d7748261ed22026aaae-1000x1000.jpg",
+    "_id": "adult_youth_073",
+    "price": 5999,
+    "name": "Sun And Moon",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Sun And Moon"
+  },
+  {
+    "slug": "undergrowth",
+    "description": "The undergrowth sustains life. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/c254b3734be442d6500c4ce1f0d015d435259a69-1000x1000.jpg",
+    "_id": "adult_youth_074",
+    "price": 5999,
+    "name": "Undergrowth",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Undergrowth"
+  },
+  {
+    "description": "Invite whimsy into your life. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/1da8ae174de4c7758bb6588226b7f4492ca02956-1000x1000.jpg",
+    "_id": "adult_youth_075",
+    "price": 5999,
+    "name": "Whimsy",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Whimsy",
+    "slug": "whimsy"
+  },
+  {
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Coca Trail",
+    "slug": "coca-trail",
+    "description": "The Coca leaf is a national treasure of Peru. All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth",
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/bc24282b9a1dd491a5dc68d090c655d13729fcc1-1000x1000.jpg",
+    "_id": "adult_youth_076",
+    "price": 5999,
+    "name": "Coca Trail"
+  },
+  {
+    "imageUrl": "https://cdn.sanity.io/images/c8kajeh8/slippers/7b23b1325fbf0844b92a3a2b7229299c913b4f42-1000x1000.jpg",
+    "_id": "adult_youth_077",
+    "price": 5999,
+    "name": "Star Path",
+    "alt": "Hand-felted Wool Valley Slippers made in Peru. Model: Star Path",
+    "slug": "star-path",
+    "description": "Are you a child of the stars? Show it off! All of our slippers are naturally-dyed and hand-felted with high-quality sheep's wool and feature a durable leather bottom.",
+    "categoryName": "adult_youth"
+  }
+]

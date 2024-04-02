@@ -1,8 +1,9 @@
 import { ArrowRight } from "lucide-react";
-import { simplifiedProduct } from "../interface";
+import { Product } from "../../lib/types";
 import { client } from "../lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
+import { formatCategory, formatCurrency } from "@/lib/utils";
 
 async function getData() {
   const query = `*[_type == "product"][0...4] | order(_createdAt desc){
@@ -18,7 +19,7 @@ async function getData() {
 }
 
 export default async function Newest() {
-  const data: simplifiedProduct[] = await getData();
+  const data: Product[] = await getData();
 
   return (
     <div className="bg-white">
@@ -45,7 +46,7 @@ export default async function Newest() {
               <div className="w-full bg-gray-200 rounded-md aspect-square overflow-hidden group-hover:opacity-75 lg:h-80">
                 <Image
                   src={product.imageUrl}
-                  alt={product.name}
+                  alt={product.alt}
                   className="w-full h-full object-cover object-center lg:h-full lg:w-full"
                   width={300}
                   height={300}
@@ -59,11 +60,11 @@ export default async function Newest() {
                     </Link>
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">
-                    {product.categoryName}
+                    {formatCategory(product.categoryName)}
                   </p>
                 </div>
                 <p className="text-sm font-medium text-gray-900">
-                  ${product.price}
+                  {formatCurrency(product.price)}
                 </p>
               </div>
             </div>
