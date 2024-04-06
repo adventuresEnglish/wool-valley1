@@ -8,13 +8,11 @@ import {
 
 export async function POST(request: Request) {
   const cartDetail = await request.json();
-  console.log(cartDetail);
-  const inventory = require("@/sanity/json/stripe_products.json");
+  const inventory = require("@/lib/stripe_products.json");
   const validatedItems: ValidatedItem[] = validateCartItems(
     inventory,
     cartDetail
   );
-  console.log(validatedItems);
   let line_items;
   if (validatedItems) {
     line_items = formatLineItems(cartDetail);
