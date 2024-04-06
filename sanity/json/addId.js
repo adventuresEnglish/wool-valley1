@@ -21,10 +21,7 @@ async function addId() {
           console.log(`Found title: ${title}`)
           const id = titleStore[size]
           if (id) {
-            console.log(`Found size: ${size}`)
-            console.log(`Id: ${id}`) // Print the id value
-            product.id = id // Create new id attribute with the value from priceIdStore
-            console.log(product) // Print the product object
+            product.id = id
           }
         }
       }

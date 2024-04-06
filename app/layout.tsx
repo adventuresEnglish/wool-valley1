@@ -14,6 +14,12 @@ export const metadata: Metadata = {
   description: "Shop for handmade wool slippers.",
 };
 
+const initialOptions = {
+  clientId: "test",
+  currency: "USD",
+  intent: "capture",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
