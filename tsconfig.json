@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "sanity/ndjson/createAdults.js",
-    "lib/priceIdStore.mjs"
+    "lib/priceIdStore.ts"
   ],
   "exclude": ["node_modules"]
 }

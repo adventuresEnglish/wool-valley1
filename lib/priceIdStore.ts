@@ -1,4 +1,4 @@
-export default PRICE_ID_STORE = {
+export const PRICE_ID_STORE = {
   baby_kid: {
     Etiquette: {
       baby_kid_31: "price_1P09aTLJkZ8mI1nvRShg7WcV",
