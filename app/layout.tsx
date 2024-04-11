@@ -37,6 +37,7 @@ export default function RootLayout({
             </CartProvider>
           </SelectSizeContextProvider>
         </FavoritesContextProvider>
+
         <Footer />
       </body>
     </html>

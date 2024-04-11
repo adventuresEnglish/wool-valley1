@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -8,10 +7,18 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import Image from "next/image";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import { useHandleCheckoutClick, useSelectSizeContext } from "@/lib/hooks";
 import { useShoppingCart } from "use-shopping-cart";
 import { formatCurrency, getSizeLabel } from "@/lib/utils";
+
+const initialOptions = {
+  clientId:
+    "AXucHmGQJfB5HTA1sDPBFgEoTWHRj0ZhNsxb0Zn3oseLzJI0DiPZglRJeFoyinC7H9idRZP7NjwArC1z",
+  currency: "USD",
+  intent: "capture",
+};
 
 export default function ShoppingCartModal() {
   const handleCheckoutClick = useHandleCheckoutClick();
@@ -103,16 +110,27 @@ export default function ShoppingCartModal() {
               Shipping and taxes are calculated at checkout
             </p>
             <div className="mt-6">
-              <Button
-                onClick={handleCheckoutClick}
-                disabled={cartCount === 0}
-                className="w-full">
-                Checkout
-              </Button>
+              <PayPalScriptProvider options={initialOptions}>
+                <PayPalButtons
+                  style={{
+                    color: "silver",
+                  }}
+                  createOrder={async () => {
+                    const res = await fetch("/api/checkout", {
+                      method: "POST",
+                    });
+                    const order = await res.json();
+                    console.log(order);
+                    return order.id;
+                  }}
+                  onCancel={(data) => {}}
+                  //onApprove
+                />
+              </PayPalScriptProvider>
             </div>
             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
               <p>
-                {cartCount !== 0 ? "or " : ""}
+                {cartCount ? "or " : ""}
                 <button
                   onClick={() => handleCartClick()}
                   className="font-medium text-primary hover:text-primary/80">
