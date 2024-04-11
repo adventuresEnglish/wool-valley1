@@ -14,8 +14,7 @@ import { useShoppingCart } from "use-shopping-cart";
 import { formatCurrency, getSizeLabel } from "@/lib/utils";
 
 const initialOptions = {
-  clientId:
-    "AXucHmGQJfB5HTA1sDPBFgEoTWHRj0ZhNsxb0Zn3oseLzJI0DiPZglRJeFoyinC7H9idRZP7NjwArC1z",
+  clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
   currency: "USD",
   intent: "capture",
 };
@@ -67,7 +66,7 @@ export default function ShoppingCartModal() {
                       <div className="ml-4 flex flex-1 flex-col">
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-900">
-                            <h3>{entry.name}</h3>
+                            <h3>{entry.displayName}</h3>
                             <p className="ml-4">
                               {formatCurrency(entry.price)}
                             </p>
@@ -120,11 +119,17 @@ export default function ShoppingCartModal() {
                       method: "POST",
                     });
                     const order = await res.json();
+                    console.log("cartDetails", cartDetails);
                     console.log(order);
                     return order.id;
                   }}
-                  onCancel={(data) => {}}
-                  //onApprove
+                  onApprove={async (data, actions) => {
+                    console.log("data", data);
+                    await actions.order?.capture();
+                  }}
+                  onCancel={(data) => {
+                    console.log("cancelled", data);
+                  }}
                 />
               </PayPalScriptProvider>
             </div>

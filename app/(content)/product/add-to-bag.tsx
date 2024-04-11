@@ -27,6 +27,7 @@ export default function AddToBag({
 
   const product = {
     _id: _id,
+    displayName: name,
     name: `${name}, ${getSizeLabel(size!)}`,
     description: description,
     price: price,
