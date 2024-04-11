@@ -7,15 +7,15 @@ import {
 } from "use-shopping-cart/utilities";
 
 export async function POST(request: Request) {
-  const cartDetail = await request.json();
+  const cartDetails = await request.json();
   const inventory = require("@/lib/stripe_products.json");
   const validatedItems: ValidatedItem[] = validateCartItems(
     inventory,
-    cartDetail
+    cartDetails
   );
   let line_items;
   if (validatedItems) {
-    line_items = formatLineItems(cartDetail);
+    line_items = formatLineItems(cartDetails);
   } else {
     console.error("Error validating cart items");
   }
