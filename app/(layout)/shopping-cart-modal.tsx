@@ -117,10 +117,10 @@ export default function ShoppingCartModal() {
                   createOrder={async () => {
                     const res = await fetch("/api/checkout", {
                       method: "POST",
+                      body: JSON.stringify(cartDetails),
                     });
                     const order = await res.json();
-                    console.log("cartDetails", cartDetails);
-                    console.log(order);
+                    console.log("order", order);
                     return order.id;
                   }}
                   onApprove={async (data, actions) => {

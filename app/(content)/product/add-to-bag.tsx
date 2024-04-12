@@ -41,7 +41,6 @@ export default function AddToBag({
   const handleClick = () => {
     handleCartClick();
     addItem(product);
-    console.log(product);
     setTimeout(() => {
       setSize("");
     }, 1000);
