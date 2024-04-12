@@ -3,7 +3,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { SIZE_CATEGORIES } from "./constants";
 import { Product } from "./types";
-import PRICE_ID_STORE from "../sanity/json/priceIdStore.mjs";
+import { PRICE_ID_STORE } from "../sanity/json/priceIdStore";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

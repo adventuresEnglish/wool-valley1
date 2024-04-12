@@ -20,7 +20,7 @@
     "**/*.tsx",
     "../components/ui/tooltip.tsx",
     "ndjson/createAdults.js",
-    "json/priceIdStore.mjs"
+    "json/priceIdStore.ts"
   ],
   "exclude": ["node_modules"]
 }
