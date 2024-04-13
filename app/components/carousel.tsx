@@ -32,8 +32,9 @@ export default async function Carousel({
       />
       <div className={cn("p-3 rounded-lg bg-slate-200 shadow-lg", className)}>
         <div
-          className={cn("rounded-sm", {
-            "border-x border-goldAccent": category === "all",
+          className={cn("rounded-lg", {
+            "border-x border-goldAccent z-50 overflow-hidden":
+              category === "all",
           })}>
           <CarouselClient category={category}>
             <CarouselContent>

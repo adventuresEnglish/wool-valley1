@@ -22,7 +22,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <Card className={cn("border-goldAccent", className)}>
-      <div className="relative aspect-[1] overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg">
+      <div className="relative aspect-[1] overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg ">
         <Link href={`/product/${product.slug}`}>
           <Image
             src={isCarousel ? product.bestOfImageUrl : product.imageUrl}

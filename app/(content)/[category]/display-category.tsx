@@ -2,9 +2,8 @@ import { Post, Product } from "../../../lib/types";
 import React from "react";
 import { Metadata } from "next";
 import ProductCard from "../product/product-card";
-import { cn, formatCategory } from "@/lib/utils";
+import { formatCategory } from "@/lib/utils";
 import PostCard from "../blog/post-card";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Wool Valley Slippers",
@@ -22,8 +21,9 @@ export default function DisplayCategory({
   currentStyle,
   data,
 }: DisplayCategoryProps) {
+  console.log("DisplayCategory", data);
   return (
-    <div className="bg-white mb-5 min-h-[80vh] lg:min-h-[90vh]">
+    <div className="bg-white mb-10 min-h-[80vh] lg:min-h-[90vh]">
       <div className="mx-auto max-w-2xl px-4 sm:px-24 lg:max-w-7xl lg:px-8">
         {currentCategory !== "blogs" ? (
           <>
@@ -35,7 +35,7 @@ export default function DisplayCategory({
             <span className="text-muted-foreground text-lg">
               {formatCategory(currentCategory)}
             </span>
-            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
               {(data as Product[]).map((product: Product) => (
                 <ul key={product._id}>
                   <ProductCard
@@ -52,16 +52,10 @@ export default function DisplayCategory({
               Blogs
             </h2>
             <span className="text-muted-foreground text-lg">All Blogs</span>
-            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:gap-x-8">
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-x-8">
               {(data as Post[]).map((post: Post) => (
                 <div key={post.title}>
-                  <PostCard post={post}>
-                    <Link href={`/blog/${post.slug}`}>
-                      <h1 className="text-xl 300px:text-2xl 350px:text-3xl font-bold px-2 350px:pl-4 hover:text-primary transition duration-100 ease-in-out">
-                        {post.title}
-                      </h1>
-                    </Link>
-                  </PostCard>
+                  <PostCard post={post} />
                 </div>
               ))}
             </div>

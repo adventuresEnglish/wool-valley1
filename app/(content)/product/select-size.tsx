@@ -51,7 +51,7 @@ export default function SelectSize({
       defaultValue={size}
       onValueChange={handleValueChange}>
       <SelectTrigger
-        className={cn("w-36", className, {
+        className={cn(className, {
           "ring-primary ring-2 animate-select-size-scale": chooseSizeIndicator,
         })}>
         <SelectValue placeholder="Choose a Size" />

@@ -280,6 +280,23 @@ export function useDiametricgAccordionSlider(initialState: {
   return { top, bottom, handleTopClick, handleBottomClick };
 }
 
+export function useMouseXListener() {
+  const [mouseX, setMouseX] = useState(0);
+
+  useEffect(() => {
+    function handleMouseMove(event: MouseEvent) {
+      setMouseX(event.clientX);
+    }
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+  return mouseX;
+}
+
 // export function useFirstBestOfLinks(): CompleteFirstBestOfLink[] {
 //   const [links, setLinks] = useState<CompleteFirstBestOfLink[]>([]);
 

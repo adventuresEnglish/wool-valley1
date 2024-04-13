@@ -8,6 +8,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useMouseXListener, useWindowResizeListener } from "@/lib/hooks";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -121,6 +122,10 @@ const Carousel = React.forwardRef<
     }, [api, onSelect]);
 
     const pathname = usePathname();
+    const width = useWindowResizeListener();
+    const mouseX = useMouseXListener();
+
+    const mouseSide = width / 2 > mouseX ? "left" : "right";
 
     return (
       <CarouselContext.Provider
@@ -141,7 +146,11 @@ const Carousel = React.forwardRef<
           className={cn("relative", className)}
           role="region"
           aria-roledescription="carousel"
-          onMouseEnter={!pathname.includes("product") ? scrollNext : undefined}
+          onMouseEnter={
+            !pathname.includes("product") && mouseSide === "left"
+              ? scrollPrev
+              : scrollNext
+          }
           {...props}>
           {children}
         </div>

@@ -7,7 +7,7 @@ import Image from "next/image";
 import { urlFor } from "../../lib/sanity";
 import { Product } from "../../../lib/types";
 import { useMouseOverZoom, useWindowResizeListener } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
+import { cn, isMobileOrTablet } from "@/lib/utils";
 
 type ImageGalleryProps = {
   children: React.ReactNode;
@@ -25,6 +25,8 @@ export default function ImageGallery({
     key: images[0]._key,
   });
   const mainImage = urlFor(bigImage.image).url();
+
+  const isMobOrTab = isMobileOrTablet();
   const [eventX, setEventX] = useState(0);
   const [tooltipContainer, setTooltipContainer] = useState<HTMLElement | null>(
     null
@@ -39,18 +41,12 @@ export default function ImageGallery({
   useMouseOverZoom(source, target, cursor, tooltipContainer);
 
   useEffect(() => {
-    setTooltipContainer(document.getElementById("tooltip-container"));
-  }, []);
+    !isMobOrTab &&
+      setTooltipContainer(document.getElementById("tooltip-container"));
+  }, [isMobOrTab]);
 
-  function isMobileOrTablet() {
-    return (
-      typeof navigator !== "undefined" &&
-      /Mobi|Android/i.test(navigator.userAgent)
-    );
-  }
-  const isMobileOrTabletDevice = isMobileOrTablet();
-  const scrollDiff = isMobileOrTabletDevice ? 0 : 5.5;
-  const mobTabSide = (windowWidth - 40) / 3 - scrollDiff;
+  const scrollDiff = isMobOrTab ? 0 : 5.5;
+  const smallScreenSide = (windowWidth - 40) / 3 - scrollDiff;
 
   return (
     <>
@@ -66,9 +62,9 @@ export default function ImageGallery({
                   <Image
                     src={urlFor(image).url()}
                     alt={alt}
-                    width={200}
-                    height={200}
-                    className=" object-contain object-center cursor-pointer"
+                    width={500}
+                    height={500}
+                    className=" scale-[1] object-center cursor-pointer"
                     onClick={() => setBigImage({ image, key: image._key })}
                   />
                 </div>
@@ -77,13 +73,7 @@ export default function ImageGallery({
         ) : (
           <div className="order-last lg:order-none" />
         )}
-        <div
-          className={cn(
-            "relative aspect-[1] overflow-hidden rounded-lg bg-gray-100 lg:col-span-4"
-            // {
-            //   "lg:col-span-4": images.length === 1,
-            // }
-          )}>
+        <div className="relative aspect-[1] overflow-hidden rounded-lg bg-gray-100 lg:col-span-4">
           <Image
             width={1000}
             height={1000}
@@ -91,7 +81,9 @@ export default function ImageGallery({
             ref={source}
             src={mainImage}
             alt={alt}
-            className="w-full h-full scale-[1] object-center bg-gray-100"
+            className={cn("w-full h-full scale-100 object-center bg-gray-100", {
+              "scale-110": isMobOrTab,
+            })}
             style={{
               cursor: showPlusCursor
                 ? 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(219,199,138)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zoom-in"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg>\') 12 12, auto'
@@ -106,20 +98,6 @@ export default function ImageGallery({
             onMouseMove={(e) => {
               setEventX(e.clientX);
             }}
-            onMouseLeave={() => setShowPlusCursor(true)}
-            onTouchStart={(e) => {
-              e.preventDefault();
-              setEventX(e.touches[0].clientX);
-              setShowPlusCursor(false);
-            }}
-            onTouchMove={(e) => {
-              e.preventDefault();
-              setEventX(e.touches[0].clientX);
-            }}
-            onTouchEnd={(e) => {
-              e.preventDefault();
-              setShowPlusCursor(true);
-            }}
           />
           {children}
         </div>
@@ -130,10 +108,10 @@ export default function ImageGallery({
             ref={target}
             className={`${
               showPlusCursor ? "hidden" : "block"
-            } border border-primary rounded-lg fixed md:w-48 md:h-48 md:right-1/2 top-[124px] 350px:top-[138px] lg:top-28 left-5 md:left-auto`}
+            }  border border-primary rounded-lg fixed md:w-48 md:h-48 md:right-1/2 top-[124px] 350px:top-[138px] lg:top-28 left-5 md:left-auto`}
             style={{
-              width: windowWidth < 768 ? `${mobTabSide}px` : "",
-              height: windowWidth < 768 ? `${mobTabSide}px` : "",
+              width: windowWidth < 768 ? `${smallScreenSide}px` : "",
+              height: windowWidth < 768 ? `${smallScreenSide}px` : "",
               transform: `translateX(calc(${
                 windowWidth < 768 && eventX > windowWidth / 2 ? "0%" : "200%"
               } + ${windowWidth < 768 ? "0px" : "16px - 100%"}))`,

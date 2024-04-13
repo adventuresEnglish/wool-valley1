@@ -9,8 +9,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export async function getPostsData() {
-  const query = `*[_type == "post"] {
+export async function getPostsData(genre?: string) {
+  let query = `*[_type == "post" ${
+    !genre
+      ? ""
+      : genre === "featured"
+      ? "&& featured == true"
+      : `&& genre == ${genre}`
+  }]{
       title,
       author,
       "authorImageUrl": authorImage.asset->url,
@@ -20,6 +26,10 @@ export async function getPostsData() {
       "slug": slug.current,
       "imageUrl": mainImage.asset->url,
   }`;
+
+  if (genre === "featured") {
+    query += "[0...2]";
+  }
   const data = await client.fetch(query);
   return data;
 }
@@ -212,6 +222,13 @@ export const formatCategory = (category: string): string => {
       return category;
   }
 };
+
+export function isMobileOrTablet() {
+  return (
+    typeof navigator !== "undefined" &&
+    /Mobi|Android/i.test(navigator.userAgent)
+  );
+}
 
 // export async function getFirstBestOf(category: string) {
 //   const query = `*[_type == "product" && category->name == "${category}" && bestOf == true][0] {

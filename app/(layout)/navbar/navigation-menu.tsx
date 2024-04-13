@@ -11,20 +11,30 @@ import {
   NavigationMenuIndicator,
 } from "@/components/ui/navigation-menu";
 
-import { cn } from "@/lib/utils";
+import { cn, getPostsData } from "@/lib/utils";
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 import { useFavoritesContext } from "@/lib/hooks";
 import FeaturedBlogs from "./featured-blogs";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DiametricAccordion from "@/app/(layout)/navbar/diametric-accordion";
+import { Post } from "@/lib/types";
 
 export default function NavigationMenu() {
   const pathName = usePathname();
   const { length: favoritesCount } = useFavoritesContext();
-  const contentRef = useRef(null);
-  const [contentWidth, setContentWidth] = useState(0);
+
+  const [featuredBlogs, setFeaturedBlogs] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getPostsData("featured");
+      setFeaturedBlogs(data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <NavigationMenuWrapper>
@@ -67,7 +77,10 @@ export default function NavigationMenu() {
             Blog
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <FeaturedBlogs isNavbar={true} />
+            <FeaturedBlogs
+              isNavbar={true}
+              featuredBlogs={featuredBlogs}
+            />
           </NavigationMenuContent>
         </NavigationMenuItem>
 

@@ -13,21 +13,22 @@ export default async function CategoryPage({
   let categoryData: Product[] | Post[] = [];
   if (params.category === "blogs") {
     categoryData = await getPostsData();
+    console.log("org", categoryData);
   } else if (params.category !== "favorites") {
     categoryData = await getProductsData(params.category);
   }
 
   const componentMap: { [key: string]: JSX.Element } = {
-    favorites: <Favorites />,
     default: (
       <DisplayCategory
         currentCategory={params.category}
         data={categoryData}
       />
     ),
+    favorites: <Favorites />,
   };
 
-  let component = componentMap[params.category] || componentMap["default"];
+  let component = componentMap[params.category] || componentMap.default;
 
   return <>{component}</>;
 }

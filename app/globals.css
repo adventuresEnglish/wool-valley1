@@ -68,7 +68,7 @@ body {
   stroke: hsl(var(--gold-accent));
 }
 
-details[open] ~ .main-image {
+details[open] ~ .details-open-blur {
   filter: blur(5px);
 }
 

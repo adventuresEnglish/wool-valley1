@@ -1,27 +1,36 @@
 import Link from "next/link";
 import { Post } from "@/lib/types";
-import { Card, CardContent, CardDescription } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { PencilIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import React from "react";
 
 export default function PostCard({
   post,
+  clientLink,
   className,
   isNavbar = false,
-  children,
 }: {
   post: Post;
   className?: string;
   isNavbar?: boolean;
-  children: React.ReactNode;
+  clientLink?: React.ReactNode;
 }) {
   return (
     <Card className="border border-goldAccent relative flex flex-col">
       <div className="flex justify-between z-10 border-b border-goldAccent">
-        <div className=" flex justify-start items-center">{children}</div>
+        <div className=" flex justify-start items-center">
+          {!clientLink ? (
+            <Link href={`/blog/${post.slug}`}>
+              <h1 className="text-xl 300px:text-2xl 350px:text-3xl font-bold px-2 350px:pl-4 hover:text-primary transition duration-100 ease-in-out">
+                {post.title}
+              </h1>
+            </Link>
+          ) : (
+            clientLink
+          )}
+        </div>
         <div className="bg-primary/50  px-2 py-1.5 rounded-tr-md flex flex-col items-center whitespace-nowrap border-l border-goldAccent">
           <div className="flex space-x-2 inlnie-flex items-center text-goldAccent">
             <span className="text-slate-800">{post.author}</span>
@@ -61,13 +70,12 @@ export default function PostCard({
           {post.overview}
         </p>
       </details>
-      <div className="relative aspect-[1.3] overflow-hidden rounded-b-md main-image">
+      <div className="relative aspect-[1.3] overflow-hidden rounded-b-md details-open-blur">
         <Image
           src={post.imageUrl}
           alt="Some alt text"
           width={1000}
           height={1000}
-          className="-mt-7 main-image"
         />
       </div>
     </Card>
