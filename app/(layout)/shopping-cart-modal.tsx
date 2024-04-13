@@ -11,7 +11,8 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import { useHandleCheckoutClick, useSelectSizeContext } from "@/lib/hooks";
 import { useShoppingCart } from "use-shopping-cart";
-import { formatCurrency, getSizeLabel } from "@/lib/utils";
+import { cn, formatCurrency, getSizeLabel } from "@/lib/utils";
+import { useState } from "react";
 
 const initialOptions = {
   clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
@@ -22,6 +23,7 @@ const initialOptions = {
 export default function ShoppingCartModal() {
   const handleCheckoutClick = useHandleCheckoutClick();
   const { setSize } = useSelectSizeContext();
+  const [showRemove, setShowRemove] = useState(true);
 
   const {
     cartCount,
@@ -37,13 +39,14 @@ export default function ShoppingCartModal() {
       open={shouldDisplayCart}
       onOpenChange={() => {
         handleCartClick();
+        setShowRemove(true);
       }}>
       <SheetContent className="sm:max-w-lg w-[90vw]">
         <SheetHeader>
           <SheetTitle>Shopping Cart</SheetTitle>
         </SheetHeader>
-        <div className="h-full flex flex-col justify-between">
-          <div className="mt-8 flex-1 overflow-y-auto">
+        <div className="h-full flex flex-col justify-between overflow-y-auto">
+          <div className="mt-8 flex-1 overflow-y-auto min-h-24">
             <ul className="-my-6 divide-y divide-gray-200">
               {cartCount === 0 ? (
                 <h1 className="py-6">You don&apos;t have any items</h1>
@@ -81,17 +84,19 @@ export default function ShoppingCartModal() {
                           <p className="text-gray-500">
                             Size: {getSizeLabel(entry.size)}
                           </p>
-                          <div className="flex">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                removeItem(entry.id);
-                                setSize("");
-                              }}
-                              className="font-medium text-primary hover:text-primary/80">
-                              remove
-                            </button>
-                          </div>
+
+                          <button
+                            disabled={!showRemove}
+                            type="button"
+                            onClick={() => {
+                              removeItem(entry.id);
+                              setSize("");
+                            }}
+                            className={cn("font-medium text-gray-300", {
+                              "text-primary hover:text-primary/80": showRemove,
+                            })}>
+                            remove
+                          </button>
                         </div>
                       </div>
                     </li>
@@ -105,12 +110,11 @@ export default function ShoppingCartModal() {
               <p>Subtotal:</p>
               <p>{formatCurrency(totalPrice ?? 0)}</p>
             </div>
-            <p className="mt-0.5 text-sm text-gray-500">
-              Shipping and taxes are calculated at checkout
-            </p>
             <div className="mt-6">
               <PayPalScriptProvider options={initialOptions}>
                 <PayPalButtons
+                  disabled={cartCount === 0}
+                  onClick={() => setShowRemove(false)}
                   style={{
                     color: "silver",
                   }}
@@ -129,6 +133,10 @@ export default function ShoppingCartModal() {
                   }}
                   onCancel={(data) => {
                     console.log("cancelled", data);
+                    setShowRemove(true);
+                  }}
+                  onError={(err) => {
+                    console.log("error", err);
                   }}
                 />
               </PayPalScriptProvider>
@@ -137,7 +145,9 @@ export default function ShoppingCartModal() {
               <p>
                 {cartCount ? "or " : ""}
                 <button
-                  onClick={() => handleCartClick()}
+                  onClick={() => {
+                    handleCartClick();
+                  }}
                   className="font-medium text-primary hover:text-primary/80">
                   Continue Shopping
                 </button>

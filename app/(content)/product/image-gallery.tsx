@@ -42,6 +42,16 @@ export default function ImageGallery({
     setTooltipContainer(document.getElementById("tooltip-container"));
   }, []);
 
+  function isMobileOrTablet() {
+    return (
+      typeof navigator !== "undefined" &&
+      /Mobi|Android/i.test(navigator.userAgent)
+    );
+  }
+  const isMobileOrTabletDevice = isMobileOrTablet();
+  const scrollDiff = isMobileOrTabletDevice ? 0 : 7.5;
+  const mobTabSide = (windowWidth - 40) / 3 - scrollDiff;
+
   return (
     <>
       <div className="grid gap-4 lg:grid-cols-6">
@@ -69,10 +79,10 @@ export default function ImageGallery({
         )}
         <div
           className={cn(
-            "relative aspect-[1] overflow-hidden rounded-lg bg-gray-100 lg:col-span-4",
-            {
-              "lg:col-span-4": images.length === 1,
-            }
+            "relative aspect-[1] overflow-hidden rounded-lg bg-gray-100 lg:col-span-4"
+            // {
+            //   "lg:col-span-4": images.length === 1,
+            // }
           )}>
           <Image
             width={1000}
@@ -81,11 +91,14 @@ export default function ImageGallery({
             ref={source}
             src={mainImage}
             alt={alt}
-            className="w-full h-full scale-[1.3] object-center bg-gray-100"
+            className="w-full h-full scale-[1] object-center bg-gray-100"
             style={{
               cursor: showPlusCursor
                 ? 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(219,199,138)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zoom-in"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg>\') 12 12, auto'
                 : 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(219,199,138)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zoom-out"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg>\') 12 12, auto',
+            }}
+            onClick={(e) => {
+              setShowPlusCursor((prev) => !prev);
             }}
             onMouseEnter={(e) => {
               setEventX(e.clientX);
@@ -95,15 +108,17 @@ export default function ImageGallery({
             }}
             onMouseLeave={() => setShowPlusCursor(true)}
             onTouchStart={(e) => {
+              e.preventDefault();
               setEventX(e.touches[0].clientX);
               setShowPlusCursor(false);
             }}
             onTouchMove={(e) => {
+              e.preventDefault();
               setEventX(e.touches[0].clientX);
             }}
-            onTouchEnd={() => setShowPlusCursor(true)}
-            onClick={(e) => {
-              setShowPlusCursor((prev) => !prev);
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              setShowPlusCursor(true);
             }}
           />
           {children}
@@ -113,19 +128,15 @@ export default function ImageGallery({
         createPortal(
           <canvas
             ref={target}
-            className={cn(
-              "hidden border border-primary rounded-lg fixed md:w-[345px] md:h-[345px] md:right-1/2 top-[124px] 350px:top-[139px] md:top-[145px] lg:top-28",
-              {
-                block: !showPlusCursor,
-                "left-5": windowWidth < 768,
-              }
-            )}
+            className={`${
+              showPlusCursor ? "hidden" : "block"
+            } border border-primary rounded-lg fixed md:w-48 md:h-48 md:right-1/2 top-[124px] 350px:top-[138px] lg:top-28 left-5 md:left-auto`}
             style={{
-              width: windowWidth < 768 ? `${windowWidth / 2 - 29}px` : "",
-              height: windowWidth < 768 ? `${windowWidth / 2 - 29}px` : "",
+              width: windowWidth < 768 ? `${mobTabSide}px` : "",
+              height: windowWidth < 768 ? `${mobTabSide}px` : "",
               transform: `translateX(calc(${
-                windowWidth < 768 && eventX > windowWidth / 2 ? "0%" : "100%"
-              } + ${windowWidth < 768 ? "0px" : "16px"}))`,
+                windowWidth < 768 && eventX > windowWidth / 2 ? "0%" : "200%"
+              } + ${windowWidth < 768 ? "0px" : "16px - 100%"}))`,
             }}
           />,
           tooltipContainer
@@ -133,3 +144,31 @@ export default function ImageGallery({
     </>
   );
 }
+
+// {tooltipContainer &&
+//   createPortal(
+//     <canvas
+//       ref={target}
+//       className={cn(
+//         "hidden border border-primary rounded-lg fixed md:w-48 md:h-48 md:right-1/2 top-[124px] 350px:top-[138px] lg:top-28",
+//         {
+//           block: !showPlusCursor,
+//           "left-5": windowWidth < 768,
+//         }
+//       )}
+//       style={{
+//         width:
+//           windowWidth < 768
+//             ? `${windowWidth / 2 - 20}px`
+//             : "",
+//         height:
+//           windowWidth < 768
+//             ? `${windowWidth / 2 - 20}px`
+//             : "",
+//         transform: `translateX(calc(${
+//           windowWidth < 768 && eventX > windowWidth / 2 ? "0%" : "100%"
+//         } + ${windowWidth < 768 ? "0px" : "16px"}))`,
+//       }}
+//     />,
+//     tooltipContainer
+//   )}

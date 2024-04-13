@@ -194,7 +194,7 @@ export function useMouseOverZoom(
   target: React.RefObject<HTMLCanvasElement>,
   cursor: React.RefObject<HTMLElement>,
   tooltipContainer: HTMLElement | null,
-  radius = 80
+  radius = 40
 ) {
   // Capture Mouse position
   const { x, y, isActive } = useMouse(source);
