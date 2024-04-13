@@ -49,7 +49,7 @@ export default function ImageGallery({
     );
   }
   const isMobileOrTabletDevice = isMobileOrTablet();
-  const scrollDiff = isMobileOrTabletDevice ? 0 : 7.5;
+  const scrollDiff = isMobileOrTabletDevice ? 0 : 5.5;
   const mobTabSide = (windowWidth - 40) / 3 - scrollDiff;
 
   return (
