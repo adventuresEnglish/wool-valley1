@@ -22,7 +22,10 @@ export default async function Carousel({
   className,
   currentModel,
 }: CarouselProps) {
-  const bestOf: Product[] = await getProductsData(category, undefined, true);
+  const bestOf: Product[] = await getProductsData({
+    category,
+    isCarousel: true,
+  });
 
   return (
     <section className="my-9 space-y-3">

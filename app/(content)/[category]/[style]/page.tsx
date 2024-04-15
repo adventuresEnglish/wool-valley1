@@ -6,15 +6,16 @@ import { Product } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
-export default async function CategoryPage({
+export default async function StylePage({
   params,
 }: {
   params: { style: string; category: string };
 }) {
-  const categoryData: Product[] = await getProductsData(
-    params.category,
-    params.style
-  );
+  const categoryData: Product[] = await getProductsData({
+    category: params.category,
+    style: params.style,
+    range: [0, 8],
+  });
 
   return (
     <DisplayCategory

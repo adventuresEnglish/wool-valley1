@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardTitle } from "@/components/ui/card";
 import { cn, formatCategory } from "@/lib/utils";
 
 import Image from "next/image";
@@ -45,7 +45,7 @@ export default function ProductCard({
         <FavoriteButton product={product} />
       </div>
 
-      <CardTitle className="p-4">
+      <CardTitle className="p-4 whitespace-nowrap overflow-hidden overflow-ellipsis">
         <i>{product.name}</i>
       </CardTitle>
     </Card>

@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { SIZE_CATEGORIES } from "./constants";
 import { Product } from "./types";
 import { PRICE_ID_STORE } from "./priceIdStore";
+import { count } from "console";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -48,13 +49,19 @@ export async function getPostData(slug: string) {
   return data;
 }
 
-export async function getProductsData(
-  category: string,
-  style?: string,
-  isCarousel = false
-) {
+export async function getProductsData({
+  category,
+  style,
+  isCarousel = false,
+  range,
+}: {
+  category: string;
+  style?: string;
+  isCarousel?: boolean;
+  range?: [number, number];
+}) {
   if (category === "all") {
-    const query = `*[_type == "product" ${
+    let query = `*[_type == "product" ${
       isCarousel ? "&& bestOf == true" : ""
     }] | order(_createdAt asc){
       _id,
@@ -71,6 +78,10 @@ export async function getProductsData(
         images[0].asset->url
         )
       }`;
+
+    if (range) {
+      query += `[${range[0]}...${range[1]}]`;
+    }
 
     const data = await client.fetch(query);
 
@@ -113,6 +124,25 @@ export async function getProductData(slug: string) {
       }`;
   const data = await client.fetch(query);
   return data;
+}
+
+export async function getCatCount(category: string, style?: string) {
+  if (category === "all") {
+    const query = `count(*[_type == "product"])`;
+    const count = await client.fetch(query);
+    return count;
+  }
+  if (category === "blogs") {
+    const query = `count(*[_type == "post"])`;
+    const count = await client.fetch(query);
+    return count;
+  }
+  const query = `count(*[_type == "product" && category->name == "${category}" ${
+    style ? `&& style[]->name match "${style}"` : ""
+  }
+  ])`;
+  const count = await client.fetch(query);
+  return count;
 }
 
 export function getSizeCategory(key: string) {

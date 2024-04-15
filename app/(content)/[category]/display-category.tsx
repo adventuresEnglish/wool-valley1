@@ -21,7 +21,6 @@ export default function DisplayCategory({
   currentStyle,
   data,
 }: DisplayCategoryProps) {
-  console.log("DisplayCategory", data);
   return (
     <div className="bg-white mb-10 min-h-[80vh] lg:min-h-[90vh]">
       <div className="mx-auto max-w-2xl px-4 sm:px-24 lg:max-w-7xl lg:px-8">

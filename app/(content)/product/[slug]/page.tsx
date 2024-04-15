@@ -66,7 +66,7 @@ export default async function ProductPage({ params }: Props) {
                   {formatCurrency(product.price)}
                 </span>
                 <span className="mb-0.5 text-red-500 line-through">
-                  {formatCurrency(product.price + 30)}
+                  {formatCurrency(product.price + 300)}
                 </span>
               </div>
               <SelectSize

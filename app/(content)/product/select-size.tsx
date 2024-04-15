@@ -39,9 +39,7 @@ export default function SelectSize({
 
   const handleValueChange = (value: string) => {
     setSize(value);
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("size", value);
-    router.push(`?${params.toString()}`, { scroll: false });
+    router.push(`?size=${value}`, { scroll: false });
   };
 
   return (
