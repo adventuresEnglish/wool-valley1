@@ -125,7 +125,12 @@ const Carousel = React.forwardRef<
     const width = useWindowResizeListener();
     const mouseX = useMouseXListener();
 
-    const mouseSide = width / 2 > mouseX ? "left" : "right";
+    // let mouseSide = "left";
+    // if (width) {
+    //   mouseSide = width / 2 > mouseX ? "left" : "right";
+    // }
+
+    const mouseSide = width ? (width / 2 > mouseX ? "left" : "right") : "left";
 
     return (
       <CarouselContext.Provider
