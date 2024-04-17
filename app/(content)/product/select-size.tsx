@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { useSelectSizeContext } from "@/lib/hooks";
 
-import { cn, getSizeCategory } from "@/lib/utils";
+import { cn, getSizeCategory } from "@/lib/utils/utils";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";

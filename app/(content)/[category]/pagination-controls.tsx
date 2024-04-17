@@ -1,6 +1,5 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
@@ -11,7 +10,7 @@ import {
   PaginationNext,
 } from "@/components/ui/pagination";
 import { useWindowResizeListener } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
+import { getPaginationVariables } from "@/lib/utils/utils";
 import { useSearchParams } from "next/navigation";
 
 type PaginationControlsProps = {
@@ -20,6 +19,7 @@ type PaginationControlsProps = {
   category: string;
   per_page: string | string[];
   catCount: number;
+  currentStyle?: string;
 };
 
 export default function PaginationControls({
@@ -28,6 +28,7 @@ export default function PaginationControls({
   category,
   per_page,
   catCount,
+  currentStyle,
 }: PaginationControlsProps) {
   const searchParams = useSearchParams();
   const page = searchParams.get("page") ?? "1";
@@ -36,68 +37,49 @@ export default function PaginationControls({
   const pages = Math.ceil(catCount / Number(per_page));
 
   const width = useWindowResizeListener();
-  let pagSchema = "schema 9";
-  if (width < 1024) {
-    pagSchema = "schema 7";
-  }
-  if (width < 490) {
-    pagSchema = "schema 5";
+
+  if (width === null) {
+    return (
+      <div className="w-full flex justify-center">
+        <div className="rounded-lg h-10 w-[229px] 350px:w-[272px] md:w-[431px] overflow-hidden relative">
+          <div className="skeleton flex justify-between h-full" />
+          <div className="absolute top-1 right-1 rounded-lg h-8 w-24 border border-yellow-600/50" />
+          <div className="absolute top-1 left-1 rounded-lg h-8 w-24 border border-yellow-600/50" />
+        </div>
+      </div>
+    );
   }
 
-  const jumpFirstActive = pageNum == 1;
-  const jumpSecondActive = pageNum == 2;
-  const showJumpSecond =
-    (pageNum <= 4 && pagSchema === "schema 9") ||
-    (pageNum <= 3 && pagSchema === "schema 7");
-  const showFirstEllipsis =
-    (pageNum > 4 && pagSchema === "schema 9") ||
-    (pageNum > 3 && pagSchema === "schema 7");
+  const {
+    jumpFirstActive,
+    jumpSecondActive,
+    showJumpSecond,
+    showFirstEllipsis,
+    showSecondEllipsis,
+    jumpPenUltActive,
+    showJumpPenUlt,
+    jumpUltActive,
+    sliceBegin,
+    sliceEnd,
+    pagSchema,
+  } = getPaginationVariables(width, pageNum, pages);
 
-  const showSecondEllipsis =
-    (pageNum < pages - 3 && pagSchema === "schema 9") ||
-    (pageNum < pages - 2 && pagSchema === "schema 7");
-  const jumpPenUltActive = pageNum == pages - 1;
-  const showJumpPenUlt =
-    (pageNum >= pages - 3 && pagSchema === "schema 9") ||
-    (pageNum >= pages - 2 && pagSchema === "schema 7");
-  const jumpUltActive = pageNum == pages;
-
-  let sliceBegin = 0;
-  if (pagSchema === "schema 9") {
-    sliceBegin = pageNum - 2;
-    if (sliceBegin >= pages - 5) sliceBegin = pages - 5;
-  }
-  if (pagSchema === "schema 7") {
-    sliceBegin = pageNum - 1;
-    if (sliceBegin >= pages - 3) sliceBegin = pages - 3;
-  }
-  if (sliceBegin < 2) sliceBegin = 2;
-
-  let sliceEnd = 0;
-  if (pagSchema === "schema 9") {
-    sliceEnd = pageNum + 1;
-    if (sliceEnd < 5) sliceEnd = 5;
-  }
-  if (pagSchema === "schema 7") {
-    sliceEnd = pageNum;
-    if (sliceEnd < 3) sliceEnd = 3;
-  }
-  if (sliceEnd >= pages - 2) sliceEnd = pages - 2;
+  const baseUrl = `${!currentStyle ? category : currentStyle}`;
 
   return (
-    <Pagination className="-mt-2 mb-8">
+    <Pagination>
       <PaginationContent>
         <PaginationItem className="pr-1 300px:pr-2 350px:pr-0 ">
           <PaginationPrevious
             isActive={!hasPrevPage}
-            href={`${category}/?page=${pageNum - 1}&per_page=${per_page}`}
+            href={`${baseUrl}/?page=${pageNum - 1}&per_page=${per_page}`}
             className={`${
               hasPrevPage ? "outline outline-1 outline-primary" : ""
             }`}
           />
         </PaginationItem>
 
-        {pagSchema === "schema 5" ? (
+        {pagSchema === "schema 5" || pages < 3 ? (
           <div className="hidden 350px:block text-sm px-2 font-semibold">
             {pageNum}
             <i className="px-1 text-muted-foreground font-medium">of</i>
@@ -106,7 +88,7 @@ export default function PaginationControls({
         ) : (
           <>
             <JumpLink
-              category={category}
+              baseUrl={baseUrl}
               page={1}
               per_page={per_page}
               jumpActive={jumpFirstActive}
@@ -114,7 +96,7 @@ export default function PaginationControls({
 
             {showJumpSecond && (
               <JumpLink
-                category={category}
+                baseUrl={baseUrl}
                 page={2}
                 per_page={per_page}
                 jumpActive={jumpSecondActive}
@@ -130,7 +112,6 @@ export default function PaginationControls({
               .fill(null)
               .slice(sliceBegin, sliceEnd)
               .map((_, i) => {
-                console.log("i", i);
                 const pageIndex = sliceBegin + i + 1;
                 const isActive = pageIndex === pageNum;
                 return (
@@ -139,7 +120,7 @@ export default function PaginationControls({
                       className={`${
                         isActive ? "outline outline-1 outline-goldAccent" : ""
                       }`}
-                      href={`${category}/?page=${pageIndex}&per_page=${per_page}`}
+                      href={`${baseUrl}/?page=${pageIndex}&per_page=${per_page}`}
                       isActive={isActive}>
                       {pageIndex}
                     </PaginationLink>
@@ -154,14 +135,14 @@ export default function PaginationControls({
             )}
             {showJumpPenUlt && (
               <JumpLink
-                category={category}
+                baseUrl={baseUrl}
                 jumpActive={jumpPenUltActive}
                 per_page={per_page}
                 page={pages - 1}
               />
             )}
             <JumpLink
-              category={category}
+              baseUrl={baseUrl}
               jumpActive={jumpUltActive}
               per_page={per_page}
               page={pages}
@@ -172,7 +153,7 @@ export default function PaginationControls({
         <PaginationItem className="pl-1 300px:pl-2 350px:pl-0 ">
           <PaginationNext
             isActive={!hasNextPage}
-            href={`${category}/?page=${pageNum + 1}&per_page=${per_page}`}
+            href={`${baseUrl}/?page=${pageNum + 1}&per_page=${per_page}`}
             className={`${
               hasNextPage ? "outline outline-1 outline-primary" : ""
             }`}
@@ -183,23 +164,18 @@ export default function PaginationControls({
   );
 }
 
-//   let sliceBegin =
-//     pageNum - 2 >= pages - 5 ? pages - 5 : pageNum - 2 < 2 ? 2 : pageNum - 2;
-//   let sliceEnd =
-//     pageNum + 1 >= pages - 2 ? pages - 2 : pageNum + 1 < 5 ? 5 : pageNum + 1;
-
 type JumpLinkProps = {
-  category: string;
   per_page: string | string[];
-  jumpActive?: boolean;
+  jumpActive: boolean;
   page: number;
+  baseUrl: string;
 };
 
-function JumpLink({ category, per_page, jumpActive, page }: JumpLinkProps) {
+function JumpLink({ per_page, jumpActive, page, baseUrl }: JumpLinkProps) {
   return (
     <PaginationItem>
       <PaginationLink
-        href={`${category}/?page=${page}&per_page=${per_page}`}
+        href={`${baseUrl}/?page=${page}&per_page=${per_page}`}
         isActive={jumpActive}
         className={`${
           jumpActive ? "outline outline-1 outline-goldAccent" : ""

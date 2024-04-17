@@ -11,7 +11,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import { useHandleCheckoutClick, useSelectSizeContext } from "@/lib/hooks";
 import { useShoppingCart } from "use-shopping-cart";
-import { cn, formatCurrency, getSizeLabel } from "@/lib/utils";
+import { cn, formatCurrency, getSizeLabel } from "@/lib/utils/utils";
 import { useState } from "react";
 
 const initialOptions = {

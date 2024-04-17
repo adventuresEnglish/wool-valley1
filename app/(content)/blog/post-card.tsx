@@ -3,7 +3,7 @@ import { Post } from "@/lib/types";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { PencilIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 import React from "react";
 
 export default function PostCard({

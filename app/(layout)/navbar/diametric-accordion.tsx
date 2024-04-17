@@ -4,7 +4,7 @@ import {
   baby_kidDropdownlinks,
 } from "@/lib/constants";
 import { useDiametricgAccordionSlider } from "@/lib/hooks";
-import { capitalize, cn } from "@/lib/utils";
+import { capitalize, cn } from "@/lib/utils/utils";
 import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";

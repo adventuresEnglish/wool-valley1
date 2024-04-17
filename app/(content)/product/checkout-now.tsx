@@ -5,7 +5,7 @@ import { useShoppingCart } from "use-shopping-cart";
 import { BasicProduct } from "../../../lib/types";
 import { useHandleCheckoutClick, useSelectSizeContext } from "@/lib/hooks";
 import { motion } from "framer-motion";
-import { price_idLookup } from "@/lib/utils";
+import { price_idLookup } from "@/lib/utils/utils";
 import { useEffect, useState } from "react";
 
 export default function CheckoutNow({

@@ -2,7 +2,7 @@ import { urlFor } from "@/app/lib/sanity";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import Image from "next/image";
 import { Post } from "@/lib/types";
-import { cn, getPostData } from "@/lib/utils";
+import { cn, getPostData } from "@/lib/utils/utils";
 import { Metadata } from "next";
 import { getImageDimensions } from "@sanity/asset-utils";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";

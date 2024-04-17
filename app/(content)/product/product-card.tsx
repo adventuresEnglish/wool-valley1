@@ -1,11 +1,12 @@
-import { Card, CardTitle } from "@/components/ui/card";
-import { cn, formatCategory } from "@/lib/utils";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn, formatCategory } from "@/lib/utils/utils";
 
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteButton from "../../components/favorite-button";
 import { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
+import BlurImage from "./blur-image";
 
 type ProductCardProps = {
   product: Product;
@@ -22,14 +23,14 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <Card className={cn("border-goldAccent", className)}>
-      <div className="relative aspect-[1] overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg ">
+      <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px]">
         <Link href={`/product/${product.slug}`}>
-          <Image
+          <BlurImage
             src={isCarousel ? product.bestOfImageUrl : product.imageUrl}
             alt={product.alt}
             width={1000}
             height={1000}
-            className="scale-100 transform object-bottom hover:opacity-70 transition duration-300 ease-in-out"
+            className=" transform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out"
           />
         </Link>
         {category === "all" ? (
@@ -41,7 +42,6 @@ export default function ProductCard({
             </Badge>
           </Link>
         ) : null}
-
         <FavoriteButton product={product} />
       </div>
 

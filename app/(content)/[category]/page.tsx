@@ -1,8 +1,7 @@
 import Favorites from "./favorites";
 import DisplayCategory from "./display-category";
-import { getCatCount, getPostsData, getProductsData } from "@/lib/utils";
+import { getCatCount, getPostsData, getProductsData } from "@/lib/utils/utils";
 import { Post, Product } from "../../../lib/types";
-import PaginationControls from "./pagination-controls";
 
 export const dynamic = "force-dynamic";
 
@@ -30,11 +29,18 @@ export default async function CategoryPage({
     });
   }
 
+  // const names = categoryData.map((item) => (item as Product).name);
+  // console.log("names", names, "hello");
+
   const componentMap: { [key: string]: JSX.Element } = {
     default: (
       <DisplayCategory
-        currentCategory={params.category}
         data={categoryData}
+        hasNextPage={end < catCount}
+        hasPrevPage={start > 0}
+        category={params.category}
+        per_page={per_page}
+        catCount={catCount}
       />
     ),
     favorites: <Favorites />,
@@ -42,16 +48,5 @@ export default async function CategoryPage({
 
   let component = componentMap[params.category] || componentMap.default;
 
-  return (
-    <>
-      {component}
-      <PaginationControls
-        hasNextPage={end < catCount}
-        hasPrevPage={start > 0}
-        category={params.category}
-        per_page={per_page}
-        catCount={catCount}
-      />
-    </>
-  );
+  return <>{component}</>;
 }

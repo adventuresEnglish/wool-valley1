@@ -3,9 +3,12 @@ import AddToBag from "@/app/(content)/product/add-to-bag";
 import CheckoutNow from "@/app/(content)/product/checkout-now";
 import ImageGallery from "@/app/(content)/product/image-gallery";
 import { Product } from "@/lib/types";
-import { Button } from "@/components/ui/button";
 import { Star, Truck } from "lucide-react";
-import { formatCategory, formatCurrency, getProductData } from "@/lib/utils";
+import {
+  formatCategory,
+  formatCurrency,
+  getProductData,
+} from "@/lib/utils/utils";
 import FavoriteButton from "@/app/components/favorite-button";
 import SelectSize from "@/app/(content)/product/select-size";
 import DisplaySize from "@/app/(content)/product/display-size";

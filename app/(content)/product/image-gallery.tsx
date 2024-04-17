@@ -7,7 +7,7 @@ import Image from "next/image";
 import { urlFor } from "../../lib/sanity";
 import { Product } from "../../../lib/types";
 import { useMouseOverZoom, useWindowResizeListener } from "@/lib/hooks";
-import { cn, isMobileOrTablet } from "@/lib/utils";
+import { cn, isMobileOrTablet } from "@/lib/utils/utils";
 
 type ImageGalleryProps = {
   children: React.ReactNode;
@@ -32,7 +32,8 @@ export default function ImageGallery({
     null
   );
   const [showPlusCursor, setShowPlusCursor] = useState(true);
-  const windowWidth = useWindowResizeListener();
+  let windowWidth = useWindowResizeListener();
+  windowWidth = windowWidth || 0;
 
   const source = useRef<HTMLImageElement>(null);
   const target = useRef<HTMLCanvasElement>(null);
@@ -64,6 +65,7 @@ export default function ImageGallery({
                     alt={alt}
                     width={500}
                     height={500}
+                    quality={100}
                     className=" scale-[1] object-center cursor-pointer"
                     onClick={() => setBigImage({ image, key: image._key })}
                   />

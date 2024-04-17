@@ -126,7 +126,7 @@ export function useSelectSizeContext() {
 }
 
 export function useWindowResizeListener() {
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);

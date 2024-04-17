@@ -110,7 +110,7 @@ module.exports = {
     borderColor: ["responsive", "hover", "focus", "group-hover"],
     opacity: ["responsive", "hover", "focus", "group-hover"],
     extend: {
-      ringOpacity: ["responsive", "hover", "focus"], // Add other variants if needed
+      ringOpacity: ["responsive", "hover", "focus"],
     },
   },
 };

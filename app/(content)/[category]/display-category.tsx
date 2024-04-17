@@ -2,8 +2,9 @@ import { Post, Product } from "../../../lib/types";
 import React from "react";
 import { Metadata } from "next";
 import ProductCard from "../product/product-card";
-import { formatCategory } from "@/lib/utils";
+import { formatCategory } from "@/lib/utils/utils";
 import PostCard from "../blog/post-card";
+import PaginationControls from "./pagination-controls";
 
 export const metadata: Metadata = {
   title: "Wool Valley Slippers",
@@ -11,56 +12,112 @@ export const metadata: Metadata = {
 };
 
 type DisplayCategoryProps = {
-  currentCategory: string;
   currentStyle?: string;
   data: Product[] | Post[];
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  category: string;
+  per_page: string | string[];
+  catCount: number;
 };
 
 export default function DisplayCategory({
-  currentCategory,
   currentStyle,
   data,
+  hasNextPage,
+  hasPrevPage,
+  category,
+  per_page,
+  catCount,
 }: DisplayCategoryProps) {
   return (
-    <div className="bg-white mb-10 min-h-[80vh] lg:min-h-[90vh]">
-      <div className="mx-auto max-w-2xl px-4 sm:px-24 lg:max-w-7xl lg:px-8">
-        {currentCategory !== "blogs" ? (
-          <>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              {currentStyle
-                ? `${formatCategory(currentStyle)} Slippers`
-                : "All Slippers"}
-            </h2>
-            <span className="text-muted-foreground text-lg">
-              {formatCategory(currentCategory)}
-            </span>
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
-              {(data as Product[]).map((product: Product) => (
-                <ul key={product._id}>
-                  <ProductCard
-                    product={product}
-                    category={currentCategory}
-                  />
-                </ul>
-              ))}
-            </div>
-          </>
-        ) : (
-          <>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              Blogs
-            </h2>
-            <span className="text-muted-foreground text-lg">All Blogs</span>
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-x-8">
-              {(data as Post[]).map((post: Post) => (
-                <div key={post.title}>
-                  <PostCard post={post} />
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+    <>
+      <section className="bg-white mb-32 min-h-[80vh] lg:min-h-[90vh]">
+        <div className="mx-auto max-w-2xl px-4 sm:px-24 lg:max-w-7xl lg:px-8">
+          {category !== "blogs" ? (
+            <>
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                {currentStyle
+                  ? `${formatCategory(currentStyle)} Slippers`
+                  : "All Slippers"}
+              </h2>
+              <span className="text-muted-foreground text-lg">
+                {formatCategory(category)}
+              </span>
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 lg:min-h-[540px] xl:min-h-[628px] pb-6 xl:pb-8">
+                {(data as Product[]).map((product: Product) => (
+                  <ul key={product._id}>
+                    <ProductCard
+                      product={product}
+                      category={category}
+                    />
+                  </ul>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                Blogs
+              </h2>
+              <span className="text-muted-foreground text-lg">All Blogs</span>
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-x-8 pb-6 xl:pb-8">
+                {(data as Post[]).map((post: Post) => (
+                  <div key={post.title}>
+                    <PostCard post={post} />
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+          <div className="h-10">
+            {catCount > Number(per_page) && (
+              <PaginationControls
+                hasNextPage={hasNextPage}
+                hasPrevPage={hasPrevPage}
+                category={category}
+                currentStyle={currentStyle}
+                per_page={per_page}
+                catCount={catCount}
+              />
+            )}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
+
+// function Skeleton() {
+//   return (
+//     <div
+//       style={{
+//         height: "40px",
+//         width: "500px",
+//         borderRadius: "20px",
+//         position: "relative",
+//         overflow: "hidden",
+//         backgroundColor: "#eee",
+//       }}>
+//       <div
+//         style={{
+//           height: "100%",
+//           width: "100%",
+//           backgroundImage:
+//             "linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent)",
+//           animation: "skeleton-loading 2s infinite",
+//         }}
+//       />
+//       <style jsx>{`
+//         @keyframes skeleton-loading {
+//           0% {
+//             transform: translateX(-100%);
+//           }
+//           100% {
+//             transform: translateX(100%);
+//           }
+//         }
+//       `}</style>
+//     </div>
+//   );
+// }

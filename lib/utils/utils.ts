@@ -1,10 +1,10 @@
 import { client } from "@/app/lib/sanity";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { SIZE_CATEGORIES } from "./constants";
-import { Product } from "./types";
-import { PRICE_ID_STORE } from "./priceIdStore";
-import { count } from "console";
+import { getPlaiceholder } from "plaiceholder";
+import { SIZE_CATEGORIES } from "../constants";
+import { PRICE_ID_STORE } from "../priceIdStore";
+import { Product } from "../types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -88,7 +88,7 @@ export async function getProductsData({
     return evenlyDistributeBabyKidEntries(data);
   }
 
-  const query = `*[_type == "product" && category->name == "${category}" 
+  let query = `*[_type == "product" && category->name == "${category}" 
     ${style ? `&& style[]->name match "${style}"` : ""}
     ${isCarousel ? "&& bestOf == true" : ""}] | order(_createdAt asc){
       _id,
@@ -105,6 +105,11 @@ export async function getProductsData({
         images[0].asset->url,
         )
       }`;
+
+  if (range) {
+    query += `[${range[0]}...${range[1]}]`;
+  }
+
   const data = await client.fetch(query);
   return data;
 }
@@ -272,3 +277,76 @@ export function isMobileOrTablet() {
 //   const data = await client.fetch(query);
 //   return data;
 // }
+
+export function getPaginationVariables(
+  windowWidth: number,
+  pageNum: number,
+  pages: number
+) {
+  let pagSchema = "schema 9";
+  if (windowWidth < 1024) {
+    pagSchema = "schema 7";
+  }
+  if (windowWidth < 490) {
+    pagSchema = "schema 5";
+  }
+
+  const jumpFirstActive = pageNum == 1;
+  const jumpSecondActive = pageNum == 2;
+  const showJumpSecond =
+    pages == 5 ||
+    (pageNum <= 4 && pagSchema === "schema 9") ||
+    (pageNum <= 3 && pagSchema === "schema 7");
+  const showFirstEllipsis =
+    pages > 5 &&
+    ((pageNum > 4 && pagSchema === "schema 9") ||
+      (pageNum > 3 && pagSchema === "schema 7"));
+
+  const showSecondEllipsis =
+    pages > 5 &&
+    ((pageNum < pages - 3 && pagSchema === "schema 9") ||
+      (pageNum < pages - 2 && pagSchema === "schema 7"));
+  const jumpPenUltActive = pageNum == pages - 1;
+  const showJumpPenUlt =
+    pages == 5 ||
+    pages == 4 ||
+    (pageNum >= pages - 3 && pagSchema === "schema 9") ||
+    (pageNum >= pages - 2 && pagSchema === "schema 7");
+  const jumpUltActive = pageNum == pages;
+
+  let sliceBegin = 0;
+  if (pagSchema === "schema 9") {
+    sliceBegin = pageNum - 2;
+    if (sliceBegin >= pages - 5) sliceBegin = pages - 5;
+  }
+  if (pagSchema === "schema 7") {
+    sliceBegin = pageNum - 1;
+    if (sliceBegin >= pages - 3) sliceBegin = pages - 3;
+  }
+  if (sliceBegin < 2) sliceBegin = 2;
+
+  let sliceEnd = 0;
+  if (pagSchema === "schema 9") {
+    sliceEnd = pageNum + 1;
+    if (sliceEnd < 5) sliceEnd = 5;
+  }
+  if (pagSchema === "schema 7") {
+    sliceEnd = pageNum;
+    if (sliceEnd < 3) sliceEnd = 3;
+  }
+  if (sliceEnd >= pages - 2) sliceEnd = pages - 2;
+
+  return {
+    jumpFirstActive,
+    jumpSecondActive,
+    showJumpSecond,
+    showFirstEllipsis,
+    showSecondEllipsis,
+    jumpPenUltActive,
+    showJumpPenUlt,
+    jumpUltActive,
+    sliceBegin,
+    sliceEnd,
+    pagSchema,
+  };
+}

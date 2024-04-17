@@ -3,7 +3,7 @@ import { Product } from "../../lib/types";
 import { client } from "../lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
-import { formatCategory, formatCurrency } from "@/lib/utils";
+import { formatCategory, formatCurrency } from "@/lib/utils/utils";
 
 async function getData() {
   const query = `*[_type == "product"][0...4] | order(_createdAt desc){
