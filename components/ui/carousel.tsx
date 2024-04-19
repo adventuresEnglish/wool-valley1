@@ -125,12 +125,8 @@ const Carousel = React.forwardRef<
     const width = useWindowResizeListener();
     const mouseX = useMouseXListener();
 
-    // let mouseSide = "left";
-    // if (width) {
-    //   mouseSide = width / 2 > mouseX ? "left" : "right";
-    // }
-
     const mouseSide = width ? (width / 2 > mouseX ? "left" : "right") : "left";
+    const [hasMouseEntered, setHasMouseEntered] = React.useState(false);
 
     return (
       <CarouselContext.Provider
@@ -151,13 +147,28 @@ const Carousel = React.forwardRef<
           className={cn("relative", className)}
           role="region"
           aria-roledescription="carousel"
-          onMouseEnter={
-            !pathname.includes("product") && mouseSide === "left"
-              ? scrollPrev
-              : scrollNext
-          }
+          onMouseEnter={() => {
+            if (!hasMouseEntered) {
+              setHasMouseEntered(true);
+              return pathname.includes("product")
+                ? undefined
+                : mouseSide === "left"
+                ? scrollPrev()
+                : scrollNext();
+            }
+          }}
           {...props}>
-          {children}
+          {
+            <>
+              {children}
+              {hasMouseEntered && (
+                <>
+                  <CarouselPrevious className="left-4 text-primary border-primary" />
+                  <CarouselNext className="right-4 text-primary border-primary" />
+                </>
+              )}
+            </>
+          }
         </div>
       </CarouselContext.Provider>
     );

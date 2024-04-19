@@ -25,7 +25,7 @@ export default function CarouselClient({
               Autoscroll({
                 speed: 1.5,
                 startDelay: 100,
-                stopOnInteraction: false,
+                //stopOnInteraction: false,
                 stopOnMouseEnter: true,
                 direction: "backward",
               }),

@@ -41,7 +41,7 @@ export default function PaginationControls({
   if (width === null) {
     return (
       <div className="w-full flex justify-center">
-        <div className="rounded-lg h-10 w-[229px] 350px:w-[272px] md:w-[431px] overflow-hidden relative">
+        <div className="rounded-lg h-10 w-[229px] 350px:w-[272px] md:w-[431px] lg:w-[523px] overflow-hidden relative">
           <div className="skeleton flex justify-between h-full" />
           <div className="absolute top-1 right-1 rounded-lg h-8 w-24 border border-yellow-600/50" />
           <div className="absolute top-1 left-1 rounded-lg h-8 w-24 border border-yellow-600/50" />

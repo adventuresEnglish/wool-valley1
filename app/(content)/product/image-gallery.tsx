@@ -7,24 +7,18 @@ import Image from "next/image";
 import { urlFor } from "../../lib/sanity";
 import { Product } from "../../../lib/types";
 import { useMouseOverZoom, useWindowResizeListener } from "@/lib/hooks";
-import { cn, isMobileOrTablet } from "@/lib/utils/utils";
+import { cn, getCanvasSide, isMobileOrTablet } from "@/lib/utils/utils";
+import FavoriteButton from "@/app/components/favorite-button";
 
 type ImageGalleryProps = {
-  children: React.ReactNode;
-  images: Product["images"];
-  alt: string;
+  product: Product;
 };
 
-export default function ImageGallery({
-  children,
-  images,
-  alt,
-}: ImageGalleryProps) {
+export default function ImageGallery({ product }: ImageGalleryProps) {
   const [bigImage, setBigImage] = useState<{ image: any; key: string }>({
-    image: images[0],
-    key: images[0]._key,
+    image: product.images[0],
+    key: product.images[0]._key,
   });
-  const mainImage = urlFor(bigImage.image).url();
 
   const isMobOrTab = isMobileOrTablet();
   const [eventX, setEventX] = useState(0);
@@ -34,27 +28,24 @@ export default function ImageGallery({
   const [showPlusCursor, setShowPlusCursor] = useState(true);
   let windowWidth = useWindowResizeListener();
   windowWidth = windowWidth || 0;
+  const { canvasSide, smallScreen } = getCanvasSide(windowWidth);
 
   const source = useRef<HTMLImageElement>(null);
   const target = useRef<HTMLCanvasElement>(null);
-  const cursor = useRef<HTMLDivElement>(null);
 
-  useMouseOverZoom(source, target, cursor, tooltipContainer);
+  useMouseOverZoom(source, target, tooltipContainer, windowWidth);
 
   useEffect(() => {
     !isMobOrTab &&
       setTooltipContainer(document.getElementById("tooltip-container"));
   }, [isMobOrTab]);
 
-  const scrollDiff = isMobOrTab ? 0 : 5.5;
-  const smallScreenSide = (windowWidth - 40) / 3 - scrollDiff;
-
   return (
     <>
       <div className="grid gap-4 lg:grid-cols-6">
-        {images.length > 1 ? (
+        {product.images.length > 1 ? (
           <div className="order-last flex gap-4 lg:order-none lg:flex-col lg:col-span-2">
-            {images
+            {product.images
               .filter((image: any) => image._key !== bigImage.key)
               .map((image: any) => (
                 <div
@@ -62,7 +53,7 @@ export default function ImageGallery({
                   className="relative aspect-[1] overflow-hidden rounded-lg bg-gray-100">
                   <Image
                     src={urlFor(image).url()}
-                    alt={alt}
+                    alt={product.alt}
                     width={500}
                     height={500}
                     quality={100}
@@ -81,8 +72,8 @@ export default function ImageGallery({
             height={1000}
             quality={100}
             ref={source}
-            src={mainImage}
-            alt={alt}
+            src={urlFor(bigImage.image).url()}
+            alt={product.alt}
             className={cn("w-full h-full scale-100 object-center bg-gray-100", {
               "scale-110": isMobOrTab,
             })}
@@ -100,23 +91,25 @@ export default function ImageGallery({
             onMouseMove={(e) => {
               setEventX(e.clientX);
             }}
+            onMouseLeave={(e) => {
+              setShowPlusCursor(true);
+            }}
           />
-          {children}
+          <FavoriteButton product={product} />
         </div>
       </div>
       {tooltipContainer &&
         createPortal(
           <canvas
             ref={target}
-            className={`${
-              showPlusCursor ? "hidden" : "block"
-            }  border border-primary rounded-lg fixed md:w-48 md:h-48 md:right-1/2 top-[124px] 350px:top-[138px] lg:top-28 left-5 md:left-auto`}
+            className="border border-primary rounded-lg fixed md:right-1/2 top-[124px] 350px:top-[138px] lg:top-28 left-5 md:left-auto"
             style={{
-              width: windowWidth < 768 ? `${smallScreenSide}px` : "",
-              height: windowWidth < 768 ? `${smallScreenSide}px` : "",
+              display: showPlusCursor ? "none" : "block",
+              width: canvasSide,
+              height: canvasSide,
               transform: `translateX(calc(${
-                windowWidth < 768 && eventX > windowWidth / 2 ? "0%" : "200%"
-              } + ${windowWidth < 768 ? "0px" : "16px - 100%"}))`,
+                smallScreen && eventX > windowWidth / 2 ? "0%" : "200%"
+              } + ${smallScreen ? "0px" : "16px - 100%"}))`,
             }}
           />,
           tooltipContainer
@@ -124,31 +117,3 @@ export default function ImageGallery({
     </>
   );
 }
-
-// {tooltipContainer &&
-//   createPortal(
-//     <canvas
-//       ref={target}
-//       className={cn(
-//         "hidden border border-primary rounded-lg fixed md:w-48 md:h-48 md:right-1/2 top-[124px] 350px:top-[138px] lg:top-28",
-//         {
-//           block: !showPlusCursor,
-//           "left-5": windowWidth < 768,
-//         }
-//       )}
-//       style={{
-//         width:
-//           windowWidth < 768
-//             ? `${windowWidth / 2 - 20}px`
-//             : "",
-//         height:
-//           windowWidth < 768
-//             ? `${windowWidth / 2 - 20}px`
-//             : "",
-//         transform: `translateX(calc(${
-//           windowWidth < 768 && eventX > windowWidth / 2 ? "0%" : "100%"
-//         } + ${windowWidth < 768 ? "0px" : "16px"}))`,
-//       }}
-//     />,
-//     tooltipContainer
-//   )}

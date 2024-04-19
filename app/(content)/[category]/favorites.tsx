@@ -11,7 +11,7 @@ export default function Favorites() {
 
   const page = searchParams.get("page") ?? "1";
   const perPage = searchParams.get("per_page") ?? "8";
-  console.log("page", page, "perPage", perPage, "length", length);
+  //console.log("page", page, "perPage", perPage, "length", length);
 
   const start = (Number(page) - 1) * Number(perPage);
   const end = start + Number(perPage);

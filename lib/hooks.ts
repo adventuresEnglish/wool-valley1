@@ -129,10 +129,10 @@ export function useWindowResizeListener() {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth);
+    setWindowWidth(document.body.clientWidth);
 
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+      setWindowWidth(document.body.clientWidth);
     };
 
     window.addEventListener("resize", handleResize);
@@ -188,10 +188,11 @@ function useMouse(ref: React.RefObject<HTMLElement>) {
 export function useMouseOverZoom(
   source: React.RefObject<HTMLImageElement>,
   target: React.RefObject<HTMLCanvasElement>,
-  cursor: React.RefObject<HTMLElement>,
   tooltipContainer: HTMLElement | null,
-  radius = 40
+  width: number,
+  radius = 50
 ) {
+  if (width < 768) radius = 75;
   // Capture Mouse position
   const { x, y, isActive } = useMouse(source);
   // Compute the part of the image to zoom based on mouse position
@@ -203,17 +204,7 @@ export function useMouseOverZoom(
       height: radius * 2,
     };
   }, [x, y, radius]);
-  // move the cursor to the mouse position
-  useEffect(() => {
-    if (cursor.current) {
-      const { left, top, width, height } = zoomBounds;
-      cursor.current.style.left = `${left}px`;
-      cursor.current.style.top = `${top}px`;
-      cursor.current.style.width = `${width}px`;
-      cursor.current.style.height = `${height}px`;
-      cursor.current.style.display = isActive ? "block" : "none";
-    }
-  }, [zoomBounds, isActive, cursor]);
+
   // draw the zoomed image on the canvas
   useEffect(() => {
     if (source.current && target.current) {

@@ -3,7 +3,7 @@ import AddToBag from "@/app/(content)/product/add-to-bag";
 import CheckoutNow from "@/app/(content)/product/checkout-now";
 import ImageGallery from "@/app/(content)/product/image-gallery";
 import { Product } from "@/lib/types";
-import { Star, Truck } from "lucide-react";
+import { Divide, Star, Truck } from "lucide-react";
 import {
   formatCategory,
   formatCurrency,
@@ -13,8 +13,10 @@ import FavoriteButton from "@/app/components/favorite-button";
 import SelectSize from "@/app/(content)/product/select-size";
 import DisplaySize from "@/app/(content)/product/display-size";
 import Carousel from "@/app/components/carousel";
+import { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
+
 type Props = {
   params: {
     slug: string;
@@ -40,12 +42,7 @@ export default async function ProductPage({ params }: Props) {
     <div className="bg-white mb-5 min-h-[100vh]">
       <div className="mx-auto max-w-screen-xl px-5 md:px-8">
         <div className="grid gap-8 md:grid-cols-2">
-          <ImageGallery
-            images={product.images}
-            alt={product.alt}>
-            <FavoriteButton product={product} />
-          </ImageGallery>
-
+          <ImageGallery product={product}></ImageGallery>
           <div className="pb-4 mb-2 md:mb-3 max-w-[400px]">
             <span className="mb-0.5 inline-block text-gray-500">
               {formatCategory(product.categoryName)}
@@ -112,11 +109,13 @@ export default async function ProductPage({ params }: Props) {
             </p>
           </div>
         </div>
+        {/* <Suspense fallback={<div>loading...</div>}> */}
         <Carousel
           category={product.categoryName}
           className="mb-9"
           currentModel={product.name}
         />
+        {/* </Suspense> */}
       </div>
     </div>
   );

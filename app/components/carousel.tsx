@@ -1,15 +1,11 @@
 import Link from "next/link";
 import CarouselClient from "./carousel-client";
-import {
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel";
+import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Product } from "@/lib/types";
 import { cn, formatCategory, getProductsData } from "@/lib/utils/utils";
 import ArrowRight from "@/components/ui/arrow-right";
 import ProductCard from "../(content)/product/product-card";
+import BlurImage from "../(content)/product/blur-image";
 
 type CarouselProps = {
   category: string;
@@ -44,22 +40,15 @@ export default async function Carousel({
               {bestOf.map((product) => (
                 <CarouselItem
                   key={product._id}
-                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/5 m-0 p-0">
+                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/5 p-0">
                   <ProductCard
-                    category={category}
                     product={product}
-                    className="ml-4"
+                    category={category}
                     isCarousel={true}
                   />
                 </CarouselItem>
               ))}
             </CarouselContent>
-            {category !== "all" && (
-              <div className="">
-                <CarouselPrevious className="left-4 text-primary border-primary" />
-                <CarouselNext className="right-4 text-primary border-primary" />
-              </div>
-            )}
           </CarouselClient>
         </div>
       </div>

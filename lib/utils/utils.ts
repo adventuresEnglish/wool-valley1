@@ -318,23 +318,23 @@ export function getPaginationVariables(
   if (pagSchema === "schema 9") {
     sliceBegin = pageNum - 2;
     if (sliceBegin >= pages - 5) sliceBegin = pages - 5;
-  }
-  if (pagSchema === "schema 7") {
+  } else if (pagSchema === "schema 7") {
     sliceBegin = pageNum - 1;
     if (sliceBegin >= pages - 3) sliceBegin = pages - 3;
   }
-  if (sliceBegin < 2) sliceBegin = 2;
+
+  sliceBegin = sliceBegin < 2 ? 2 : sliceBegin;
 
   let sliceEnd = 0;
   if (pagSchema === "schema 9") {
     sliceEnd = pageNum + 1;
     if (sliceEnd < 5) sliceEnd = 5;
-  }
-  if (pagSchema === "schema 7") {
+  } else if (pagSchema === "schema 7") {
     sliceEnd = pageNum;
     if (sliceEnd < 3) sliceEnd = 3;
   }
-  if (sliceEnd >= pages - 2) sliceEnd = pages - 2;
+
+  sliceEnd = sliceEnd >= pages - 2 ? pages - 2 : sliceEnd;
 
   return {
     jumpFirstActive,
@@ -349,4 +349,18 @@ export function getPaginationVariables(
     sliceEnd,
     pagSchema,
   };
+}
+
+export function getCanvasSide(windowWidth: number) {
+  const goldenRatio = 1.61803398875;
+  const smallScreen = windowWidth < 752;
+  const canvasCalc = smallScreen
+    ? (windowWidth - 40) / 3
+    : !smallScreen && windowWidth < 1024
+    ? (windowWidth / 2.25) * goldenRatio
+    : windowWidth > 1024
+    ? (windowWidth / 3.31) * goldenRatio
+    : 0;
+  const canvasSide = canvasCalc > 260 ? 260 : canvasCalc;
+  return { canvasSide, smallScreen };
 }

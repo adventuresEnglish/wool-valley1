@@ -2,8 +2,9 @@ import Favorites from "./favorites";
 import DisplayCategory from "./display-category";
 import { getCatCount, getPostsData, getProductsData } from "@/lib/utils/utils";
 import { Post, Product } from "../../../lib/types";
+import { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
 
 export default async function CategoryPage({
   params,
@@ -29,11 +30,14 @@ export default async function CategoryPage({
     });
   }
 
-  // const names = categoryData.map((item) => (item as Product).name);
-  // console.log("names", names, "hello");
-
   const componentMap: { [key: string]: JSX.Element } = {
     default: (
+      // <Suspense
+      //   fallback={
+      //     <div className="bg-white mb-32 min-h-[80vh] lg:min-h-[90vh] flex justify-center items-center">
+      //       loading
+      //     </div>
+      //   }>
       <DisplayCategory
         data={categoryData}
         hasNextPage={end < catCount}
@@ -42,6 +46,7 @@ export default async function CategoryPage({
         per_page={per_page}
         catCount={catCount}
       />
+      // </Suspense>
     ),
     favorites: <Favorites />,
   };
