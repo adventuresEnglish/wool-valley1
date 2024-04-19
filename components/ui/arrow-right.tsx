@@ -2,10 +2,8 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
-// Change 24 to your desired size for screens larger than 350px
-
 export default function ArrowRightComp() {
-  const [windowWidth, setWindowWidth] = useState(351);
+  const [windowWidth, setWindowWidth] = useState(350);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);

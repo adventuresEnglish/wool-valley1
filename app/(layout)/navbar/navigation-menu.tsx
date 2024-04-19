@@ -18,7 +18,7 @@ import { usePathname } from "next/navigation";
 import { useFavoritesContext } from "@/lib/hooks";
 import FeaturedBlogs from "./featured-blogs";
 import { useRef, useState } from "react";
-import DiametricAccordion from "@/app/(layout)/navbar/diametric-accordion";
+import DiametricAccordion from "./diametric-accordion";
 
 export default function NavigationMenu() {
   const pathName = usePathname();

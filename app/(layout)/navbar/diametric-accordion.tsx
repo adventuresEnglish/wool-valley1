@@ -30,9 +30,11 @@ const DiametricAccordion = () => {
         )}>
         <div className="text-start">
           <h1 className="font-medium leading-none text-gray-600 transition duration-100 group-hover:text-primary">
-            Baby/Kid
+            Adult/Youth
           </h1>
-          <p className="text-sm leading-snug text-muted-foreground">Ages 0-6</p>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            Ages 7 <span className="whitespace-nowrap">and up</span>
+          </p>
         </div>
         <div>
           <p className="text-muted-foreground text-sm group-hover:text-primary">
@@ -48,8 +50,8 @@ const DiametricAccordion = () => {
         </div>
         <div className="relative overflow-hidden rounded-lg border border-goldAccent ">
           <Image
-            src="https://cdn.sanity.io/images/c8kajeh8/slippers/f574b43d9e2639f01629095bcb50a369adc0c6b7-1000x1000.jpg"
-            alt="See All Baby/Kid Slippers"
+            src="https://cdn.sanity.io/images/c8kajeh8/slippers/0458afa4362ab0e4b20ed6f31cdb84ce71790bf1-1000x1000.jpg"
+            alt="See All Adult/Youth Slippers"
             width={120}
             height={120}
             className="object-center transform group-hover:opacity-70 transition duration-300 ease-in-out"
@@ -63,7 +65,7 @@ const DiametricAccordion = () => {
           "top-slider-up top-1/2": !top.isOpen,
         })}>
         {" "}
-        <AccordionContent links={baby_kidDropdownlinks} />
+        <AccordionContent links={adult_youthDropdownlinks} />
       </div>
       <button
         onClick={handleBottomClick}
@@ -75,11 +77,9 @@ const DiametricAccordion = () => {
         )}>
         <div className="text-start">
           <h1 className="font-medium leading-none text-gray-600 transition duration-100 group-hover:text-primary">
-            Adult/Youth
+            Baby/Kid
           </h1>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            Ages 7 <span className="whitespace-nowrap">and up</span>
-          </p>
+          <p className="text-sm leading-snug text-muted-foreground">Ages 0-6</p>
         </div>
         <div>
           <span className="flex justify-center text-goldAccent">
@@ -95,8 +95,8 @@ const DiametricAccordion = () => {
         </div>
         <div className="relative overflow-hidden rounded-lg border border-goldAccent">
           <Image
-            src="https://cdn.sanity.io/images/c8kajeh8/slippers/0458afa4362ab0e4b20ed6f31cdb84ce71790bf1-1000x1000.jpg"
-            alt="See All Adult/Youth Slippers"
+            src="https://cdn.sanity.io/images/c8kajeh8/slippers/f574b43d9e2639f01629095bcb50a369adc0c6b7-1000x1000.jpg"
+            alt="See All Baby/Kid Slippers"
             width={120}
             height={120}
             className="object-center transform group-hover:opacity-70 transition duration-300 ease-in-out"
@@ -110,13 +110,11 @@ const DiametricAccordion = () => {
           "bottom-slider-up top-full": bottom.isOpen,
           "bottom-slider-down top-0%": !bottom.isOpen,
         })}>
-        <AccordionContent links={adult_youthDropdownlinks} />
+        <AccordionContent links={baby_kidDropdownlinks} />
       </div>
     </section>
   );
 };
-
-export default DiametricAccordion;
 
 type DropdownLinkProps = {
   links: {
@@ -127,7 +125,7 @@ type DropdownLinkProps = {
   }[];
 };
 
-const AccordionContent: React.FC<DropdownLinkProps> = ({ links }) => {
+function AccordionContent({ links }: DropdownLinkProps) {
   return (
     <ul className="grid grid-cols-3 gap-4">
       {links.map((link) => (
@@ -159,4 +157,6 @@ const AccordionContent: React.FC<DropdownLinkProps> = ({ links }) => {
       ))}
     </ul>
   );
-};
+}
+
+export default DiametricAccordion;
