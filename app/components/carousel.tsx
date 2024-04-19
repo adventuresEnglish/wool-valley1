@@ -40,10 +40,11 @@ export default async function Carousel({
               {bestOf.map((product) => (
                 <CarouselItem
                   key={product._id}
-                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/5 p-0">
+                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/5 m-0 p-0">
                   <ProductCard
                     product={product}
                     category={category}
+                    className="ml-4"
                     isCarousel={true}
                   />
                 </CarouselItem>

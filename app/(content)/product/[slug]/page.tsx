@@ -9,7 +9,6 @@ import {
   formatCurrency,
   getProductData,
 } from "@/lib/utils/utils";
-import FavoriteButton from "@/app/components/favorite-button";
 import SelectSize from "@/app/(content)/product/select-size";
 import DisplaySize from "@/app/(content)/product/display-size";
 import Carousel from "@/app/components/carousel";

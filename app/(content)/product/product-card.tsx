@@ -32,7 +32,7 @@ export default function ProductCard({
               alt={product.alt}
               width={1000}
               height={1000}
-              className="etransform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100"
+              className="transform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100"
             />
           ) : (
             <BlurImage
