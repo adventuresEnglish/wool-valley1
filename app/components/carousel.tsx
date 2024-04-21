@@ -45,20 +45,8 @@ export default async function Carousel({
                     product={product}
                     category={category}
                     className="ml-4"
-                    //isCarousel={true}
-                  >
-                    <BlurImage
-                      src={
-                        category === "all"
-                          ? product.bestOfImageUrl
-                          : product.imageUrl
-                      }
-                      alt={product.alt}
-                      width={1000}
-                      height={1000}
-                      className="transform transition duration-300 ease-in-out bg-gray-100 hover:opacity-70"
-                    />
-                  </ProductCard>
+                    isCarousel={true}
+                  />
                 </CarouselItem>
               ))}
             </CarouselContent>
