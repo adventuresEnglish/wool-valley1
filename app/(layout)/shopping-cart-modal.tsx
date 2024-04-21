@@ -9,11 +9,7 @@ import {
 import Image from "next/image";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "sonner";
-import {
-  useBlurNavContext,
-  useHandleCheckoutClick,
-  useSelectSizeContext,
-} from "@/lib/hooks";
+import { useSelectSizeContext } from "@/lib/hooks";
 import { useShoppingCart } from "use-shopping-cart";
 import { cn, formatCurrency, getSizeLabel } from "@/lib/utils/utils";
 import { useEffect, useRef, useState } from "react";
@@ -25,7 +21,7 @@ const initialOptions = {
 };
 
 export default function ShoppingCartModal() {
-  const handleCheckoutClick = useHandleCheckoutClick();
+  //const handleCheckoutClick = useHandleCheckoutClick();
   const { setSize } = useSelectSizeContext();
   const [showRemove, setShowRemove] = useState(true);
   const {
@@ -37,7 +33,6 @@ export default function ShoppingCartModal() {
     shouldDisplayCart,
     handleCartClick,
   } = useShoppingCart();
-  const { setBlurNav } = useBlurNavContext();
 
   const shouldDisplayCartRef = useRef(shouldDisplayCart);
 
@@ -52,7 +47,6 @@ export default function ShoppingCartModal() {
           className="fixed top-0 left-0 w-full h-full backdrop-blur-sm z-[60] cursor-default"
           onClick={() => {
             handleCartClick();
-            setBlurNav(false);
           }}
         />
       )}
@@ -62,7 +56,6 @@ export default function ShoppingCartModal() {
         onOpenChange={() => {
           setShowRemove(true);
           handleCartClick();
-          setBlurNav(false);
         }}>
         <SheetContent className="sm:max-w-lg w-[90vw] z-[80]">
           <SheetHeader>
@@ -114,6 +107,9 @@ export default function ShoppingCartModal() {
                               disabled={!showRemove}
                               type="button"
                               onClick={() => {
+                                if (cartCount! - entry.quantity === 0) {
+                                  handleCartClick();
+                                }
                                 removeItem(entry.id);
                                 setSize("");
                                 toast(
@@ -128,8 +124,9 @@ export default function ShoppingCartModal() {
                                       label: "Undo",
                                       onClick: () => {
                                         addItem(entry);
-                                        if (!shouldDisplayCartRef.current)
+                                        if (!shouldDisplayCartRef.current) {
                                           handleCartClick();
+                                        }
                                       },
                                     },
                                     position: "top-right",
@@ -192,7 +189,6 @@ export default function ShoppingCartModal() {
                   <button
                     onClick={() => {
                       handleCartClick();
-                      setBlurNav(false);
                     }}
                     className="font-medium text-primary hover:text-primary/80">
                     Continue Shopping

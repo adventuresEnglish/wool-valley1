@@ -8,39 +8,39 @@ import {
   useState,
 } from "react";
 import { useShoppingCart } from "use-shopping-cart";
-import { BlurNavContext } from "@/app/contexts/blur-nav-context";
+//import { BlurNavContext } from "@/app/contexts/blur-nav-context";
 import { FavoritesContext } from "@/app/contexts/favorites-count-context-provider";
 import { SelectSizeContext } from "@/app/contexts/select-size-context-provider";
 
-export function useHandleCheckoutClick() {
-  const { cartCount, cartDetails, redirectToCheckout } = useShoppingCart();
+// export function useHandleCheckoutClick() {
+//   const { cartCount, cartDetails, redirectToCheckout } = useShoppingCart();
 
-  const handleCheckoutClick = useCallback(
-    async (event: any) => {
-      event.preventDefault();
-      if (cartCount) {
-        try {
-          const res = await fetch("/session", {
-            method: "POST",
-            body: JSON.stringify(cartDetails),
-          });
-          console.log(cartDetails);
-          const data = await res.json();
-          console.log(data);
-          const result: any = await redirectToCheckout(data.sessionId);
-          if (result.error) {
-            console.error(result);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    },
-    [cartCount, cartDetails, redirectToCheckout]
-  );
+//   const handleCheckoutClick = useCallback(
+//     async (event: any) => {
+//       event.preventDefault();
+//       if (cartCount) {
+//         try {
+//           const res = await fetch("/session", {
+//             method: "POST",
+//             body: JSON.stringify(cartDetails),
+//           });
+//           console.log(cartDetails);
+//           const data = await res.json();
+//           console.log(data);
+//           const result: any = await redirectToCheckout(data.sessionId);
+//           if (result.error) {
+//             console.error(result);
+//           }
+//         } catch (error) {
+//           console.error(error);
+//         }
+//       }
+//     },
+//     [cartCount, cartDetails, redirectToCheckout]
+//   );
 
-  return handleCheckoutClick;
-}
+//   return handleCheckoutClick;
+// }
 
 export type Action =
   | { type: "ADD"; payload: Product }
@@ -105,14 +105,14 @@ export function useSelectSize() {
   };
 }
 
-export function useBlurNav() {
-  const [blurNav, setBlurNav] = useState(false);
+// export function useBlurNav() {
+//   const [blurNav, setBlurNav] = useState(false);
 
-  return {
-    blurNav,
-    setBlurNav,
-  };
-}
+//   return {
+//     blurNav,
+//     setBlurNav,
+//   };
+// }
 
 export function useFavoritesContext() {
   const context = useContext(FavoritesContext);
@@ -134,15 +134,15 @@ export function useSelectSizeContext() {
   return context;
 }
 
-export function useBlurNavContext() {
-  const context = useContext(BlurNavContext);
-  if (!context) {
-    throw new Error(
-      "SelectSizeContext Context must be used within the BlurNavContext"
-    );
-  }
-  return context;
-}
+// export function useBlurNavContext() {
+//   const context = useContext(BlurNavContext);
+//   if (!context) {
+//     throw new Error(
+//       "SelectSizeContext Context must be used within the BlurNavContext"
+//     );
+//   }
+//   return context;
+// }
 
 export function useWindowResizeListener() {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);

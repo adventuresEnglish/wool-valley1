@@ -1,29 +1,29 @@
-"use client";
+// "use client";
 
-import { useBlurNav } from "@/lib/hooks";
-import { createContext } from "react";
+// import { useBlurNav } from "@/lib/hooks";
+// import { createContext } from "react";
 
-type BlurNavContextProps = {
-  blurNav: boolean;
-  setBlurNav: (displayCart: boolean) => void;
-};
+// type BlurNavContextProps = {
+//   blurNav: boolean;
+//   setBlurNav: (displayCart: boolean) => void;
+// };
 
-export const BlurNavContext = createContext<BlurNavContextProps | null>(null);
+// export const BlurNavContext = createContext<BlurNavContextProps | null>(null);
 
-export default function BlurNavContextProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const { blurNav, setBlurNav } = useBlurNav();
+// export default function BlurNavContextProvider({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   const { blurNav, setBlurNav } = useBlurNav();
 
-  return (
-    <BlurNavContext.Provider
-      value={{
-        blurNav,
-        setBlurNav,
-      }}>
-      {children}
-    </BlurNavContext.Provider>
-  );
-}
+//   return (
+//     <BlurNavContext.Provider
+//       value={{
+//         blurNav,
+//         setBlurNav,
+//       }}>
+//       {children}
+//     </BlurNavContext.Provider>
+//   );
+// }

@@ -6,11 +6,7 @@ import Image from "next/image";
 
 import { urlFor } from "../../lib/sanity";
 import { Product } from "../../../lib/types";
-import {
-  useBlurNavContext,
-  useMouseOverZoom,
-  useWindowResizeListener,
-} from "@/lib/hooks";
+import { useMouseOverZoom, useWindowResizeListener } from "@/lib/hooks";
 import { cn, getCanvasSide, isMobileOrTablet } from "@/lib/utils/utils";
 import FavoriteButton from "@/app/components/favorite-button";
 import { useShoppingCart } from "use-shopping-cart";
@@ -45,18 +41,16 @@ export default function ImageGallery({ product }: ImageGalleryProps) {
       setTooltipContainer(document.getElementById("tooltip-container"));
   }, [isMobOrTab]);
 
-  const { blurNav, setBlurNav } = useBlurNavContext();
-  const { handleCartClick } = useShoppingCart();
+  const { handleCartClick, shouldDisplayCart } = useShoppingCart();
 
   return (
     <>
       <div
         className={cn("grid gap-4 lg:grid-cols-6 z-[60]", {
-          "pointer-events-none": blurNav,
+          "pointer-events-none": shouldDisplayCart,
         })}
         onClick={() => {
-          if (blurNav) {
-            setBlurNav(false);
+          if (shouldDisplayCart) {
             handleCartClick();
           }
         }}>
@@ -96,9 +90,9 @@ export default function ImageGallery({ product }: ImageGalleryProps) {
             })}
             style={{
               cursor:
-                showPlusCursor && !blurNav
+                showPlusCursor && !shouldDisplayCart
                   ? 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(219,199,138)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zoom-in"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg>\') 12 12, auto'
-                  : !showPlusCursor && !blurNav
+                  : !showPlusCursor && !shouldDisplayCart
                   ? 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(219,199,138)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zoom-out"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg>\') 12 12, auto'
                   : "auto",
             }}
@@ -119,7 +113,7 @@ export default function ImageGallery({ product }: ImageGalleryProps) {
         </div>
       </div>
       {tooltipContainer &&
-        !blurNav &&
+        !shouldDisplayCart &&
         createPortal(
           <canvas
             ref={target}
