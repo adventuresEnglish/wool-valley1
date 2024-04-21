@@ -4,7 +4,7 @@ import { getCatCount, getPostsData, getProductsData } from "@/lib/utils/utils";
 import { Post, Product } from "../../../lib/types";
 import { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
 
 export default async function CategoryPage({
   params,
