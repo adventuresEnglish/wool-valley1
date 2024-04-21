@@ -5,6 +5,7 @@ import ProductCard from "../product/product-card";
 import { cn, formatCategory } from "@/lib/utils/utils";
 import PostCard from "../blog/post-card";
 import PaginationControls from "./pagination-controls";
+import BlurImage from "@/app/components/blur-image";
 //import BlurImage from "../../components/blur-image";
 
 export const metadata: Metadata = {
@@ -86,8 +87,22 @@ function DisplaySlippers({
           <ul key={product._id}>
             <ProductCard
               product={product}
-              category={category}
-            />
+              category={category}>
+              {category !== "favorites" && (
+                <BlurImage
+                  src={product.imageUrl}
+                  alt={product.alt}
+                  width={1000}
+                  height={1000}
+                  className={cn(
+                    "transform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100",
+                    {
+                      //"lg:-translate-y-0 xl:-translate-y-0": isCarousel,
+                    }
+                  )}
+                />
+              )}
+            </ProductCard>
           </ul>
         ))}
       </div>
