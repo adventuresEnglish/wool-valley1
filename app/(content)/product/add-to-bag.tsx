@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useShoppingCart } from "use-shopping-cart";
-import { useSelectSizeContext } from "@/lib/hooks";
+import { useBlurNavContext, useSelectSizeContext } from "@/lib/hooks";
 import { BasicProduct } from "../../../lib/types";
 import { getSizeLabel, price_idLookup } from "@/lib/utils/utils";
 import { useEffect, useState } from "react";
@@ -16,8 +16,10 @@ export default function AddToBag({
   slug,
 }: BasicProduct) {
   const { addItem, handleCartClick } = useShoppingCart();
+
   const { size, setSize, setChooseSizeIndicator } = useSelectSizeContext();
   const [priceId, setPriceId] = useState("");
+  const { setBlurNav } = useBlurNavContext();
 
   useEffect(() => {
     if (size) {
@@ -39,11 +41,12 @@ export default function AddToBag({
   };
 
   const handleClick = () => {
-    handleCartClick();
     addItem(product);
+    handleCartClick();
     setTimeout(() => {
       setSize("");
     }, 1000);
+    setBlurNav(true);
   };
 
   return (

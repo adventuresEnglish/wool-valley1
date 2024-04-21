@@ -4,7 +4,7 @@ import { getCatCount, getProductsData } from "@/lib/utils/utils";
 
 import { Product } from "@/lib/types";
 
-//export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 export default async function StylePage({
   params,

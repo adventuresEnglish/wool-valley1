@@ -8,6 +8,7 @@ import FavoritesContextProvider from "./contexts/favorites-count-context-provide
 import SelectSizeContextProvider from "./contexts/select-size-context-provider";
 import Footer from "./(layout)/more-info/_footer/footer";
 import { Toaster } from "sonner";
+import BlurNavContextProvider from "./contexts/display-cart-context";
 
 export const metadata: Metadata = {
   title: "Wool Valley Slippers",
@@ -28,16 +29,17 @@ export default function RootLayout({
         style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}>
         <FavoritesContextProvider>
           <SelectSizeContextProvider>
-            <CartProvider>
-              <Navbar />
-              <ShoppingCartModal />
-              {children}
-              <div id="tooltip-container" />
-              <Toaster />
-            </CartProvider>
+            <BlurNavContextProvider>
+              <CartProvider>
+                <Navbar />
+                <ShoppingCartModal />
+                {children}
+                <div id="tooltip-container" />
+                <Toaster />
+              </CartProvider>
+            </BlurNavContextProvider>
           </SelectSizeContextProvider>
         </FavoritesContextProvider>
-
         <Footer />
       </body>
     </html>

@@ -1,4 +1,4 @@
-import { CompleteFirstBestOfLink, FirstBestOfLink, Product } from "@/lib/types";
+import { Product } from "@/lib/types";
 import {
   useCallback,
   useContext,
@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { useShoppingCart } from "use-shopping-cart";
-
+import { BlurNavContext } from "@/app/contexts/display-cart-context";
 import { FavoritesContext } from "@/app/contexts/favorites-count-context-provider";
 import { SelectSizeContext } from "@/app/contexts/select-size-context-provider";
 
@@ -105,6 +105,15 @@ export function useSelectSize() {
   };
 }
 
+export function useBlurNav() {
+  const [blurNav, setBlurNav] = useState(false);
+
+  return {
+    blurNav,
+    setBlurNav,
+  };
+}
+
 export function useFavoritesContext() {
   const context = useContext(FavoritesContext);
   if (!context) {
@@ -120,6 +129,16 @@ export function useSelectSizeContext() {
   if (!context) {
     throw new Error(
       "SelectSizeContext Context must be used within the SelectSizeContext"
+    );
+  }
+  return context;
+}
+
+export function useBlurNavContext() {
+  const context = useContext(BlurNavContext);
+  if (!context) {
+    throw new Error(
+      "SelectSizeContext Context must be used within the BlurNavContext"
     );
   }
   return context;

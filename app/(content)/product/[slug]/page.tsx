@@ -14,7 +14,7 @@ import DisplaySize from "@/app/(content)/product/display-size";
 import Carousel from "@/app/components/carousel";
 import { Suspense } from "react";
 
-//export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 type Props = {
   params: {

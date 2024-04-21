@@ -16,7 +16,7 @@ export default function CheckoutNow({
   _id,
   slug,
 }: BasicProduct) {
-  const { addItem, cartCount } = useShoppingCart();
+  const { addItem, cartCount, handleCartClick } = useShoppingCart();
   const handleCheckoutClick = useHandleCheckoutClick();
 
   const { size } = useSelectSizeContext();
@@ -31,6 +31,7 @@ export default function CheckoutNow({
 
   function buyNow(e: any) {
     addItem(product);
+    handleCartClick();
     setLastEvent(e);
   }
 
