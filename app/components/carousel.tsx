@@ -5,7 +5,7 @@ import { Product } from "@/lib/types";
 import { cn, formatCategory, getProductsData } from "@/lib/utils/utils";
 import ArrowRight from "@/components/ui/arrow-right";
 import ProductCard from "../(content)/product/product-card";
-import BlurImage from "../(content)/product/blur-image";
+import BlurImage from "./blur-image";
 
 type CarouselProps = {
   category: string;

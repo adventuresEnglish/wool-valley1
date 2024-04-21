@@ -8,7 +8,7 @@ import FavoritesContextProvider from "./contexts/favorites-count-context-provide
 import SelectSizeContextProvider from "./contexts/select-size-context-provider";
 import Footer from "./(layout)/more-info/_footer/footer";
 import { Toaster } from "sonner";
-import BlurNavContextProvider from "./contexts/display-cart-context";
+import BlurNavContextProvider from "./contexts/blur-nav-context";
 
 export const metadata: Metadata = {
   title: "Wool Valley Slippers",

@@ -6,7 +6,7 @@ import { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 
 import Image from "next/image";
-import BlurImage from "./blur-image";
+import BlurImage from "../../components/blur-image";
 
 type ProductCardProps = {
   product: Product;

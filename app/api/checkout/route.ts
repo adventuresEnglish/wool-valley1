@@ -69,14 +69,13 @@ export async function POST(req: Request) {
           unit_amount: {
             currency_code: "USD",
             value: (item.price / 100).toFixed(2),
-          },
+          }, // SHOULD I ALSO BE MULTIPLYING PRICE BY QUANTITY??????? yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyPPPPPPPPP
         })),
       },
     ],
   });
 
   const response = await client.execute(request);
-  console.log(response);
 
   return NextResponse.json({
     id: response.result.id,

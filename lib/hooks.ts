@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { useShoppingCart } from "use-shopping-cart";
-import { BlurNavContext } from "@/app/contexts/display-cart-context";
+import { BlurNavContext } from "@/app/contexts/blur-nav-context";
 import { FavoritesContext } from "@/app/contexts/favorites-count-context-provider";
 import { SelectSizeContext } from "@/app/contexts/select-size-context-provider";
 
