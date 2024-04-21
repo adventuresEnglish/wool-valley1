@@ -86,8 +86,15 @@ function DisplaySlippers({
           <ul key={product._id}>
             <ProductCard
               product={product}
-              category={category}
-            />
+              category={category}>
+              <BlurImage
+                src={product.imageUrl}
+                alt={product.alt}
+                width={1000}
+                height={1000}
+                className="transform lg:-translate-y-3.5 xl:-translate-y-6 transition duration-300 ease-in-out bg-gray-100 hover:opacity-70"
+              />
+            </ProductCard>
           </ul>
         ))}
       </div>

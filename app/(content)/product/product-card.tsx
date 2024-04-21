@@ -6,48 +6,37 @@ import { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 
 import Image from "next/image";
-import BlurImage from "../../components/blur-image";
 
 type ProductCardProps = {
   product: Product;
   className?: string;
   category: string;
   children?: React.ReactNode;
-  isCarousel?: boolean;
+  //isCarousel?: boolean;
 };
 
 export default function ProductCard({
   product,
   className,
   category,
-  isCarousel = false,
-}: ProductCardProps) {
+  children,
+}: //isCarousel = false,
+ProductCardProps) {
   return (
     <Card className={cn("border-goldAccent", className)}>
       <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px]">
         <Link href={`/product/${product.slug}`}>
-          {/* {category === "favorites" ? ( */}
-          <Image
-            src={product.imageUrl}
-            alt={product.alt}
-            width={1000}
-            height={1000}
-            className="transform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100"
-          />
-          {/* ) : (
-            <BlurImage
-              src={isCarousel ? product.bestOfImageUrl : product.imageUrl}
+          {category === "favorites" ? (
+            <Image
+              src={product.imageUrl}
               alt={product.alt}
               width={1000}
               height={1000}
-              className={cn(
-                "transform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100",
-                {
-                  "lg:-translate-y-0 xl:-translate-y-0": isCarousel,
-                }
-              )}
+              className="transform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100"
             />
-          )} */}
+          ) : (
+            children
+          )}
         </Link>
         {category === "all" ? (
           <Link href={`/${product.categoryName}`}>
