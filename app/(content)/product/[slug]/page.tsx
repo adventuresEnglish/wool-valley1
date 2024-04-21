@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: Props) {
     <div className="bg-white mb-5 min-h-[100vh]">
       <div className="mx-auto max-w-screen-xl px-5 md:px-8">
         <div className="grid gap-8 md:grid-cols-2">
-          <ImageGallery product={product}></ImageGallery>
+          <ImageGallery product={product} />
           <div className="pb-4 mb-2 md:mb-3 max-w-[400px]">
             <span className="mb-0.5 inline-block text-gray-500">
               {formatCategory(product.categoryName)}

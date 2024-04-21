@@ -5,7 +5,7 @@ import ProductCard from "../product/product-card";
 import { cn, formatCategory } from "@/lib/utils/utils";
 import PostCard from "../blog/post-card";
 import PaginationControls from "./pagination-controls";
-import BlurImage from "../../components/blur-image";
+//import BlurImage from "../../components/blur-image";
 
 export const metadata: Metadata = {
   title: "Wool Valley Slippers",
