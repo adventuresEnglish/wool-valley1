@@ -27,7 +27,11 @@ export default function ProductCard({
       <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px]">
         <Link href={`/product/${product.slug}`}>
           <Image
-            src={isCarousel ? product.bestOfImageUrl : product.imageUrl}
+            src={
+              isCarousel && product.bestOfImageUrl
+                ? product.bestOfImageUrl
+                : product.imageUrl
+            }
             alt={product.alt}
             width={1000}
             height={1000}
