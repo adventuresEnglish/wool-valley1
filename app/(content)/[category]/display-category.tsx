@@ -19,6 +19,7 @@ type DisplayCategoryProps = {
   category: string;
   per_page: string | string[];
   catCount: number;
+  children: React.ReactNode;
 };
 
 export default function DisplayCategory({
@@ -29,6 +30,7 @@ export default function DisplayCategory({
   category,
   per_page,
   catCount,
+  children,
 }: DisplayCategoryProps) {
   return (
     <>
@@ -38,8 +40,7 @@ export default function DisplayCategory({
             <DisplaySlippers
               data={data as Product[]}
               category={category}
-              currentStyle={currentStyle}
-            />
+              currentStyle={currentStyle}></DisplaySlippers>
           ) : (
             <DisplayBlogs data={data as Post[]} />
           )}
@@ -62,13 +63,15 @@ export default function DisplayCategory({
 }
 
 function DisplaySlippers({
-  data,
   category,
   currentStyle,
+  data,
+  children,
 }: {
-  data: Product[];
   category: string;
   currentStyle?: string;
+  data: Product[];
+  children?: React.ReactNode;
 }) {
   return (
     <>

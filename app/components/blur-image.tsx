@@ -1,5 +1,3 @@
-"use server";
-
 import getImage from "@/lib/utils/get-image";
 import Image from "next/image";
 
