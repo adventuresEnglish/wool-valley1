@@ -29,14 +29,6 @@ export default function Favorites() {
       hasNextPage={end < length}
       hasPrevPage={start > 0}
       per_page={perPage}
-      catCount={length}>
-      {(slicedFavorites as Product[]).map((product: Product) => (
-        <ul key={product._id}>
-          <ProductCardClient
-            product={product}
-            category="favorites"></ProductCardClient>
-        </ul>
-      ))}
-    </DisplayCategory>
+      catCount={length}></DisplayCategory>
   );
 }
