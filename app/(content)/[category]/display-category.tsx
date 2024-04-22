@@ -21,6 +21,7 @@ type DisplayCategoryProps = {
   category: string;
   per_page: string | string[];
   catCount: number;
+  children: React.ReactNode;
 };
 
 export default function DisplayCategory({
@@ -31,6 +32,7 @@ export default function DisplayCategory({
   category,
   per_page,
   catCount,
+  children,
 }: DisplayCategoryProps) {
   return (
     <>
@@ -38,10 +40,10 @@ export default function DisplayCategory({
         <div className="mx-auto max-w-2xl px-4 sm:px-24 lg:max-w-7xl lg:px-8">
           {category !== "blogs" ? (
             <DisplaySlippers
-              data={data as Product[]}
               category={category}
-              currentStyle={currentStyle}
-            />
+              currentStyle={currentStyle}>
+              {children}
+            </DisplaySlippers>
           ) : (
             <DisplayBlogs data={data as Post[]} />
           )}
@@ -64,13 +66,13 @@ export default function DisplayCategory({
 }
 
 function DisplaySlippers({
-  data,
   category,
   currentStyle,
+  children,
 }: {
-  data: Product[];
   category: string;
   currentStyle?: string;
+  children: React.ReactNode;
 }) {
   return (
     <>
@@ -83,28 +85,7 @@ function DisplaySlippers({
         {formatCategory(category)}
       </span>
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 lg:min-h-[540px] xl:min-h-[628px] pb-6 xl:pb-8">
-        {(data as Product[]).map((product: Product) => (
-          <ul key={product._id}>
-            <ProductCard
-              product={product}
-              category={category}>
-              {category !== "favorites" && (
-                <BlurImage
-                  src={product.imageUrl}
-                  alt={product.alt}
-                  width={1000}
-                  height={1000}
-                  className={cn(
-                    "transform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100",
-                    {
-                      //"lg:-translate-y-0 xl:-translate-y-0": isCarousel,
-                    }
-                  )}
-                />
-              )}
-            </ProductCard>
-          </ul>
-        ))}
+        {children}
       </div>
     </>
   );
