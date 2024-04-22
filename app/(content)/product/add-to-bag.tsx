@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useShoppingCart } from "use-shopping-cart";
 import { useSelectSizeContext } from "@/lib/hooks";
 import { BasicProduct } from "../../../lib/types";
-import { getSizeLabel, price_idLookup } from "@/lib/utils";
+import { getSizeLabel, price_idLookup } from "@/lib/utils/utils";
 import { useEffect, useState } from "react";
 
 export default function AddToBag({
@@ -15,7 +15,8 @@ export default function AddToBag({
   _id,
   slug,
 }: BasicProduct) {
-  const { addItem, handleCartClick } = useShoppingCart();
+  const { addItem, handleCartClick, shouldDisplayCart } = useShoppingCart();
+
   const { size, setSize, setChooseSizeIndicator } = useSelectSizeContext();
   const [priceId, setPriceId] = useState("");
 
@@ -27,6 +28,7 @@ export default function AddToBag({
 
   const product = {
     _id: _id,
+    displayName: name,
     name: `${name}, ${getSizeLabel(size!)}`,
     description: description,
     price: price,
@@ -38,9 +40,8 @@ export default function AddToBag({
   };
 
   const handleClick = () => {
-    handleCartClick();
     addItem(product);
-    console.log(product);
+    handleCartClick();
     setTimeout(() => {
       setSize("");
     }, 1000);

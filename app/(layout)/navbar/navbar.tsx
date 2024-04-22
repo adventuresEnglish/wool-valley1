@@ -9,10 +9,10 @@ import NavigationMenu from "./navigation-menu";
 
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
+import { cn } from "@/lib/utils/utils";
 
 export default function Navbar() {
-  const { handleCartClick, cartCount } = useShoppingCart();
-
+  const { cartCount, handleCartClick, shouldDisplayCart } = useShoppingCart();
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -30,23 +30,39 @@ export default function Navbar() {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="mb-8 border-b sticky top-0 z-40 w-full bg-slate-50 flex flex-wrap items-center justify-between ">
+      className={cn(
+        "mb-8 border-b sticky top-0 w-full bg-slate-50 flex flex-wrap items-center justify-between z-[70]",
+        {
+          "pointer-events-none": shouldDisplayCart,
+        }
+      )}
+      onClick={() => {
+        if (shouldDisplayCart) handleCartClick();
+      }}>
       <div className="pl-2 300px:px-2 sm:px-6">
         <Link href="/">
-          <h1 className="text-xl 350px:text-2xl sm:text-3xl md:text-4xl font-bold">
+          <h1 className="text-xl 350px:text-2xl sm:text-3xl md:text-4xl font-bold ">
             <span className="text-primary">Wool Valley</span> Slippers
           </h1>
         </Link>
       </div>
 
-      <div className="w-full lg:w-auto border-t lg:border-t-0 order-3 lg:order-2 ">
+      <div
+        className={cn(
+          "w-full lg:w-auto border-t lg:border-t-0 order-3 lg:order-2",
+          {
+            "filter blur-sm": shouldDisplayCart,
+          }
+        )}>
         <NavigationMenu />
       </div>
 
       <div className="300px:px-1 sm:px-6 order-2 lg:order-3">
         <Button
           variant="ghost"
-          onClick={() => handleCartClick()}
+          onClick={() => {
+            handleCartClick();
+          }}
           className="h-12 w-16 350px:h-16 350px:w-20 lg:h-20 lg:w-24 rounded-none relative flex flex-col bg-slate-50">
           <Image
             width={50}

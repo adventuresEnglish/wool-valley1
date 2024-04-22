@@ -1,4 +1,4 @@
-import { CompleteFirstBestOfLink, FirstBestOfLink, Product } from "@/lib/types";
+import { Product } from "@/lib/types";
 import {
   useCallback,
   useContext,
@@ -8,39 +8,39 @@ import {
   useState,
 } from "react";
 import { useShoppingCart } from "use-shopping-cart";
-
+//import { BlurNavContext } from "@/app/contexts/blur-nav-context";
 import { FavoritesContext } from "@/app/contexts/favorites-count-context-provider";
 import { SelectSizeContext } from "@/app/contexts/select-size-context-provider";
 
-export function useHandleCheckoutClick() {
-  const { cartCount, cartDetails, redirectToCheckout } = useShoppingCart();
+// export function useHandleCheckoutClick() {
+//   const { cartCount, cartDetails, redirectToCheckout } = useShoppingCart();
 
-  const handleCheckoutClick = useCallback(
-    async (event: any) => {
-      event.preventDefault();
-      if (cartCount) {
-        try {
-          const res = await fetch("/session", {
-            method: "POST",
-            body: JSON.stringify(cartDetails),
-          });
-          console.log(cartDetails);
-          const data = await res.json();
-          console.log(data);
-          const result: any = await redirectToCheckout(data.sessionId);
-          if (result.error) {
-            console.error(result);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    },
-    [cartCount, cartDetails, redirectToCheckout]
-  );
+//   const handleCheckoutClick = useCallback(
+//     async (event: any) => {
+//       event.preventDefault();
+//       if (cartCount) {
+//         try {
+//           const res = await fetch("/session", {
+//             method: "POST",
+//             body: JSON.stringify(cartDetails),
+//           });
+//           console.log(cartDetails);
+//           const data = await res.json();
+//           console.log(data);
+//           const result: any = await redirectToCheckout(data.sessionId);
+//           if (result.error) {
+//             console.error(result);
+//           }
+//         } catch (error) {
+//           console.error(error);
+//         }
+//       }
+//     },
+//     [cartCount, cartDetails, redirectToCheckout]
+//   );
 
-  return handleCheckoutClick;
-}
+//   return handleCheckoutClick;
+// }
 
 export type Action =
   | { type: "ADD"; payload: Product }
@@ -105,6 +105,15 @@ export function useSelectSize() {
   };
 }
 
+// export function useBlurNav() {
+//   const [blurNav, setBlurNav] = useState(false);
+
+//   return {
+//     blurNav,
+//     setBlurNav,
+//   };
+// }
+
 export function useFavoritesContext() {
   const context = useContext(FavoritesContext);
   if (!context) {
@@ -125,24 +134,30 @@ export function useSelectSizeContext() {
   return context;
 }
 
+// export function useBlurNavContext() {
+//   const context = useContext(BlurNavContext);
+//   if (!context) {
+//     throw new Error(
+//       "SelectSizeContext Context must be used within the BlurNavContext"
+//     );
+//   }
+//   return context;
+// }
+
 export function useWindowResizeListener() {
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
   useEffect(() => {
+    setWindowWidth(document.body.clientWidth);
+
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+      setWindowWidth(document.body.clientWidth);
     };
 
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
-    }
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleResize);
-      }
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -192,10 +207,11 @@ function useMouse(ref: React.RefObject<HTMLElement>) {
 export function useMouseOverZoom(
   source: React.RefObject<HTMLImageElement>,
   target: React.RefObject<HTMLCanvasElement>,
-  cursor: React.RefObject<HTMLElement>,
   tooltipContainer: HTMLElement | null,
-  radius = 80
+  width: number,
+  radius = 50
 ) {
+  if (width < 768) radius = 75;
   // Capture Mouse position
   const { x, y, isActive } = useMouse(source);
   // Compute the part of the image to zoom based on mouse position
@@ -207,17 +223,7 @@ export function useMouseOverZoom(
       height: radius * 2,
     };
   }, [x, y, radius]);
-  // move the cursor to the mouse position
-  useEffect(() => {
-    if (cursor.current) {
-      const { left, top, width, height } = zoomBounds;
-      cursor.current.style.left = `${left}px`;
-      cursor.current.style.top = `${top}px`;
-      cursor.current.style.width = `${width}px`;
-      cursor.current.style.height = `${height}px`;
-      cursor.current.style.display = isActive ? "block" : "none";
-    }
-  }, [zoomBounds, isActive, cursor]);
+
   // draw the zoomed image on the canvas
   useEffect(() => {
     if (source.current && target.current) {
@@ -278,6 +284,23 @@ export function useDiametricgAccordionSlider(initialState: {
   };
 
   return { top, bottom, handleTopClick, handleBottomClick };
+}
+
+export function useMouseXListener() {
+  const [mouseX, setMouseX] = useState(0);
+
+  useEffect(() => {
+    function handleMouseMove(event: MouseEvent) {
+      setMouseX(event.clientX);
+    }
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+  return mouseX;
 }
 
 // export function useFirstBestOfLinks(): CompleteFirstBestOfLink[] {

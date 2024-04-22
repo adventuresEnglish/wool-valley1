@@ -6,12 +6,15 @@ import Autoscroll from "embla-carousel-auto-scroll";
 export default function CarouselClient({
   children,
   category,
+  className,
 }: {
   children: React.ReactNode;
   category: string;
+  className?: string;
 }) {
   return (
     <Carousel
+      className={className}
       opts={{
         align: "start",
         loop: true,
@@ -20,9 +23,8 @@ export default function CarouselClient({
         category === "all"
           ? [
               Autoscroll({
-                speed: 2,
+                speed: 1.5,
                 startDelay: 100,
-                stopOnInteraction: false,
                 stopOnMouseEnter: true,
                 direction: "backward",
               }),

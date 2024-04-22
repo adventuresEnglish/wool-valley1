@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { useSelectSizeContext } from "@/lib/hooks";
 
-import { cn, getSizeCategory } from "@/lib/utils";
+import { cn, getSizeCategory } from "@/lib/utils/utils";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
@@ -39,9 +39,7 @@ export default function SelectSize({
 
   const handleValueChange = (value: string) => {
     setSize(value);
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("size", value);
-    router.push(`?${params.toString()}`, { scroll: false });
+    router.push(`?size=${value}`, { scroll: false });
   };
 
   return (
@@ -51,7 +49,7 @@ export default function SelectSize({
       defaultValue={size}
       onValueChange={handleValueChange}>
       <SelectTrigger
-        className={cn("w-36", className, {
+        className={cn(className, {
           "ring-primary ring-2 animate-select-size-scale": chooseSizeIndicator,
         })}>
         <SelectValue placeholder="Choose a Size" />

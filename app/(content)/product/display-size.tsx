@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelectSizeContext } from "@/lib/hooks";
-import { getSizeLabel } from "@/lib/utils";
+import { getSizeLabel } from "@/lib/utils/utils";
 
 export default function DisplaySize() {
   const { size } = useSelectSizeContext();

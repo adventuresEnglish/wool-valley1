@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 import { useFavoritesContext } from "@/lib/hooks";
 import { Product } from "../../lib/types";
 import { toast } from "sonner";
