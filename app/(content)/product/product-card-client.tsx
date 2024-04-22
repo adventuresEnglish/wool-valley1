@@ -1,14 +1,14 @@
+"use client";
+
 import { Card, CardTitle } from "@/components/ui/card";
 import { cn, formatCategory } from "@/lib/utils/utils";
 import Link from "next/link";
 import FavoriteButton from "../../components/favorite-button";
 import { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-
 import Image from "next/image";
-import BlurImage from "@/app/components/blur-image";
 
-type ProductCardProps = {
+type ProductCardClientProps = {
   product: Product;
   className?: string;
   category: string;
@@ -16,18 +16,18 @@ type ProductCardProps = {
   isCarousel?: boolean;
 };
 
-export default function ProductCard({
+export default function ProductCardClient({
   product,
   className,
   category,
   children,
   isCarousel = false,
-}: ProductCardProps) {
+}: ProductCardClientProps) {
   return (
     <Card className={cn("border-goldAccent", className)}>
       <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px]">
         <Link href={`/product/${product.slug}`}>
-          <BlurImage
+          <Image
             src={isCarousel ? product.bestOfImageUrl : product.imageUrl}
             alt={product.alt}
             width={1000}

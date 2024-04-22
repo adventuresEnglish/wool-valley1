@@ -3,6 +3,7 @@ import DisplayCategory from "./display-category";
 import { getCatCount, getPostsData, getProductsData } from "@/lib/utils/utils";
 import { Post, Product } from "../../../lib/types";
 import { Suspense } from "react";
+import ProductCard from "../product/product-card";
 
 //export const dynamic = "force-dynamic";
 
@@ -44,8 +45,15 @@ export default async function CategoryPage({
         hasPrevPage={start > 0}
         category={params.category}
         per_page={per_page}
-        catCount={catCount}
-      />
+        catCount={catCount}>
+        {(categoryData as Product[]).map((product: Product) => (
+          <ul key={product._id}>
+            <ProductCard
+              product={product}
+              category={params.category}></ProductCard>
+          </ul>
+        ))}
+      </DisplayCategory>
       // </Suspense>
     ),
     favorites: <Favorites />,
