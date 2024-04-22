@@ -40,8 +40,7 @@ export default function DisplayCategory({
             <DisplaySlippers
               data={data as Product[]}
               category={category}
-              currentStyle={currentStyle}
-            />
+              currentStyle={currentStyle}></DisplaySlippers>
           ) : (
             <DisplayBlogs data={data as Post[]} />
           )}
