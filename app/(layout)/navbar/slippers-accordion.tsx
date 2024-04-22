@@ -11,7 +11,7 @@ import {
   adult_youthDropdownlinks,
   baby_kidDropdownlinks,
 } from "@/lib/constants";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@/lib/utils/utils";
 import Image from "next/image";
 import Link from "next/link";
 

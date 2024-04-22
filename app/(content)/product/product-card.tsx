@@ -1,16 +1,18 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import { cn, formatCategory } from "@/lib/utils";
-
-import Image from "next/image";
+import { Card, CardTitle } from "@/components/ui/card";
+import { cn, formatCategory } from "@/lib/utils/utils";
 import Link from "next/link";
 import FavoriteButton from "../../components/favorite-button";
 import { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 
+import Image from "next/image";
+import BlurImage from "@/app/components/blur-image";
+
 type ProductCardProps = {
   product: Product;
   className?: string;
   category: string;
+  children?: React.ReactNode;
   isCarousel?: boolean;
 };
 
@@ -18,19 +20,24 @@ export default function ProductCard({
   product,
   className,
   category,
+  children,
   isCarousel = false,
 }: ProductCardProps) {
   return (
     <Card className={cn("border-goldAccent", className)}>
-      <div className="relative aspect-[1] overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg">
+      <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px]">
         <Link href={`/product/${product.slug}`}>
-          <Image
-            src={isCarousel ? product.bestOfImageUrl : product.imageUrl}
-            alt={product.alt}
-            width={1000}
-            height={1000}
-            className="scale-100 transform object-bottom hover:opacity-70 transition duration-300 ease-in-out"
-          />
+          {category === "favorites" ? (
+            <Image
+              src={product.imageUrl}
+              alt={product.alt}
+              width={1000}
+              height={1000}
+              className="transform lg:-translate-y-3.5 xl:-translate-y-6 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100"
+            />
+          ) : (
+            children
+          )}
         </Link>
         {category === "all" ? (
           <Link href={`/${product.categoryName}`}>
@@ -41,11 +48,10 @@ export default function ProductCard({
             </Badge>
           </Link>
         ) : null}
-
         <FavoriteButton product={product} />
       </div>
 
-      <CardTitle className="p-4">
+      <CardTitle className="p-4 whitespace-nowrap overflow-hidden overflow-ellipsis">
         <i>{product.name}</i>
       </CardTitle>
     </Card>

@@ -7,10 +7,10 @@ import Privacy from "@/app/(layout)/more-info/_footer/privacy";
 import Returns from "@/app/(layout)/more-info/_footer/returns";
 import Shipping from "@/app/(layout)/more-info/_footer/shipping";
 import Terms from "@/app/(layout)/more-info/_footer/terms";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@/lib/utils/utils";
 import { Metadata } from "next";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
 
 type Props = {
   params: { item: string };

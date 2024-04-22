@@ -68,7 +68,7 @@ body {
   stroke: hsl(var(--gold-accent));
 }
 
-details[open] ~ .main-image {
+details[open] ~ .details-open-blur {
   filter: blur(5px);
 }
 
@@ -134,4 +134,38 @@ details[open] ~ .main-image {
 
 .bottom-slider-down {
   animation: bottomSliderDownAn 400ms ease-in forwards;
+}
+
+.skeleton {
+  position: relative;
+  background-color: hsl(var(--primary));
+  overflow: hidden;
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+.skeleton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    hsl(var(--gold-accent)),
+    transparent
+  );
+  animation: loading 1.3s infinite;
+  transform: skewX(-30deg);
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-1000%) skewX(-30deg);
+  }
+  100% {
+    transform: translateX(1000%) skewX(-30deg);
+  }
 }

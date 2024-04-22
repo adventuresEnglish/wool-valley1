@@ -1,15 +1,12 @@
 import Link from "next/link";
 import CarouselClient from "./carousel-client";
-import {
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel";
+import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Product } from "@/lib/types";
-import { cn, formatCategory, getProductsData } from "@/lib/utils";
+import { cn, formatCategory, getProductsData } from "@/lib/utils/utils";
 import ArrowRight from "@/components/ui/arrow-right";
 import ProductCard from "../(content)/product/product-card";
+import BlurImage from "./blur-image";
+//import BlurImage from "./blur-image";
 
 type CarouselProps = {
   category: string;
@@ -22,7 +19,10 @@ export default async function Carousel({
   className,
   currentModel,
 }: CarouselProps) {
-  const bestOf: Product[] = await getProductsData(category, undefined, true);
+  const bestOf: Product[] = await getProductsData({
+    category,
+    isCarousel: true,
+  });
 
   return (
     <section className="my-9 space-y-3">
@@ -32,8 +32,9 @@ export default async function Carousel({
       />
       <div className={cn("p-3 rounded-lg bg-slate-200 shadow-lg", className)}>
         <div
-          className={cn("rounded-sm", {
-            "border-x border-goldAccent": category === "all",
+          className={cn("rounded-lg", {
+            "border-x border-goldAccent z-50 overflow-hidden":
+              category === "all",
           })}>
           <CarouselClient category={category}>
             <CarouselContent>
@@ -42,20 +43,27 @@ export default async function Carousel({
                   key={product._id}
                   className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/5 m-0 p-0">
                   <ProductCard
-                    category={category}
                     product={product}
+                    category={category}
                     className="ml-4"
-                    isCarousel={true}
-                  />
+                    //isCarousel={true}
+                  >
+                    <BlurImage
+                      src={product.bestOfImageUrl}
+                      alt={product.alt}
+                      width={1000}
+                      height={1000}
+                      className={cn(
+                        "transform lg:-translate-y-0 xl:-translate-y-0 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100",
+                        {
+                          // "lg:-translate-y-0 xl:-translate-y-0": isCarousel,
+                        }
+                      )}
+                    />
+                  </ProductCard>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            {category !== "all" && (
-              <div className="">
-                <CarouselPrevious className="left-4 text-primary border-primary" />
-                <CarouselNext className="right-4 text-primary border-primary" />
-              </div>
-            )}
           </CarouselClient>
         </div>
       </div>

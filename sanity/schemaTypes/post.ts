@@ -75,5 +75,15 @@ export default {
       title: 'Created at',
       type: 'datetime',
     },
+    {
+      name: 'updatedAt',
+      title: 'Updated at',
+      type: 'datetime',
+    },
+    {
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+    },
   ],
 }

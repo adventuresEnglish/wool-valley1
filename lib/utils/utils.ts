@@ -1,16 +1,23 @@
 import { client } from "@/app/lib/sanity";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { SIZE_CATEGORIES } from "./constants";
-import { Product } from "./types";
-import { PRICE_ID_STORE } from "./priceIdStore";
+import { getPlaiceholder } from "plaiceholder";
+import { SIZE_CATEGORIES } from "../constants";
+import { PRICE_ID_STORE } from "../priceIdStore";
+import { Product } from "../types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export async function getPostsData() {
-  const query = `*[_type == "post"] {
+export async function getPostsData(genre?: string) {
+  let query = `*[_type == "post" ${
+    !genre
+      ? ""
+      : genre === "featured"
+      ? "&& featured == true"
+      : `&& genre == ${genre}`
+  }]{
       title,
       author,
       "authorImageUrl": authorImage.asset->url,
@@ -20,6 +27,10 @@ export async function getPostsData() {
       "slug": slug.current,
       "imageUrl": mainImage.asset->url,
   }`;
+
+  if (genre === "featured") {
+    query += "[0...2]";
+  }
   const data = await client.fetch(query);
   return data;
 }
@@ -38,13 +49,19 @@ export async function getPostData(slug: string) {
   return data;
 }
 
-export async function getProductsData(
-  category: string,
-  style?: string,
-  isCarousel = false
-) {
+export async function getProductsData({
+  category,
+  style,
+  isCarousel = false,
+  range,
+}: {
+  category: string;
+  style?: string;
+  isCarousel?: boolean;
+  range?: [number, number];
+}) {
   if (category === "all") {
-    const query = `*[_type == "product" ${
+    let query = `*[_type == "product" ${
       isCarousel ? "&& bestOf == true" : ""
     }] | order(_createdAt asc){
       _id,
@@ -62,12 +79,16 @@ export async function getProductsData(
         )
       }`;
 
+    if (range) {
+      query += `[${range[0]}...${range[1]}]`;
+    }
+
     const data = await client.fetch(query);
 
     return evenlyDistributeBabyKidEntries(data);
   }
 
-  const query = `*[_type == "product" && category->name == "${category}" 
+  let query = `*[_type == "product" && category->name == "${category}" 
     ${style ? `&& style[]->name match "${style}"` : ""}
     ${isCarousel ? "&& bestOf == true" : ""}] | order(_createdAt asc){
       _id,
@@ -84,6 +105,11 @@ export async function getProductsData(
         images[0].asset->url,
         )
       }`;
+
+  if (range) {
+    query += `[${range[0]}...${range[1]}]`;
+  }
+
   const data = await client.fetch(query);
   return data;
 }
@@ -103,6 +129,25 @@ export async function getProductData(slug: string) {
       }`;
   const data = await client.fetch(query);
   return data;
+}
+
+export async function getCatCount(category: string, style?: string) {
+  if (category === "all") {
+    const query = `count(*[_type == "product"])`;
+    const count = await client.fetch(query);
+    return count;
+  }
+  if (category === "blogs") {
+    const query = `count(*[_type == "post"])`;
+    const count = await client.fetch(query);
+    return count;
+  }
+  const query = `count(*[_type == "product" && category->name == "${category}" ${
+    style ? `&& style[]->name match "${style}"` : ""
+  }
+  ])`;
+  const count = await client.fetch(query);
+  return count;
 }
 
 export function getSizeCategory(key: string) {
@@ -213,6 +258,13 @@ export const formatCategory = (category: string): string => {
   }
 };
 
+export function isMobileOrTablet() {
+  return (
+    typeof navigator !== "undefined" &&
+    /Mobi|Android/i.test(navigator.userAgent)
+  );
+}
+
 // export async function getFirstBestOf(category: string) {
 //   const query = `*[_type == "product" && category->name == "${category}" && bestOf == true][0] {
 //     _id,
@@ -225,3 +277,90 @@ export const formatCategory = (category: string): string => {
 //   const data = await client.fetch(query);
 //   return data;
 // }
+
+export function getPaginationVariables(
+  windowWidth: number,
+  pageNum: number,
+  pages: number
+) {
+  let pagSchema = "schema 9";
+  if (windowWidth < 1024) {
+    pagSchema = "schema 7";
+  }
+  if (windowWidth < 490) {
+    pagSchema = "schema 5";
+  }
+
+  const jumpFirstActive = pageNum == 1;
+  const jumpSecondActive = pageNum == 2;
+  const showJumpSecond =
+    pages == 5 ||
+    (pageNum <= 4 && pagSchema === "schema 9") ||
+    (pageNum <= 3 && pagSchema === "schema 7");
+  const showFirstEllipsis =
+    pages > 5 &&
+    ((pageNum > 4 && pagSchema === "schema 9") ||
+      (pageNum > 3 && pagSchema === "schema 7"));
+
+  const showSecondEllipsis =
+    pages > 5 &&
+    ((pageNum < pages - 3 && pagSchema === "schema 9") ||
+      (pageNum < pages - 2 && pagSchema === "schema 7"));
+  const jumpPenUltActive = pageNum == pages - 1;
+  const showJumpPenUlt =
+    pages == 5 ||
+    pages == 4 ||
+    (pageNum >= pages - 3 && pagSchema === "schema 9") ||
+    (pageNum >= pages - 2 && pagSchema === "schema 7");
+  const jumpUltActive = pageNum == pages;
+
+  let sliceBegin = 0;
+  if (pagSchema === "schema 9") {
+    sliceBegin = pageNum - 2;
+    if (sliceBegin >= pages - 5) sliceBegin = pages - 5;
+  } else if (pagSchema === "schema 7") {
+    sliceBegin = pageNum - 1;
+    if (sliceBegin >= pages - 3) sliceBegin = pages - 3;
+  }
+
+  sliceBegin = sliceBegin < 2 ? 2 : sliceBegin;
+
+  let sliceEnd = 0;
+  if (pagSchema === "schema 9") {
+    sliceEnd = pageNum + 1;
+    if (sliceEnd < 5) sliceEnd = 5;
+  } else if (pagSchema === "schema 7") {
+    sliceEnd = pageNum;
+    if (sliceEnd < 3) sliceEnd = 3;
+  }
+
+  sliceEnd = sliceEnd >= pages - 2 ? pages - 2 : sliceEnd;
+
+  return {
+    jumpFirstActive,
+    jumpSecondActive,
+    showJumpSecond,
+    showFirstEllipsis,
+    showSecondEllipsis,
+    jumpPenUltActive,
+    showJumpPenUlt,
+    jumpUltActive,
+    sliceBegin,
+    sliceEnd,
+    pagSchema,
+  };
+}
+
+export function getCanvasSide(windowWidth: number) {
+  const goldenRatio = 1.61803398875;
+  const smallScreen = windowWidth < 752;
+  const canvasCalc = smallScreen
+    ? (windowWidth - 40) / 3
+    : !smallScreen && windowWidth < 1024
+    ? (windowWidth / 2.25) * goldenRatio
+    : windowWidth > 1024
+    ? (windowWidth / 3.31) * goldenRatio
+    : 0;
+  const canvasSide = canvasCalc > 260 ? 260 : canvasCalc;
+  return { canvasSide, smallScreen };
+}
