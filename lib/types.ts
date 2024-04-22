@@ -10,22 +10,22 @@ export type BasicProduct = {
 
 export type Product = BasicProduct & {
   images: any;
-  bestOfImageUrl: any;
+  bestOfImageUrl?: any;
   description: string;
   alt: string;
 };
 
-export type FirstBestOfLink = {
-  _id: string;
-  alt: string;
-  bestOfImageUrl: any;
-};
+// export type FirstBestOfLink = {
+//   _id: string;
+//   alt: string;
+//   bestOfImageUrl: any;
+// };
 
-export type CompleteFirstBestOfLink = FirstBestOfLink & {
-  title: string;
-  href: string;
-  description: string;
-};
+// export type CompleteFirstBestOfLink = FirstBestOfLink & {
+//   title: string;
+//   href: string;
+//   description: string;
+// };
 
 export type Post = {
   title: string;
