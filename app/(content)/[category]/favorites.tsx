@@ -4,7 +4,6 @@ import { useFavoritesContext } from "@/lib/hooks";
 import DisplayCategory from "./display-category";
 import { useSearchParams } from "next/navigation";
 import { Product } from "@/lib/types";
-import ProductCardClient from "../product/product-card-client";
 
 export default function Favorites() {
   const { value: favorites, length } = useFavoritesContext();
@@ -29,14 +28,6 @@ export default function Favorites() {
       hasNextPage={end < length}
       hasPrevPage={start > 0}
       per_page={perPage}
-      catCount={length}>
-      {(slicedFavorites as Product[]).map((product: Product) => (
-        <ul key={product._id}>
-          <ProductCardClient
-            product={product}
-            category="favorites"></ProductCardClient>
-        </ul>
-      ))}
-    </DisplayCategory>
+      catCount={length}></DisplayCategory>
   );
 }

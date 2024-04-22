@@ -19,7 +19,7 @@ type DisplayCategoryProps = {
   category: string;
   per_page: string | string[];
   catCount: number;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export default function DisplayCategory({
