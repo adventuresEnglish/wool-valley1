@@ -5,8 +5,6 @@ import { Product } from "@/lib/types";
 import { cn, formatCategory, getProductsData } from "@/lib/utils/utils";
 import ArrowRight from "@/components/ui/arrow-right";
 import ProductCard from "../(content)/product/product-card";
-import BlurImage from "./blur-image";
-//import BlurImage from "./blur-image";
 
 type CarouselProps = {
   category: string;
@@ -46,21 +44,7 @@ export default async function Carousel({
                     product={product}
                     category={category}
                     className="ml-4"
-                    //isCarousel={true}
-                  >
-                    <BlurImage
-                      src={product.bestOfImageUrl}
-                      alt={product.alt}
-                      width={1000}
-                      height={1000}
-                      className={cn(
-                        "transform lg:-translate-y-0 xl:-translate-y-0 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100",
-                        {
-                          // "lg:-translate-y-0 xl:-translate-y-0": isCarousel,
-                        }
-                      )}
-                    />
-                  </ProductCard>
+                    isCarousel={true}></ProductCard>
                 </CarouselItem>
               ))}
             </CarouselContent>
