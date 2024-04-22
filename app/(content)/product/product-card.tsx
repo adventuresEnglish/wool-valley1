@@ -6,7 +6,6 @@ import { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 
 import Image from "next/image";
-import BlurImage from "@/app/components/blur-image";
 
 type ProductCardProps = {
   product: Product;
@@ -27,7 +26,7 @@ export default function ProductCard({
     <Card className={cn("border-goldAccent", className)}>
       <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px]">
         <Link href={`/product/${product.slug}`}>
-          <BlurImage
+          <Image
             src={isCarousel ? product.bestOfImageUrl : product.imageUrl}
             alt={product.alt}
             width={1000}
