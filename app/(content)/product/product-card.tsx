@@ -6,6 +6,7 @@ import { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 
 import Image from "next/image";
+import BlurImage from "@/app/components/blur-image";
 
 type ProductCardProps = {
   product: Product;
@@ -26,22 +27,41 @@ export default function ProductCard({
     <Card className={cn("border-goldAccent", className)}>
       <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px]">
         <Link href={`/product/${product.slug}`}>
-          <Image
-            src={
-              isCarousel && product.bestOfImageUrl
-                ? product.bestOfImageUrl
-                : product.imageUrl
-            }
-            alt={product.alt}
-            width={1000}
-            height={1000}
-            className={cn(
-              "transform lg:-translate-y-0 xl:-translate-y-0 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100",
-              {
-                "lg:-translate-y-0 xl:-translate-y-0": isCarousel,
+          {category === "favorites" ? (
+            <Image
+              src={
+                isCarousel && product.bestOfImageUrl
+                  ? product.bestOfImageUrl
+                  : product.imageUrl
               }
-            )}
-          />
+              alt={product.alt}
+              width={1000}
+              height={1000}
+              className={cn(
+                "transform lg:-translate-y-0 xl:-translate-y-0 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100",
+                {
+                  "lg:-translate-y-0 xl:-translate-y-0": isCarousel,
+                }
+              )}
+            />
+          ) : (
+            <BlurImage
+              src={
+                isCarousel && product.bestOfImageUrl
+                  ? product.bestOfImageUrl
+                  : product.imageUrl
+              }
+              alt={product.alt}
+              width={1000}
+              height={1000}
+              className={cn(
+                "transform lg:-translate-y-0 xl:-translate-y-0 hover:opacity-70 transition duration-300 ease-in-out bg-gray-100",
+                {
+                  "lg:-translate-y-0 xl:-translate-y-0": isCarousel,
+                }
+              )}
+            />
+          )}
         </Link>
         {category === "all" ? (
           <Link href={`/${product.categoryName}`}>
