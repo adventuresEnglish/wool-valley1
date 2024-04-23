@@ -5,6 +5,7 @@ import { useFavoritesContext } from "@/lib/hooks";
 import { Product } from "../../lib/types";
 import { toast } from "sonner";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function FavoriteButton({ product }: { product: Product }) {
   const { dispatch, isItemIncluded } = useFavoritesContext();

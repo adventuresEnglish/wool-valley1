@@ -289,29 +289,41 @@ export function getPaginationVariables(
   }
   if (windowWidth < 490) {
     pagSchema = "schema 5";
+    return {
+      jumpFirstActive: false,
+      jumpSecondActive: false,
+      showJumpSecond: false,
+      showFirstEllipsis: false,
+      showSecondEllipsis: false,
+      jumpPenUltActive: false,
+      showJumpPenUlt: false,
+      jumpUltActive: false,
+      sliceBegin: 0,
+      sliceEnd: 0,
+      pagSchema,
+    };
   }
 
   const jumpFirstActive = pageNum == 1;
   const jumpSecondActive = pageNum == 2;
   const showJumpSecond =
-    pages == 5 ||
-    (pageNum <= 4 && pagSchema === "schema 9") ||
-    (pageNum <= 3 && pagSchema === "schema 7");
+    (((4 <= pages && pages <= 7) || (4 <= pages && pageNum <= 4)) &&
+      pagSchema === "schema 9") ||
+    (((4 <= pages && pages <= 5) || (pageNum <= 3 && pages > 3)) &&
+      pagSchema === "schema 7");
   const showFirstEllipsis =
-    pages > 5 &&
-    ((pageNum > 4 && pagSchema === "schema 9") ||
-      (pageNum > 3 && pagSchema === "schema 7"));
+    (pages > 7 && pageNum > 4 && pagSchema === "schema 9") ||
+    (pages > 5 && pageNum > 3 && pagSchema === "schema 7");
 
   const showSecondEllipsis =
-    pages > 5 &&
-    ((pageNum < pages - 3 && pagSchema === "schema 9") ||
-      (pageNum < pages - 2 && pagSchema === "schema 7"));
+    (pages > 7 && pageNum < pages - 3 && pagSchema === "schema 9") ||
+    (pages > 5 && pageNum < pages - 2 && pagSchema === "schema 7");
   const jumpPenUltActive = pageNum == pages - 1;
   const showJumpPenUlt =
-    pages == 5 ||
-    pages == 4 ||
-    (pageNum >= pages - 3 && pagSchema === "schema 9") ||
-    (pageNum >= pages - 2 && pagSchema === "schema 7");
+    (((4 <= pages && pages <= 7) || pages - 3 <= pageNum) &&
+      pagSchema === "schema 9") ||
+    (((4 <= pages && pages <= 5) || pages - 2 <= pageNum) &&
+      pagSchema === "schema 7");
   const jumpUltActive = pageNum == pages;
 
   let sliceBegin = 0;

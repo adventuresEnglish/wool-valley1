@@ -12,6 +12,7 @@ import {
 import { useWindowResizeListener } from "@/lib/hooks";
 import { getPaginationVariables } from "@/lib/utils/utils";
 import { useSearchParams } from "next/navigation";
+import { useMemo } from "react";
 
 type PaginationControlsProps = {
   hasNextPage: boolean;
@@ -36,19 +37,7 @@ export default function PaginationControls({
   const pageNum = Number(page);
   const pages = Math.ceil(catCount / Number(per_page));
 
-  const width = useWindowResizeListener();
-
-  if (width === null) {
-    return (
-      <div className="w-full flex justify-center">
-        <div className="rounded-lg h-10 w-[229px] 350px:w-[272px] md:w-[431px] lg:w-[523px] overflow-hidden relative">
-          <div className="skeleton flex justify-between h-full" />
-          <div className="absolute top-1 right-1 rounded-lg h-8 w-24 border border-yellow-600/50" />
-          <div className="absolute top-1 left-1 rounded-lg h-8 w-24 border border-yellow-600/50" />
-        </div>
-      </div>
-    );
-  }
+  const width = useWindowResizeListener() || 0;
 
   const {
     jumpFirstActive,
@@ -62,7 +51,10 @@ export default function PaginationControls({
     sliceBegin,
     sliceEnd,
     pagSchema,
-  } = getPaginationVariables(width, pageNum, pages);
+  } = useMemo(
+    () => getPaginationVariables(width, pageNum, pages),
+    [width, pageNum, pages]
+  );
 
   const baseUrl = `${!currentStyle ? category : currentStyle}`;
 
@@ -79,7 +71,7 @@ export default function PaginationControls({
           />
         </PaginationItem>
 
-        {pagSchema === "schema 5" || pages < 3 ? (
+        {pagSchema === "schema 5" || pages == 2 ? (
           <div className="hidden 350px:block text-sm px-2 font-semibold">
             {pageNum}
             <i className="px-1 text-muted-foreground font-medium">of</i>
