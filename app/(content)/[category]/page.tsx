@@ -2,10 +2,9 @@ import Favorites from "./favorites";
 import DisplayCategory from "./display-category";
 import { getCatCount, getPostsData, getProductsData } from "@/lib/utils/utils";
 import { Post, Product } from "../../../lib/types";
-import { Suspense } from "react";
 import ProductCard from "../product/product-card";
 
-//export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 export default async function CategoryPage({
   params,
@@ -15,7 +14,7 @@ export default async function CategoryPage({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const page = searchParams["page"] ?? "1";
-  const perPage = params.category === "blogs" ? "6" : "8";
+  const perPage = params.category === "blogs" ? "6" : "10";
   const per_page = searchParams["per_page"] ?? perPage;
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
@@ -33,16 +32,10 @@ export default async function CategoryPage({
 
   const componentMap: { [key: string]: JSX.Element } = {
     default: (
-      // <Suspense
-      //   fallback={
-      //     <div className="bg-white mb-32 min-h-[80vh] lg:min-h-[90vh] flex justify-center items-center">
-      //       loading
-      //     </div>
-      //   }>
       <DisplayCategory
         data={categoryData}
-        hasNextPage={end < catCount}
         hasPrevPage={start > 0}
+        hasNextPage={end < catCount}
         category={params.category}
         per_page={per_page}
         catCount={catCount}>
@@ -54,7 +47,6 @@ export default async function CategoryPage({
           </ul>
         ))}
       </DisplayCategory>
-      // </Suspense>
     ),
     favorites: <Favorites />,
   };

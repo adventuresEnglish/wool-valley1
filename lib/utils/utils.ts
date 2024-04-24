@@ -1,7 +1,6 @@
 import { client } from "@/app/lib/sanity";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { getPlaiceholder } from "plaiceholder";
 import { SIZE_CATEGORIES } from "../constants";
 import { PRICE_ID_STORE } from "../priceIdStore";
 import { Product } from "../types";
@@ -265,52 +264,17 @@ export function isMobileOrTablet() {
   );
 }
 
-// export async function getFirstBestOf(category: string) {
-//   const query = `*[_type == "product" && category->name == "${category}" && bestOf == true][0] {
-//     _id,
-//       alt,
-//       "bestOfImageUrl": select(
-//       includeBestOfImage == true => bestOfImage.asset->url,
-//       images[0].asset->url,
-//       )
-//   }`;
-//   const data = await client.fetch(query);
-//   return data;
-// }
-
 export function getPaginationVariables(
-  windowWidth: number,
+  pagSchema: "schema 7" | "schema 9",
   pageNum: number,
   pages: number
 ) {
-  let pagSchema = "schema 9";
-  if (windowWidth < 1024) {
-    pagSchema = "schema 7";
-  }
-  if (windowWidth < 490) {
-    pagSchema = "schema 5";
-    return {
-      jumpFirstActive: false,
-      jumpSecondActive: false,
-      showJumpSecond: false,
-      showFirstEllipsis: false,
-      showSecondEllipsis: false,
-      jumpPenUltActive: false,
-      showJumpPenUlt: false,
-      jumpUltActive: false,
-      sliceBegin: 0,
-      sliceEnd: 0,
-      pagSchema,
-    };
-  }
-
-  const jumpFirstActive = pageNum == 1;
-  const jumpSecondActive = pageNum == 2;
   const showJumpSecond =
     (((4 <= pages && pages <= 7) || (4 <= pages && pageNum <= 4)) &&
       pagSchema === "schema 9") ||
     (((4 <= pages && pages <= 5) || (pageNum <= 3 && pages > 3)) &&
       pagSchema === "schema 7");
+
   const showFirstEllipsis =
     (pages > 7 && pageNum > 4 && pagSchema === "schema 9") ||
     (pages > 5 && pageNum > 3 && pagSchema === "schema 7");
@@ -318,13 +282,12 @@ export function getPaginationVariables(
   const showSecondEllipsis =
     (pages > 7 && pageNum < pages - 3 && pagSchema === "schema 9") ||
     (pages > 5 && pageNum < pages - 2 && pagSchema === "schema 7");
-  const jumpPenUltActive = pageNum == pages - 1;
+
   const showJumpPenUlt =
     (((4 <= pages && pages <= 7) || pages - 3 <= pageNum) &&
       pagSchema === "schema 9") ||
     (((4 <= pages && pages <= 5) || pages - 2 <= pageNum) &&
       pagSchema === "schema 7");
-  const jumpUltActive = pageNum == pages;
 
   let sliceBegin = 0;
   if (pagSchema === "schema 9") {
@@ -349,17 +312,12 @@ export function getPaginationVariables(
   sliceEnd = sliceEnd >= pages - 2 ? pages - 2 : sliceEnd;
 
   return {
-    jumpFirstActive,
-    jumpSecondActive,
     showJumpSecond,
     showFirstEllipsis,
     showSecondEllipsis,
-    jumpPenUltActive,
     showJumpPenUlt,
-    jumpUltActive,
     sliceBegin,
     sliceEnd,
-    pagSchema,
   };
 }
 
@@ -376,3 +334,16 @@ export function getCanvasSide(windowWidth: number) {
   const canvasSide = canvasCalc > 260 ? 260 : canvasCalc;
   return { canvasSide, smallScreen };
 }
+
+// export async function getFirstBestOf(category: string) {
+//   const query = `*[_type == "product" && category->name == "${category}" && bestOf == true][0] {
+//     _id,
+//       alt,
+//       "bestOfImageUrl": select(
+//       includeBestOfImage == true => bestOfImage.asset->url,
+//       images[0].asset->url,
+//       )
+//   }`;
+//   const data = await client.fetch(query);
+//   return data;
+// }

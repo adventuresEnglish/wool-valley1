@@ -8,22 +8,50 @@ import { dynapuff } from "@/components/ui/fonts";
 import NavigationMenu from "./navigation-menu";
 
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { cn } from "@/lib/utils/utils";
 
 export default function Navbar() {
   const { cartCount, handleCartClick, shouldDisplayCart } = useShoppingCart();
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
+  let timeoutId: NodeJS.Timeout;
+  const hoveredRef = useRef(false);
+
+  const handleMouseEnter = () => {
+    hoveredRef.current = true;
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const previous = scrollY.getPrevious();
+    hoveredRef.current = false;
+    if (previous !== undefined && previous > 50) {
+      timeoutId = setTimeout(() => {
+        setHidden(true);
+      }, 2200);
+    }
+  };
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    if (previous !== undefined && latest > previous && latest > 150)
+    if (previous !== undefined && latest > previous && latest > 50) {
       setHidden(true);
-    else setHidden(false);
+    } else if (latest > 100) {
+      timeoutId = setTimeout(() => {
+        if (!hoveredRef.current) setHidden(true);
+      }, 2200);
+    } else {
+      setHidden(false);
+    }
   });
 
   return (
     <motion.header
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       variants={{
         visible: { y: 0 },
         hidden: { y: "-100%" },
@@ -31,7 +59,7 @@ export default function Navbar() {
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className={cn(
-        "mb-8 border-b sticky top-0 w-full bg-slate-50 flex flex-wrap items-center justify-between z-[70]",
+        "mb-5 border-b sticky top-0 w-full bg-slate-50 flex flex-wrap items-center justify-between z-[70]",
         {
           "pointer-events-none": shouldDisplayCart,
         }
@@ -42,7 +70,8 @@ export default function Navbar() {
       <div className="pl-2 300px:px-2 sm:px-6">
         <Link href="/">
           <h1 className="text-xl 350px:text-2xl sm:text-3xl md:text-4xl font-bold ">
-            <span className="text-primary">Wool Valley</span> Slippers
+            <span className="text-primary">Wool Valley</span>{" "}
+            <span className="text-slate-600">Slippers</span>
           </h1>
         </Link>
       </div>

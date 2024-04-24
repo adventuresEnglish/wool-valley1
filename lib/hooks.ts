@@ -7,8 +7,7 @@ import {
   useReducer,
   useState,
 } from "react";
-import { useShoppingCart } from "use-shopping-cart";
-//import { BlurNavContext } from "@/app/contexts/blur-nav-context";
+import { PaginationContext } from "@/app/contexts/pagination-context";
 import { FavoritesContext } from "@/app/contexts/favorites-count-context-provider";
 import { SelectSizeContext } from "@/app/contexts/select-size-context-provider";
 
@@ -105,20 +104,20 @@ export function useSelectSize() {
   };
 }
 
-// export function useBlurNav() {
-//   const [blurNav, setBlurNav] = useState(false);
+export function usePagination(pageNum: number) {
+  const [activePage, setActivePage] = useState(pageNum);
 
-//   return {
-//     blurNav,
-//     setBlurNav,
-//   };
-// }
+  return {
+    activePage,
+    setActivePage,
+  };
+}
 
 export function useFavoritesContext() {
   const context = useContext(FavoritesContext);
   if (!context) {
     throw new Error(
-      "FavoritesCountContext Context must be used within the FavoritesCountContext"
+      "FavoritesCountContext must be used within the FavoritesCountContext"
     );
   }
   return context;
@@ -128,21 +127,21 @@ export function useSelectSizeContext() {
   const context = useContext(SelectSizeContext);
   if (!context) {
     throw new Error(
-      "SelectSizeContext Context must be used within the SelectSizeContext"
+      "SelectSizeContext must be used within the SelectSizeContext"
     );
   }
   return context;
 }
 
-// export function useBlurNavContext() {
-//   const context = useContext(BlurNavContext);
-//   if (!context) {
-//     throw new Error(
-//       "SelectSizeContext Context must be used within the BlurNavContext"
-//     );
-//   }
-//   return context;
-// }
+export function usePaginationContext() {
+  const context = useContext(PaginationContext);
+  if (!context) {
+    throw new Error(
+      "PaginationContext must be used within the PaginationContext"
+    );
+  }
+  return context;
+}
 
 export function useWindowResizeListener() {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);

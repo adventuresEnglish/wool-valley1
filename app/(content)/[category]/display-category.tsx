@@ -5,6 +5,7 @@ import ProductCard from "../product/product-card";
 import { cn, formatCategory } from "@/lib/utils/utils";
 import PostCard from "../blog/post-card";
 import PaginationControls from "./pagination-controls";
+import PaginationContextProvider from "@/app/contexts/pagination-context";
 
 export const metadata: Metadata = {
   title: "Wool Valley Slippers",
@@ -35,25 +36,28 @@ export default function DisplayCategory({
   return (
     <>
       <section className="bg-white mb-32 min-h-[80vh] lg:min-h-[90vh]">
-        <div className="mx-auto max-w-2xl px-4 sm:px-24 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 sm:px-24 lg:max-w-6xl lg:px-8">
           {category !== "blogs" ? (
             <DisplaySlippers
               data={data as Product[]}
               category={category}
-              currentStyle={currentStyle}></DisplaySlippers>
+              currentStyle={currentStyle}
+            />
           ) : (
             <DisplayBlogs data={data as Post[]} />
           )}
           <div className="h-10">
             {catCount > Number(per_page) && (
-              <PaginationControls
-                hasNextPage={hasNextPage}
-                hasPrevPage={hasPrevPage}
-                category={category}
-                currentStyle={currentStyle}
-                per_page={per_page}
-                catCount={catCount}
-              />
+              <PaginationContextProvider>
+                <PaginationControls
+                  hasNextPage={hasNextPage}
+                  hasPrevPage={hasPrevPage}
+                  category={category}
+                  currentStyle={currentStyle}
+                  per_page={per_page}
+                  catCount={catCount}
+                />
+              </PaginationContextProvider>
             )}
           </div>
         </div>
@@ -75,20 +79,23 @@ function DisplaySlippers({
 }) {
   return (
     <>
-      <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-        {currentStyle
-          ? `${formatCategory(currentStyle)} Slippers`
-          : "All Slippers"}
-      </h2>
-      <span className="text-muted-foreground text-lg">
-        {formatCategory(category)}
-      </span>
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 lg:min-h-[540px] xl:min-h-[628px] pb-6 xl:pb-8">
+      <div className="flex justify-between">
+        <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
+          {currentStyle
+            ? `${formatCategory(currentStyle)} Slippers`
+            : "All Slippers"}
+        </h2>
+        <span className="text-muted-foreground text-lg">
+          {formatCategory(category)}
+        </span>
+      </div>
+      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-3 gap-y-2 mb-4">
         {(data as Product[]).map((product: Product) => (
           <ul key={product._id}>
             <ProductCard
               product={product}
-              category={category}></ProductCard>
+              category={category}
+            />
           </ul>
         ))}
       </div>
@@ -111,3 +118,5 @@ function DisplayBlogs({ data }: { data: Post[] }) {
     </>
   );
 }
+
+//lg:min-h-[540px] xl:min-h-[628px]

@@ -28,6 +28,7 @@ export default function Favorites() {
       hasNextPage={end < length}
       hasPrevPage={start > 0}
       per_page={perPage}
-      catCount={length}></DisplayCategory>
+      catCount={length}
+    />
   );
 }

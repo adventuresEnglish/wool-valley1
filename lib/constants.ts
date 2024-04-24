@@ -102,3 +102,5 @@ export const adult_youthDropdownlinks = [
     alt: "See All Floral Slippers. Hand-felted Wool Valley Slippers made in Peru. Model: Cantuta II",
   },
 ];
+
+export const GOLDEN_RATIO = (1 + Math.sqrt(5)) / 2;

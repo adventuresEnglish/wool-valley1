@@ -8,7 +8,7 @@ import { getImageDimensions } from "@sanity/asset-utils";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { PencilIcon } from "lucide-react";
 
-//export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 type Props = {
   params: {
     post: string;
