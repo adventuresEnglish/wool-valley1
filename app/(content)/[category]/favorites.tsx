@@ -10,7 +10,7 @@ export default function Favorites() {
   const searchParams = useSearchParams();
 
   const page = searchParams.get("page") ?? "1";
-  const perPage = searchParams.get("per_page") ?? "8";
+  const perPage = searchParams.get("per_page") ?? "9";
   //console.log("page", page, "perPage", perPage, "length", length);
 
   const start = (Number(page) - 1) * Number(perPage);

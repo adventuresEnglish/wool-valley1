@@ -7,46 +7,13 @@ import { useShoppingCart } from "use-shopping-cart";
 import { dynapuff } from "@/components/ui/fonts";
 import NavigationMenu from "./navigation-menu";
 
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils/utils";
+import { useNavScrollObserver } from "@/lib/hooks";
 
 export default function Navbar() {
   const { cartCount, handleCartClick, shouldDisplayCart } = useShoppingCart();
-  const [hidden, setHidden] = useState(false);
-  const { scrollY } = useScroll();
-  let timeoutId: NodeJS.Timeout;
-  const hoveredRef = useRef(false);
-
-  const handleMouseEnter = () => {
-    hoveredRef.current = true;
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    const previous = scrollY.getPrevious();
-    hoveredRef.current = false;
-    if (previous !== undefined && previous > 50) {
-      timeoutId = setTimeout(() => {
-        setHidden(true);
-      }, 2200);
-    }
-  };
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
-    if (previous !== undefined && latest > previous && latest > 50) {
-      setHidden(true);
-    } else if (latest > 100) {
-      timeoutId = setTimeout(() => {
-        if (!hoveredRef.current) setHidden(true);
-      }, 2200);
-    } else {
-      setHidden(false);
-    }
-  });
+  const { hidden, handleMouseEnter, handleMouseLeave } = useNavScrollObserver();
 
   return (
     <motion.header
@@ -69,7 +36,7 @@ export default function Navbar() {
       }}>
       <div className="pl-2 300px:px-2 sm:px-6">
         <Link href="/">
-          <h1 className="text-xl 350px:text-2xl sm:text-3xl md:text-4xl font-bold ">
+          <h1 className="text-xl 350px:text-2xl sm:text-3xl md:text-4xl font-bold">
             <span className="text-primary">Wool Valley</span>{" "}
             <span className="text-slate-600">Slippers</span>
           </h1>

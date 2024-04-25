@@ -71,6 +71,7 @@ export default function PaginationControls({
   if (pagSchema === undefined) {
     return <LoadingLine />;
   }
+
   return (
     <PaginationBase
       hasNextPage={hasNextPage}
@@ -89,6 +90,12 @@ export default function PaginationControls({
   );
 }
 
+//_________________________________________________________________________________________________//
+//_________________________________________________________________________________________________//
+//_________________________________________________________________________________________________//
+//_________________________________________________________________________________________________//
+//_________________________________________________________________________________________________//
+//_________________________________________________________________________________________________//
 type PaginationBaseProps = {
   hasNextPage: boolean;
   hasPrevPage: boolean;
@@ -126,7 +133,6 @@ function PaginationBase({
                 } else {
                   e.preventDefault();
                 }
-                console.log("active", activePage);
               }}
             />
           </PaginationItem>
@@ -214,15 +220,15 @@ function MediumAndLargePagination({
         .slice(sliceBegin, sliceEnd)
         .map((_, i) => {
           const pageIndex = sliceBegin + i + 1;
-          const isActive = pageIndex === pageNum;
           return (
-            <JumpLink
-              key={pageIndex}
-              id={`jump${pageIndex}`}
-              baseUrl={baseUrl}
-              per_page={per_page}
-              page={pageIndex}
-            />
+            <div key={pageIndex}>
+              <JumpLink
+                id={`jump${pageIndex}`}
+                baseUrl={baseUrl}
+                per_page={per_page}
+                page={pageIndex}
+              />
+            </div>
           );
         })}
 
@@ -255,7 +261,6 @@ type JumpLinkProps = {
   baseUrl: string;
   id: string;
   //outlineColor?: string;
-  key?: number;
 };
 
 function JumpLink({
@@ -263,16 +268,13 @@ function JumpLink({
   page,
   baseUrl,
   id,
-  //outlineColor = "goldAccent",
-  key,
-}: JumpLinkProps) {
+}: //outlineColor = "goldAccent",
+JumpLinkProps) {
   const { activePage, setActivePage } = usePaginationContext();
   const active = activePage === page;
 
   return (
-    <PaginationItem
-      id={id}
-      key={key}>
+    <PaginationItem id={id}>
       <PaginationLink
         href={`${baseUrl}/?page=${page}&per_page=${per_page}`}
         isActive={active}

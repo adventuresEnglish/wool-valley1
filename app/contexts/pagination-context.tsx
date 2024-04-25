@@ -22,7 +22,6 @@ export default function PaginationContextProvider({
   const searchParams = useSearchParams();
   const page = searchParams.get("page") ?? "1";
   const pageNum = Number(page);
-  console.log("pageNum:", pageNum);
 
   const { activePage, setActivePage } = usePagination(pageNum);
 

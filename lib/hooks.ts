@@ -5,11 +5,13 @@ import {
   useEffect,
   useMemo,
   useReducer,
+  useRef,
   useState,
 } from "react";
 import { PaginationContext } from "@/app/contexts/pagination-context";
 import { FavoritesContext } from "@/app/contexts/favorites-count-context-provider";
 import { SelectSizeContext } from "@/app/contexts/select-size-context-provider";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 
 // export function useHandleCheckoutClick() {
 //   const { cartCount, cartDetails, redirectToCheckout } = useShoppingCart();
@@ -79,6 +81,7 @@ export function useLocalStorage(key: string, initialValue: Product[]) {
   );
 
   useEffect(() => {
+    if (value.length == 0) return;
     localStorage.setItem("favorites", JSON.stringify(value));
   }, [value]);
 
@@ -300,6 +303,53 @@ export function useMouseXListener() {
     };
   }, []);
   return mouseX;
+}
+
+export function useNavScrollObserver() {
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+  const hoveredRef = useRef(false);
+  const timeoutId = useRef<NodeJS.Timeout | null>(null);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (previous !== undefined) {
+      // if you have just gone down and you are further down than 50 from the top
+      if (previous < latest && 50 < latest) {
+        setHidden(true);
+        // you aret at the top and need to cancel any timeouts
+      } else if (latest < 40) {
+        setHidden(false);
+        clearTimeout(timeoutId.current ?? 0);
+      }
+      // otherwise you are not at the top and if you have just gone up FAST // and are further than 100 down
+      else if (latest < previous && 20 < previous - latest && 100 < latest) {
+        if (timeoutId.current) clearTimeout(timeoutId.current);
+        setHidden(false);
+        timeoutId.current = setTimeout(() => {
+          if (!hoveredRef.current) setHidden(true);
+        }, 1700);
+      }
+    }
+  });
+
+  const handleMouseEnter = () => {
+    hoveredRef.current = true;
+    if (timeoutId.current) clearTimeout(timeoutId.current);
+  };
+
+  const handleMouseLeave = () => {
+    hoveredRef.current = false;
+    const latest = scrollY.get();
+    if (timeoutId.current) clearTimeout(timeoutId.current);
+    if (latest < 100) setHidden(false);
+    else if (latest > 50) {
+      timeoutId.current = setTimeout(() => {
+        setHidden(true);
+      }, 2200);
+    }
+  };
+  return { hidden, handleMouseEnter, handleMouseLeave };
 }
 
 // export function useFirstBestOfLinks(): CompleteFirstBestOfLink[] {

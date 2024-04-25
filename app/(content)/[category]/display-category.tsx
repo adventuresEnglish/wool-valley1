@@ -36,7 +36,7 @@ export default function DisplayCategory({
   return (
     <>
       <section className="bg-white mb-32 min-h-[80vh] lg:min-h-[90vh]">
-        <div className="mx-auto max-w-2xl px-4 sm:px-24 lg:max-w-6xl lg:px-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-24 lg:max-w-6xl lg:px-8">
           {category !== "blogs" ? (
             <DisplaySlippers
               data={data as Product[]}
@@ -89,9 +89,11 @@ function DisplaySlippers({
           {formatCategory(category)}
         </span>
       </div>
-      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-3 gap-y-2 mb-4">
+      <div className="mt-1 flex flex-wrap justify-center mb-3">
         {(data as Product[]).map((product: Product) => (
-          <ul key={product._id}>
+          <ul
+            key={product._id}
+            className="m-3 w-full sm:w-1/2 md:w-[28%] lg:w-1/6">
             <ProductCard
               product={product}
               category={category}
@@ -120,3 +122,16 @@ function DisplayBlogs({ data }: { data: Post[] }) {
 }
 
 //lg:min-h-[540px] xl:min-h-[628px]
+
+{
+  /* <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-3 gap-y-2 mb-4">
+              {(data as Product[]).map((product: Product) => (
+                <ul key={product._id}>
+                  <ProductCard
+                    product={product}
+                    category={category}
+                  />
+                </ul>
+              ))}
+            </div> */
+}
