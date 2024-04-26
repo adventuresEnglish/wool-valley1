@@ -25,7 +25,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <Card className={cn("border-goldAccent", className)}>
-      <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px]">
+      <div className="relative overflow-hidden rounded-t-lg border-b border-goldAccent shadow-lg lg:max-h-[200px] xl:max-h-[240px] 2xl:max-h-[320px]">
         <Link href={`/product/${product.slug}`}>
           {category === "favorites" ? (
             <Image

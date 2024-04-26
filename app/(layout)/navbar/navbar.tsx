@@ -26,7 +26,7 @@ export default function Navbar() {
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className={cn(
-        "mb-5 border-b sticky top-0 w-full bg-slate-50 flex flex-wrap items-center justify-between z-[70]",
+        "mb-6 border-b sticky top-0 w-full bg-slate-50 flex flex-wrap items-center justify-between z-[70]",
         {
           "pointer-events-none": shouldDisplayCart,
         }

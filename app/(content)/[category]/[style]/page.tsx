@@ -15,7 +15,7 @@ export default async function StylePage({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const page = searchParams["page"] ?? "1";
-  const perPage = params.category === "blogs" ? "6" : "8";
+  const perPage = params.category === "blogs" ? "6" : "9";
   const per_page = searchParams["per_page"] ?? perPage;
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);

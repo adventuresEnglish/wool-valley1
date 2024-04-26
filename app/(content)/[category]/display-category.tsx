@@ -36,7 +36,7 @@ export default function DisplayCategory({
   return (
     <>
       <section className="bg-white mb-32 min-h-[80vh] lg:min-h-[90vh]">
-        <div className="mx-auto max-w-5xl px-4 sm:px-24 lg:max-w-6xl lg:px-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-24 lg:max-w-6xl 2xl:max-w-[1350px] lg:px-8">
           {category !== "blogs" ? (
             <DisplaySlippers
               data={data as Product[]}
@@ -79,27 +79,39 @@ function DisplaySlippers({
 }) {
   return (
     <>
-      <div className="flex justify-between">
-        <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
+      <header className="flex flex-col 350px:flex-row 350px:justify-between mx-4 sm:mx-6 lg:mx-8 2xl:mx-12 items-center 2xl:mb-1">
+        <h2 className="text-xl 350px:text-2xl 2xl:text-3xl font-bold text-slate-800 tracking-tight">
           {currentStyle
             ? `${formatCategory(currentStyle)} Slippers`
             : "All Slippers"}
         </h2>
-        <span className="text-muted-foreground text-lg">
+        <span className="text-muted-foreground text-base 350px:text-lg 2xl:text-xl">
           {formatCategory(category)}
         </span>
-      </div>
-      <div className="mt-1 flex flex-wrap justify-center mb-3">
-        {(data as Product[]).map((product: Product) => (
-          <ul
-            key={product._id}
-            className="m-3 w-full sm:w-1/2 md:w-[28%] lg:w-1/6">
-            <ProductCard
-              product={product}
-              category={category}
-            />
-          </ul>
-        ))}
+      </header>
+      <div className="mt-1 flex flex-wrap justify-center mb-3 2xl:mb-4">
+        {data.flatMap((product, i) => {
+          const items = [
+            <ul
+              key={product._id}
+              className="m-3 w-full sm:w-[44%] md:w-[29%] lg:w-[17.2%] 2xl:w-[22%]">
+              <ProductCard
+                product={product}
+                category={category}
+              />
+            </ul>,
+          ];
+
+          if (i === 4 || i === 7) {
+            items.unshift(
+              <div
+                key={`empty-${i}`}
+                className="invisible 2xl:visible 2xl:w-[11%]"></div>
+            );
+          }
+
+          return items;
+        })}
       </div>
     </>
   );
