@@ -26,23 +26,6 @@ export default async function StylePage({
     range: [start, end],
   });
 
-  // const names = categoryData.map((item) => item.name);
-  // console.log("names", names, "hello");
-  // console.log(
-  //   "params",
-  //   params,
-  //   "searchParams",
-  //   searchParams,
-  //   "per_page",
-  //   per_page,
-  //   "catCount",
-  //   catCount,
-  //   "start",
-  //   start,
-  //   "end",
-  //   end
-  // );
-
   return (
     <DisplayCategory
       currentStyle={params.style}

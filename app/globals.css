@@ -183,6 +183,15 @@ details[open] ~ .details-open-blur {
 }
 
 @keyframes loading-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* @keyframes loading-spinner {
   0%,
   100% {
     opacity: 0.8;
@@ -190,4 +199,4 @@ details[open] ~ .details-open-blur {
   50% {
     opacity: 0.2;
   }
-}
+} */

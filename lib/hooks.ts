@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { PaginationContext } from "@/app/contexts/pagination-context";
+//import { PaginationContext } from "@/app/contexts/pagination-context";
 import { FavoritesContext } from "@/app/contexts/favorites-count-context-provider";
 import { SelectSizeContext } from "@/app/contexts/select-size-context-provider";
 import { useMotionValueEvent, useScroll } from "framer-motion";
@@ -136,15 +136,15 @@ export function useSelectSizeContext() {
   return context;
 }
 
-export function usePaginationContext() {
-  const context = useContext(PaginationContext);
-  if (!context) {
-    throw new Error(
-      "PaginationContext must be used within the PaginationContext"
-    );
-  }
-  return context;
-}
+// export function usePaginationContext() {
+//   const context = useContext(PaginationContext);
+//   if (!context) {
+//     throw new Error(
+//       "PaginationContext must be used within the PaginationContext"
+//     );
+//   }
+//   return context;
+// }
 
 export function useWindowResizeListener() {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);

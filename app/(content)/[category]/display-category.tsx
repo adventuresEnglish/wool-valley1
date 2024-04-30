@@ -5,7 +5,7 @@ import ProductCard from "../product/product-card";
 import { cn, formatCategory } from "@/lib/utils/utils";
 import PostCard from "../blog/post-card";
 import PaginationControls from "./pagination-controls";
-import PaginationContextProvider from "@/app/contexts/pagination-context";
+//import PaginationContextProvider from "@/app/contexts/pagination-context";
 
 export const metadata: Metadata = {
   title: "Wool Valley Slippers",
@@ -48,16 +48,14 @@ export default function DisplayCategory({
           )}
           <div className="h-10">
             {catCount > Number(per_page) && (
-              <PaginationContextProvider>
-                <PaginationControls
-                  hasNextPage={hasNextPage}
-                  hasPrevPage={hasPrevPage}
-                  category={category}
-                  currentStyle={currentStyle}
-                  per_page={per_page}
-                  catCount={catCount}
-                />
-              </PaginationContextProvider>
+              <PaginationControls
+                hasNextPage={hasNextPage}
+                hasPrevPage={hasPrevPage}
+                category={category}
+                currentStyle={currentStyle}
+                per_page={per_page}
+                catCount={catCount}
+              />
             )}
           </div>
         </div>
@@ -101,7 +99,6 @@ function DisplaySlippers({
               />
             </ul>,
           ];
-
           if (i === 4 || i === 7) {
             items.unshift(
               <div
@@ -109,7 +106,6 @@ function DisplaySlippers({
                 className="invisible 2xl:visible 2xl:w-[11%]"></div>
             );
           }
-
           return items;
         })}
       </div>

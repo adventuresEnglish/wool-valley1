@@ -20,19 +20,6 @@ export default async function CategoryPage({
   const end = start + Number(per_page);
   const catCount = await getCatCount(params.category);
 
-  console.log(
-    "per_page",
-    per_page,
-    "catCount",
-    catCount,
-    "start",
-    start,
-    "end",
-    end
-  );
-
-  console.log("hello");
-
   let categoryData: Product[] | Post[] = [];
   if (params.category === "blogs") {
     categoryData = await getPostsData();

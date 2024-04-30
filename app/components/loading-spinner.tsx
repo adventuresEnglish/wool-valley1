@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { GOLDEN_RATIO } from "@/lib/constants";
 
 const LoadingSpinner = () => {
   const [show, setShow] = useState(false);
@@ -11,19 +12,27 @@ const LoadingSpinner = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const spinners = Array(9)
+  const a = 13;
+  const b = 0.025;
+
+  const spinners = Array(18)
     .fill(0)
-    .map((_, i) => ({
-      transform: `rotate(${i * 40}deg) translate(50px)`,
-      animation: `loading-spinner 1.4s infinite ${(i * 1.4) / 9}s`,
-    }));
+    .map((_, i) => {
+      const θ = i * 225 * (Math.PI / 180);
+      const r = a * Math.exp(b * θ);
+
+      return {
+        transform: `rotate(${i * 50}deg) translate(${r}px)`,
+        animation: `loading-spinner 2.4s infinite ${i / 18}s`,
+      };
+    });
 
   return show ? (
-    <div className="fixed top-[30%] left-1/2 w-24 h-24 transform -translate-x-1/2 -translate-y-1/2">
+    <div className="fixed lg:top-[45.6%] 2xl:top-[50%] lg:left-[49.15%] w-24 h-24 transform -translate-x-1/2 -translate-y-1/2">
       {spinners.map((style, i) => (
         <span
           key={i}
-          className="absolute top-1/2 left-1/2 w-5 h-5 bg-primary rounded-full opacity-70 animate-loading-spinner"
+          className="absolute top-1/2 left-1/2 w-3 h-3 bg-primary rounded-full opacity-70"
           style={style}
         />
       ))}

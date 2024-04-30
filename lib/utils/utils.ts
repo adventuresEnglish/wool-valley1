@@ -1,7 +1,7 @@
 import { client } from "@/app/lib/sanity";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { SIZE_CATEGORIES } from "../constants";
+import { GOLDEN_RATIO, SIZE_CATEGORIES } from "../constants";
 import { PRICE_ID_STORE } from "../priceIdStore";
 import { Product } from "../types";
 
@@ -264,6 +264,20 @@ export function isMobileOrTablet() {
   );
 }
 
+export function getPagSchema(width: number | null) {
+  let pagSchema: string | undefined;
+  if (width) {
+    if (width < 490) {
+      pagSchema = "schema 5";
+    } else if (width < 1024) {
+      pagSchema = "schema 7";
+    } else if (width > 1024) {
+      pagSchema = "schema 9";
+    }
+  }
+  return pagSchema;
+}
+
 export function getPaginationVariables(
   pagSchema: "schema 7" | "schema 9",
   pageNum: number,
@@ -322,14 +336,14 @@ export function getPaginationVariables(
 }
 
 export function getCanvasSide(windowWidth: number) {
-  const goldenRatio = 1.61803398875;
+  const φ = GOLDEN_RATIO;
   const smallScreen = windowWidth < 752;
   const canvasCalc = smallScreen
     ? (windowWidth - 40) / 3
     : !smallScreen && windowWidth < 1024
-    ? (windowWidth / 2.25) * goldenRatio
+    ? (windowWidth / 2.25) * φ
     : windowWidth > 1024
-    ? (windowWidth / 3.31) * goldenRatio
+    ? (windowWidth / 3.31) * φ
     : 0;
   const canvasSide = canvasCalc > 260 ? 260 : canvasCalc;
   return { canvasSide, smallScreen };
