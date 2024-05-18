@@ -1,9 +1,9 @@
-import { Post, Product } from "../../../lib/types";
-import React from "react";
+import { formatCategory } from "@/lib/utils/utils";
 import { Metadata } from "next";
-import ProductCard from "../product/product-card";
-import { cn, formatCategory } from "@/lib/utils/utils";
+import React from "react";
+import { Post, Product } from "../../../lib/types";
 import PostCard from "../blog/post-card";
+import ProductCard from "../product/product-card";
 import PaginationControls from "./pagination-controls";
 //import PaginationContextProvider from "@/app/contexts/pagination-context";
 
@@ -87,28 +87,29 @@ function DisplaySlippers({
           {formatCategory(category)}
         </span>
       </header>
-      <div className="mt-1 flex flex-wrap justify-center mb-3 2xl:mb-4">
+      <ul className="mt-1 flex flex-wrap justify-center mb-3 2xl:mb-4">
         {data.flatMap((product, i) => {
           const items = [
-            <ul
+            <li
               key={product._id}
               className="m-3 w-full sm:w-[44%] md:w-[29%] lg:w-[17.2%] 2xl:w-[22%]">
               <ProductCard
                 product={product}
                 category={category}
               />
-            </ul>,
+            </li>,
           ];
           if (i === 4 || i === 7) {
             items.unshift(
-              <div
+              <li
                 key={`empty-${i}`}
-                className="invisible 2xl:visible 2xl:w-[11%]"></div>
+                className="invisible 2xl:visible 2xl:w-[11%] px-1.5"
+              />
             );
           }
           return items;
         })}
-      </div>
+      </ul>
     </>
   );
 }
